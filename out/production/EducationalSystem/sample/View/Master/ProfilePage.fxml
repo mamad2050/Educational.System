@@ -69,7 +69,7 @@
         </HBox>
         <HBox layoutX="182.0" layoutY="258.3333435058594">
             <children>
-                <Label text="Username : ">
+                <Label text="Personnel ID : ">
                     <font>
                         <Font size="18.0" />
                     </font>

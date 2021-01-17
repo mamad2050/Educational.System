@@ -83,8 +83,8 @@ public class ManageMastersController implements Initializable {
     @FXML
     private Label errorLBL;
 
-   @FXML
-   private TextField searchField;
+    @FXML
+    private TextField searchField;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -128,7 +128,11 @@ public class ManageMastersController implements Initializable {
                 Master deleteMaster = masterTable.getSelectionModel().getSelectedItem();
                 Master.masterList.remove(deleteMaster);
                 masterTable.getItems().remove(deleteMaster);
-//                Student.studentList.remove(deleteMaster);
+                try {
+                    WriteAndReadFile.write();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         });
 

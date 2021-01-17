@@ -50,7 +50,7 @@ public class MasterProfileController implements Initializable {
         userLBL.setText(LoginPageController.masterLoggedIn.getUserName());
 
         editBTN.setOnAction(event -> {
-            FXMLLoader loader = new FXMLLoader(Main.class.getResource("View/Master/ProfilePage.fxml"));
+            FXMLLoader loader = new FXMLLoader(Main.class.getResource("View/Master/EditProfilePage.fxml"));
             AnchorPane pane = null;
             try {
                 loader.load();
@@ -61,5 +61,6 @@ public class MasterProfileController implements Initializable {
             pane = loader.getRoot();
             showPane.getChildren().setAll(pane);
         });
+
     }
 }
