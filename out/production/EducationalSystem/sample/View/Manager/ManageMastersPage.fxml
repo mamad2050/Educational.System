@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.Group?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="showPane" prefHeight="615.0" prefWidth="970.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller.Manager.ManageMastersController">
+   <children>
+      <AnchorPane layoutY="-3.0" prefHeight="632.0" prefWidth="942.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="-1.0" AnchorPane.topAnchor="-3.0">
+         <children>
+            <TableView fx:id="masterTable" editable="true" fixedCellSize="0.0" layoutX="7.0" layoutY="45.0" prefHeight="588.0" prefWidth="761.0" style="-fx-background-color: transparent; -fx-selection-bar: aqua;" stylesheets="@../Drawable/TableViewStyle.css" AnchorPane.leftAnchor="7.0" AnchorPane.rightAnchor="195.0">
+               <columns>
+                  <TableColumn fx:id="masterIdColumn" maxWidth="2000.0" minWidth="0.0" prefWidth="65.33333683013916" text="ID" />
+                  <TableColumn fx:id="firstnameColumn" maxWidth="3500.0" prefWidth="141.33341217041016" text="First Name" />
+                  <TableColumn fx:id="lastnameColumn" maxWidth="3500.0" prefWidth="156.22232055664062" text="Last Name" />
+                  <TableColumn fx:id="usernameColumn" maxWidth="4000.0" prefWidth="171.33334350585938" text="Username" />
+                  <TableColumn fx:id="phoneColumn" maxWidth="4000.0" prefWidth="177.33334350585938" text="Phone" />
+                  <TableColumn fx:id="emailColumn" maxWidth="5500.0" prefWidth="201.77789306640625" text="E-Mail" />
+               </columns>
+               <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy>
+            </TableView>
+            <AnchorPane layoutX="768.0" layoutY="6.0" prefHeight="625.0" prefWidth="195.0">
+               <children>
+                  <VBox layoutX="26.0" layoutY="489.0" prefHeight="119.0" prefWidth="150.0" spacing="11.0">
+                     <children>
+                        <JFXButton fx:id="addBTN" prefHeight="32.0" prefWidth="146.0" style="-fx-background-color: green; -fx-background-radius: 20px;" text="Add" textFill="WHITE">
+                           <graphic>
+                              <FontAwesomeIconView fill="WHITE" glyphName="PLUS" />
+                           </graphic></JFXButton>
+                        <JFXButton fx:id="editBTN" prefHeight="32.0" prefWidth="146.0" style="-fx-background-color: orange; -fx-background-radius: 20px;" text="Edit" textFill="WHITE">
+                           <graphic>
+                              <FontAwesomeIconView fill="WHITE" glyphName="PENCIL" />
+                           </graphic></JFXButton>
+                        <JFXButton fx:id="deleteBTN" prefHeight="32.0" prefWidth="146.0" style="-fx-background-color: darkred; -fx-background-radius: 20px;" text="Delete" textFill="WHITE">
+                           <graphic>
+                              <FontAwesomeIconView fill="WHITE" glyphName="TRASH" />
+                           </graphic></JFXButton>
+                     </children>
+                  </VBox>
+                  <VBox layoutX="16.0" layoutY="137.0" prefHeight="290.0" prefWidth="164.0" spacing="40.0">
+                     <children>
+                        <JFXTextField fx:id="firstNameField" labelFloat="true" promptText="First Name" />
+                        <JFXTextField fx:id="lastNameField" labelFloat="true" layoutX="10.0" layoutY="10.0" promptText="Last Name" />
+                        <JFXTextField fx:id="userField" labelFloat="true" layoutX="10.0" layoutY="35.0" promptText="UserName" />
+                        <JFXTextField fx:id="mailField" labelFloat="true" layoutX="10.0" layoutY="61.0" promptText="E-Mail" />
+                        <JFXTextField fx:id="phoneField" labelFloat="true" layoutX="10.0" layoutY="86.0" promptText="Phone" />
+                     </children>
+                  </VBox>
+                  <Label fx:id="errorLBL" alignment="CENTER" layoutX="17.0" layoutY="434.0" prefHeight="49.0" prefWidth="160.0" textAlignment="CENTER" wrapText="true" />
+                  <ImageView fitHeight="108.0" fitWidth="108.0" layoutX="41.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Drawable/headmaster.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="73.0" fitWidth="69.0" layoutX="102.0" layoutY="70.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Drawable/1610717315596.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+            <Text fill="#1f1685" fontSmoothingType="LCD" layoutX="363.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MASTERS" wrappingWidth="173.24789428710938">
+               <font>
+                  <Font name="System Bold" size="25.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
+      <Group layoutX="17.0" layoutY="8.0">
+         <children>
+            <TextField fx:id="searchField" layoutX="19.0" promptText="Search" style="-fx-background-radius: 20px;" />
+            <FontAwesomeIconView glyphName="SEARCH" layoutX="3.0" layoutY="17.599998474121094" opacity="0.36" />
+         </children>
+      </Group>
+   </children>
+</AnchorPane>

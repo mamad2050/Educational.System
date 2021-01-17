@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane fx:id="showPane" prefHeight="615.0" prefWidth="942.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller.Manager.ManagerDashboardController">
+   <children>
+      <ImageView accessibleRole="LIST_VIEW" fitHeight="628.0" fitWidth="964.0" opacity="0.8" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Drawable/university-library-4825366_1920.jpg" />
+         </image>
+      </ImageView>
+      <AnchorPane prefHeight="627.0" prefWidth="964.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <VBox layoutX="50.0" layoutY="40.0" prefHeight="488.0" prefWidth="881.0" spacing="60.0" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="33.0" AnchorPane.topAnchor="100.0">
+               <children>
+                  <HBox prefHeight="197.0" prefWidth="875.0" spacing="75.0">
+                     <children>
+                        <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Drawable/manager.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Drawable/headmaster.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="161.0" fitWidth="179.0" layoutX="285.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Drawable/teacher.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="157.0" fitWidth="158.0" layoutX="461.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Drawable/iconfinder_board-math-class-school_2824448.png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets top="3.0" />
+                           </HBox.margin>
+                        </ImageView>
+                     </children>
+                  </HBox>
+                  <HBox layoutX="10.0" layoutY="10.0" prefHeight="197.0" prefWidth="875.0" spacing="75.0">
+                     <children>
+                        <ImageView fitHeight="154.0" fitWidth="156.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Drawable/iconfinder_ilustracoes_04-10_1519778.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="167.0" fitWidth="179.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Drawable/message.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="137.0" fitWidth="138.0" layoutX="285.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Drawable/copy.png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets top="14.0" />
+                           </HBox.margin>
+                        </ImageView>
+                        <ImageView fitHeight="135.0" fitWidth="138.0" layoutX="461.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Drawable/notification.png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets top="13.0" />
+                           </HBox.margin>
+                        </ImageView>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

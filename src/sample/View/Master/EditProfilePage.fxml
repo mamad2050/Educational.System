@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXRadioButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="showPane" prefHeight="615.0" prefWidth="942.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller.Master.EditProfileController">
+    <children>
+        <ImageView accessibleRole="LIST_VIEW" fitHeight="628.0" fitWidth="964.0" opacity="0.8" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../Drawable/university-library-4825366_1920.jpg" />
+            </image>
+        </ImageView>
+        <AnchorPane layoutY="-2.0" prefHeight="632.0" prefWidth="942.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="-2.0" AnchorPane.topAnchor="-2.0">
+            <children>
+                <Hyperlink fx:id="resetPassLink" layoutX="446.0" layoutY="501.0" style="-fx-border-color: transparent;" text="Reset Password" textFill="#1f1685" />
+                <Text fill="#1f1685" layoutX="397.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="EDIT PROFILE">
+                    <font>
+                        <Font name="System Bold" size="28.0" />
+                    </font>
+                </Text>
+                <Text layoutX="255.0" layoutY="573.0" strokeType="OUTSIDE" strokeWidth="0.0" text="if don't remember your current password , you can Reset Your Password on bottom Link ." wrappingWidth="474.4274845123291" />
+                <JFXButton layoutX="427.0" layoutY="503.0" prefHeight="33.0" prefWidth="132.0" style="-fx-background-color: green; -fx-cursor: hand;" stylesheets="@../Drawable/Style.css" text="Change Password" textFill="WHITE" />
+                <Hyperlink fx:id="resetPassLink" layoutX="462.0" layoutY="580.0" style="-fx-background-color: transparent;" text="Reset" />
+            </children></AnchorPane>
+        <VBox layoutX="196.0" layoutY="147.0" prefHeight="401.0" prefWidth="582.0" spacing="40.0" AnchorPane.bottomAnchor="80.0" AnchorPane.leftAnchor="196.0" AnchorPane.rightAnchor="164.0" AnchorPane.topAnchor="147.0">
+            <children>
+                <HBox spacing="160.0">
+                    <children>
+                        <JFXTextField labelFloat="true" prefHeight="25.0" prefWidth="210.0" promptText="First Name" />
+                        <JFXTextField labelFloat="true" prefHeight="25.0" prefWidth="210.0" promptText="Last Name" />
+                    </children>
+                </HBox>
+                <HBox spacing="160.0">
+                    <children>
+                        <JFXTextField labelFloat="true" prefWidth="210.0" promptText="User Name" />
+                        <JFXTextField labelFloat="true" prefWidth="210.0" promptText="Phone Number" />
+                    </children>
+                </HBox>
+                <HBox spacing="163.0">
+                    <children>
+                        <JFXTextField labelFloat="true" prefWidth="210.0" promptText="E Mail" />
+                        <Label prefHeight="26.0" prefWidth="65.0" text="Gender : ">
+                            <padding>
+                                <Insets top="7.0" />
+                            </padding>
+                            <font>
+                                <Font size="13.0" />
+                            </font>
+                            <HBox.margin>
+                                <Insets right="-162.0" />
+                            </HBox.margin>
+                        </Label>
+                        <VBox spacing="2.0">
+                            <children>
+                                <JFXRadioButton fx:id="maleRBTN" text="Male" />
+                                <JFXRadioButton fx:id="femailRBTN" text="FeMail" />
+                            </children>
+                            <HBox.margin>
+                                <Insets right="53.0" />
+                            </HBox.margin>
+                        </VBox>
+                    </children>
+                </HBox>
+                <JFXButton prefHeight="32.0" prefWidth="132.0" style="-fx-background-color: green; -fx-cursor: hand;" stylesheets="@../Drawable/Style.css" text="SAVE" textFill="WHITE">
+                    <VBox.margin>
+                        <Insets left="232.0" />
+                    </VBox.margin>
+                </JFXButton>
+                <HBox prefHeight="25.0" prefWidth="565.0" spacing="160.0">
+                    <children>
+                        <JFXTextField labelFloat="true" prefWidth="210.0" promptText="Current Password" />
+                        <JFXTextField labelFloat="true" prefWidth="210.0" promptText="New Password" />
+                    </children>
+                    <VBox.margin>
+                        <Insets bottom="-1.0" top="14.0" />
+                    </VBox.margin>
+                </HBox>
+            </children>
+        </VBox>
+        <JFXButton fx:id="backBTN" layoutX="11.0" layoutY="581.0" prefHeight="30.0" prefWidth="85.0" style="-fx-background-radius: 20; -fx-background-color: purple; -fx-cursor: hand;" text="Back" textFill="WHITE" />
+    </children>
+</AnchorPane>

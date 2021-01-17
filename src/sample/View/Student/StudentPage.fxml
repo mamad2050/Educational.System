@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXListView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane prefHeight="615.0" prefWidth="1116.0" xmlns="http://javafx.com/javafx/11.0.1"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller.Student.StudentPageController">
+    <center>
+        <HBox prefHeight="642.0" prefWidth="1116.0">
+            <children>
+                <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+                            prefHeight="628.0" prefWidth="176.0" style="-fx-background-color: back;">
+                    <children>
+                        <ImageView fitHeight="112.0" fitWidth="126.0" layoutX="31.0" layoutY="5.0"
+                                   nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true"
+                                   AnchorPane.topAnchor="5.0">
+                            <image>
+                                <Image url="@../Drawable/teacher.png"/>
+                            </image>
+                        </ImageView>
+                        <Line endX="155.0" layoutY="165.0" startX="15.0"/>
+                        <JFXListView fx:id="listview" layoutX="15.0" layoutY="184.0" prefHeight="366.0"
+                                     prefWidth="147.0"
+                                     style="-fx-background-color: white; -fx-cursor: hand; -fx-border-radius: 20px;"
+                                     stylesheets="@../Drawable/ListViewStyle.css" AnchorPane.bottomAnchor="79.0"
+                                     AnchorPane.topAnchor="183.0"/>
+                        <Label alignment="CENTER" layoutX="37.0" layoutY="109.0" prefHeight="21.0" prefWidth="101.0"
+                               style="-fx-background-color: #CFD8DC; -fx-background-radius: 20px;" text="Student"
+                               AnchorPane.leftAnchor="37.0" AnchorPane.rightAnchor="38.0">
+                            <font>
+                                <Font name="System Bold" size="15.0"/>
+                            </font>
+                        </Label>
+                        <JFXButton fx:id="logoutBTN" layoutX="21.0" layoutY="573.0" prefHeight="32.0" prefWidth="137.0"
+                                   style="-fx-background-color: darkred; -fx-background-radius: 20; -fx-cursor: hand;"
+                                   text="Log Out" textFill="WHITE"/>
+                        <Label fx:id="userLBL" alignment="CENTER" layoutX="35.0" layoutY="137.0" prefHeight="18.0"
+                               prefWidth="101.0"/>
+                    </children>
+                </AnchorPane>
+                <AnchorPane fx:id="showPane" layoutX="200.0" prefHeight="615.0" prefWidth="942.0">
+                    <HBox.margin>
+                        <Insets left="-2.0"/>
+                    </HBox.margin>
+                </AnchorPane>
+            </children>
+        </HBox>
+    </center>
+</BorderPane>

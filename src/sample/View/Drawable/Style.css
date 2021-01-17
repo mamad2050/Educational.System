@@ -1,0 +1,27 @@
+.button {
+    -fx-background-radius: 100;
+}
+.sidebar{
+    -fx-background-color: linear-gradient( to bottom ,rgba(7, 11, 14,1),rgba(7, 11, 14,0.8));
+}
+.card-1{
+    -fx-background-color: linear-gradient( to bottom ,#04AFC3,#24C3D7);
+}
+.card-2{
+    -fx-background-color: linear-gradient( to bottom ,#E63C37,#E94440);
+}
+.card-3{
+    -fx-background-color: linear-gradient( to bottom ,#46A24B,#63BA68);
+}
+.card-4{
+    -fx-background-color: linear-gradient( to bottom ,#FD8E01,#FCA324);
+}
+.sidebar-item-active {
+    -fx-background-color:#F0524E ;
+    -fx-background-radius: 5px;
+}
+.sidebar-item:hover {
+    -fx-background-color:#F0524E ;
+    -fx-background-radius: 5px;
+    -fx-cursor: hand;
+}

@@ -1,0 +1,17 @@
+
+.list-view .list-cell:selected {
+    -fx-background-radius: 20;
+    -fx-background-color: cornflowerblue;
+    -fx-border-width: 0px 0px 0px 2px;
+}
+
+.list-view .label10 {
+    -fx-background-color: #E94440;
+}
+
+.list-cell:hover {
+    -fx-border-color: cornflowerblue;
+    -fx-border-width: 0px 0px 0px 2px;
+    -fx-background-color: aqua;
+    -fx-background-radius: 20;
+}
