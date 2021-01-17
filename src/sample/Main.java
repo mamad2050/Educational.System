@@ -9,10 +9,9 @@ import sample.File.WriteAndReadFile;
 
 public class Main extends Application {
 
-
     @Override
     public void start(Stage primaryStage) throws Exception {
-//
+
         WriteAndReadFile.read();
 
         FXMLLoader loader = new FXMLLoader();
@@ -27,8 +26,6 @@ public class Main extends Application {
     }
 
     public static void main(String[] args)  {
-
         launch(args);
-
     }
 }
