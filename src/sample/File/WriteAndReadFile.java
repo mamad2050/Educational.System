@@ -1,5 +1,6 @@
 package sample.File;
 
+import sample.Model.Master;
 import sample.Model.Student;
 
 import java.io.*;
@@ -8,6 +9,8 @@ import java.util.Scanner;
 
 public class WriteAndReadFile {
     public static void write() throws IOException {
+
+     //student
 
         FileWriter fileWriter = new FileWriter("File/Student.txt");
         BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
@@ -23,10 +26,33 @@ public class WriteAndReadFile {
         }
         bufferedWriter.close();
         fileWriter.close();
+
+// master
+
+
+         fileWriter = new FileWriter("File/Master.txt");
+         bufferedWriter = new BufferedWriter(fileWriter);
+        bufferedWriter.write(String.valueOf(Master.lastId));
+        bufferedWriter.newLine();
+
+        for (int i = 0; i < Master.masterList.size(); i++) {
+            Master master = Master.masterList.get(i);
+            String forSave = master.getMasterId() + " " + master.getFirstName() + " " + master.getLastName() + " " +
+                    master.getUserName() + " " + master.getPassword() + " " + master.getEmail() + " " + master.getPhone();
+            bufferedWriter.write(forSave);
+            bufferedWriter.newLine();
+        }
+        bufferedWriter.close();
+        fileWriter.close();
     }
 
 
+
+
+
     public static void read() throws IOException {
+
+    // student
 
         FileReader fileReader = new FileReader("File/Student.txt");
         BufferedReader bufferedReader = new BufferedReader(fileReader);
@@ -41,6 +67,25 @@ public class WriteAndReadFile {
 
             Student.studentList.add(student);
             Student.lastId++;
+        }
+        bufferedReader.close();
+        fileReader.close();
+
+
+
+// master
+         fileReader = new FileReader("File/Master.txt");
+         bufferedReader = new BufferedReader(fileReader);
+
+        Master.lastId = Integer.parseInt(bufferedReader.readLine());
+        Master.lastId = 1;
+        while ((str = bufferedReader.readLine()) != null) {
+
+            String[] tmp = str.split(" ");
+            Master master = new Master(tmp[1], tmp[2], tmp[3], tmp[4], tmp[5], tmp[6]);
+
+           Master.masterList.add(master);
+            Master.lastId++;
         }
         bufferedReader.close();
         fileReader.close();

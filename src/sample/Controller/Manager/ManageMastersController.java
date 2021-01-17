@@ -20,6 +20,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import sample.File.WriteAndReadFile;
 import sample.Main;
 import sample.Model.Master;
 import sample.Model.Student;
@@ -100,14 +101,19 @@ public class ManageMastersController implements Initializable {
 
         addBTN.setOnAction(event -> {
 
-            masterCheckConditions(new Master(firstNameField.getText(), lastNameField.getText(), userField.getText()
-                    , "0000", mailField.getText(), phoneField.getText()));
+            try {
+                masterCheckConditions(new Master(firstNameField.getText(), lastNameField.getText(), userField.getText()
+                        , "0000", mailField.getText(), phoneField.getText()));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
         });
         masterTable.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
                 Master master = masterTable.getSelectionModel().getSelectedItem();
+
                 firstNameField.setText(master.getFirstName());
                 lastNameField.setText(master.getLastName());
                 userField.setText(master.getUserName());
@@ -120,9 +126,9 @@ public class ManageMastersController implements Initializable {
             @Override
             public void handle(ActionEvent event) {
                 Master deleteMaster = masterTable.getSelectionModel().getSelectedItem();
-                Student.studentList.remove(deleteMaster);
+                Master.masterList.remove(deleteMaster);
                 masterTable.getItems().remove(deleteMaster);
-                Student.studentList.remove(deleteMaster);
+//                Student.studentList.remove(deleteMaster);
             }
         });
 
@@ -153,11 +159,13 @@ public class ManageMastersController implements Initializable {
 
     }
 
-    private void masterCheckConditions(Master master) {
+    private void masterCheckConditions(Master master) throws IOException {
+
         if (checkAllField()) {
             if (nonDuplicatedUser(master.getUserName())) {
                 if (checkPhoneField() && checkMailField() && checkUserField()) {
                     Master.masterList.add(master);
+                    WriteAndReadFile.write();
                     masterTable.getItems().add(master);
                     Master.lastId++;
                     clearFields();

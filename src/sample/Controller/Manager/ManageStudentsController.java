@@ -132,7 +132,11 @@ public class ManageStudentsController implements Initializable {
                 Student deleteStudent = studentTable.getSelectionModel().getSelectedItem();
                 Student.studentList.remove(deleteStudent);
                 studentTable.getItems().remove(deleteStudent);
-                Student.studentList.remove(deleteStudent);
+                try {
+                    WriteAndReadFile.write();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
