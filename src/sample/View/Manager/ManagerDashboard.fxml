@@ -1,82 +1,188 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.Group?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane fx:id="showPane" prefHeight="615.0" prefWidth="942.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller.Manager.ManagerDashboardController">
    <children>
-      <ImageView accessibleRole="LIST_VIEW" fitHeight="628.0" fitWidth="964.0" opacity="0.8" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../Drawable/university-library-4825366_1920.jpg" />
-         </image>
-      </ImageView>
       <AnchorPane prefHeight="627.0" prefWidth="964.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <VBox layoutX="50.0" layoutY="40.0" prefHeight="488.0" prefWidth="881.0" spacing="60.0" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="33.0" AnchorPane.topAnchor="100.0">
+            <Group layoutX="127.33332824707031" layoutY="103.33333587646484">
                <children>
-                  <HBox prefHeight="197.0" prefWidth="875.0" spacing="75.0">
+                  <ImageView fitHeight="162.0" fitWidth="185.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Drawable/manager.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+                  <HBox fx:id="hboxMan" layoutX="13.666671752929688" layoutY="169.66666412353516" spacing="8.0">
                      <children>
-                        <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../Drawable/manager.png" />
-                           </image>
-                        </ImageView>
-                        <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../Drawable/headmaster.png" />
-                           </image>
-                        </ImageView>
-                        <ImageView fitHeight="161.0" fitWidth="179.0" layoutX="285.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../Drawable/teacher.png" />
-                           </image>
-                        </ImageView>
-                        <ImageView fitHeight="157.0" fitWidth="158.0" layoutX="461.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../Drawable/iconfinder_board-math-class-school_2824448.png" />
-                           </image>
-                           <HBox.margin>
-                              <Insets top="3.0" />
-                           </HBox.margin>
-                        </ImageView>
+                        <Label fx:id="managerCount" text="0" textFill="#1f1685">
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                        </Label>
+                        <Text fill="#1f1685" strokeType="OUTSIDE" strokeWidth="0.0" text="MANAGERS">
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                        </Text>
                      </children>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </HBox>
-                  <HBox layoutX="10.0" layoutY="10.0" prefHeight="197.0" prefWidth="875.0" spacing="75.0">
+               </children>
+            </Group>
+            <Group fx:id="masterGRP" layoutX="407.0" layoutY="101.0">
+               <children>
+                  <ImageView fitHeight="167.0" fitWidth="173.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Drawable/headmaster.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+                  <HBox layoutX="29.0" layoutY="175.0" spacing="8.0">
                      <children>
-                        <ImageView fitHeight="154.0" fitWidth="156.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../Drawable/iconfinder_ilustracoes_04-10_1519778.png" />
-                           </image>
-                        </ImageView>
-                        <ImageView fitHeight="167.0" fitWidth="179.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../Drawable/message.png" />
-                           </image>
-                        </ImageView>
-                        <ImageView fitHeight="137.0" fitWidth="138.0" layoutX="285.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../Drawable/copy.png" />
-                           </image>
-                           <HBox.margin>
-                              <Insets top="14.0" />
-                           </HBox.margin>
-                        </ImageView>
-                        <ImageView fitHeight="135.0" fitWidth="138.0" layoutX="461.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../Drawable/notification.png" />
-                           </image>
-                           <HBox.margin>
-                              <Insets top="13.0" />
-                           </HBox.margin>
-                        </ImageView>
+                        <Label fx:id="masterCount" text="0" textFill="#1f1685">
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                        </Label>
+                        <Text fill="#1f1685" strokeType="OUTSIDE" strokeWidth="0.0" text="MASTERS">
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                        </Text>
+                     </children>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </HBox>
+               </children>
+            </Group>
+            <Group fx:id="studentGRP" layoutX="691.3333129882812" layoutY="103.33333587646484">
+               <children>
+                  <ImageView fitHeight="161.0" fitWidth="179.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Drawable/teacher.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+                  <HBox layoutX="17.66668701171875" layoutY="169.66666412353516" spacing="8.0">
+                     <children>
+                        <Label fx:id="studCount" text="0" textFill="#1f1685">
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                        </Label>
+                        <Text fill="#1f1685" strokeType="OUTSIDE" strokeWidth="0.0" text="STUDENTS">
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Text>
                      </children>
                   </HBox>
                </children>
-            </VBox>
+            </Group>
+            <Group fx:id="classGRP" layoutX="126.33332824707031" layoutY="358.3333435058594">
+               <children>
+                  <ImageView fitHeight="157.0" fitWidth="158.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Drawable/iconfinder_board-math-class-school_2824448.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+                  <HBox layoutX="34.66667175292969" layoutY="163.66665649414062" spacing="8.0">
+                     <children>
+                        <Label fx:id="classCount" text="0" textFill="#1f1685">
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                        </Label>
+                        <Text fill="#1f1685" strokeType="OUTSIDE" strokeWidth="0.0" text="CLASES">
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                        </Text>
+                     </children>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </HBox>
+               </children>
+            </Group>
+            <Group fx:id="messageGRP" layoutX="405.66668701171875" layoutY="355.0">
+               <children>
+                  <ImageView fitHeight="167.0" fitWidth="179.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Drawable/message.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+                  <HBox layoutX="23.33331298828125" layoutY="167.0" spacing="8.0">
+                     <children>
+                        <Label fx:id="messagesCount" text="0" textFill="#1f1685">
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                        </Label>
+                        <Text fill="#1f1685" strokeType="OUTSIDE" strokeWidth="0.0" text="MESSAGES">
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                        </Text>
+                     </children>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </HBox>
+               </children>
+            </Group>
+            <Group fx:id="profileGRP" layoutX="712.0" layoutY="369.0">
+               <children>
+                  <ImageView fitHeight="143.0" fitWidth="146.0" layoutX="-12.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Drawable/iconfinder_PROFILE_profile_picture_profile_icon_user_profile_6791592.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+                  <HBox layoutX="18.0" layoutY="153.0" prefHeight="39.0" prefWidth="91.0" spacing="8.0">
+                     <children>
+                        <Text fill="#1f1685" strokeType="OUTSIDE" strokeWidth="0.0" text="PROFILE">
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Text>
+                     </children>
+                  </HBox>
+               </children>
+            </Group>
          </children>
       </AnchorPane>
    </children>
