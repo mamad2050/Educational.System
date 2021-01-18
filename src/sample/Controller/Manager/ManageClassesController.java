@@ -7,6 +7,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -14,10 +15,12 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import sample.Main;
 import sample.Model.Class;
 import sample.Model.Master;
 import sample.Model.Student;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -69,6 +72,10 @@ public class ManageClassesController implements Initializable {
     @FXML
     private Label errorLBL;
 
+    AnchorPane pane;
+
+    //
+//    public static Class classs;
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         errorLBL.setText("");
@@ -97,6 +104,14 @@ public class ManageClassesController implements Initializable {
                 lessonField.setText(classs.getLessonName());
                 masterNameField.setText(classs.getMaster());
                 classNumField.setText(Integer.toString(classs.getClassNumber()));
+
+                FXMLLoader loader = new FXMLLoader(Main.class.getResource("View/Manager/ViewCLassPage.fxml"));
+                try {
+                    pane = loader.load();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                showPane.getChildren().setAll(pane);
             }
         });
 
@@ -114,11 +129,11 @@ public class ManageClassesController implements Initializable {
 
     private void addClassToTable(Class classs) {
 
-            Class.classList.add(classs);
-            classTable.getItems().add(classs);
-            Class.lastId++;
-            clearFields();
-            errorLBL.setText("");
+        Class.classList.add(classs);
+        classTable.getItems().add(classs);
+        Class.lastId++;
+        clearFields();
+        errorLBL.setText("");
 
     }
 
