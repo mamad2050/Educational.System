@@ -17,11 +17,11 @@
     <children>
         <AnchorPane layoutY="-3.0" prefHeight="631.0" prefWidth="969.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="-1.0" AnchorPane.topAnchor="-3.0">
             <children>
-                <TableView editable="true" fixedCellSize="0.0" layoutX="466.0" layoutY="58.0" prefHeight="578.0" prefWidth="282.0" style="-fx-background-color: transparent; -fx-selection-bar: aqua;" stylesheets="@../Drawable/tableView2.css" AnchorPane.leftAnchor="466.0" AnchorPane.rightAnchor="221.0">
+                <TableView fx:id="thisClassStudentTable" editable="true" fixedCellSize="0.0" layoutX="466.0" layoutY="58.0" prefHeight="578.0" prefWidth="282.0" style="-fx-background-color: transparent; -fx-selection-bar: aqua;" stylesheets="@../Drawable/tableView2.css" AnchorPane.leftAnchor="466.0" AnchorPane.rightAnchor="221.0">
                     <columns>
-                        <TableColumn maxWidth="2000.0" minWidth="0.0" prefWidth="65.33333683013916" text="ID" />
-                        <TableColumn maxWidth="4500.0" prefWidth="141.33341217041016" text="First Name" />
-                        <TableColumn maxWidth="4500.0" prefWidth="177.33334350585938" text="Last Name" />
+                        <TableColumn fx:id="studentIdThisClassColumn" maxWidth="2000.0" minWidth="0.0" prefWidth="65.33333683013916" text="ID" />
+                        <TableColumn fx:id="fNameThisClassColumn" maxWidth="4500.0" prefWidth="141.33341217041016" text="First Name" />
+                        <TableColumn fx:id="lNameThisClassColumn" maxWidth="4500.0" prefWidth="177.33334350585938" text="Last Name" />
                     </columns>
                     <columnResizePolicy>
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

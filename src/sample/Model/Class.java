@@ -12,7 +12,7 @@ public class Class {
     private String lessonName;
 
     public static ArrayList<Class> classList = new ArrayList<>();
-    private ArrayList<Integer> studentsList = new ArrayList<>();
+    private ArrayList<Student> studentsList = new ArrayList<>();
 
     public int getClassNumber() {
         return classNumber;
@@ -55,11 +55,11 @@ public class Class {
     }
 
 
-    public ArrayList<Integer> getStudentsList() {
+    public ArrayList<Student> getStudentsList() {
         return studentsList;
     }
 
-    public void setStudentsList(ArrayList<Integer> studentsList) {
+    public void setStudentsList(ArrayList<Student> studentsList) {
         this.studentsList = studentsList;
     }
 

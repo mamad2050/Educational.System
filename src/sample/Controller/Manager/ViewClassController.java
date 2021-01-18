@@ -38,8 +38,7 @@ public class ViewClassController implements Initializable {
 
 
     // class fields
-    @FXML
-    private JFXTextField masterNameField;
+
     @FXML
     private JFXTextField lessonField;
     @FXML
@@ -50,7 +49,15 @@ public class ViewClassController implements Initializable {
     private JFXTextField numberOfStudentField;
     @FXML
     private JFXTextField classIdField;
-
+    // this class columns
+    @FXML
+    private TableView<Student> thisClassStudentTable;
+    @FXML
+    private TableColumn<Student, Integer> studentIdThisClassColumn;
+    @FXML
+    private TableColumn<Student, String> fNameThisClassColumn;
+    @FXML
+    private TableColumn<Student, String> lNameThisClassColumn;
 
     //select student fields
     @FXML
@@ -79,12 +86,15 @@ public class ViewClassController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+        // this class fields
         classIdField.setText(Integer.toString(ManageClassesController.selectedClass.getClassId()));
         masterField.setText(ManageClassesController.selectedClass.getMaster());
         numberOfStudentField.setText(Integer.toString(ManageClassesController.selectedClass.getClassNumber()));
         lessonField.setText(ManageClassesController.selectedClass.getLessonName());
         capacityField.setText(Integer.toString(ManageClassesController.selectedClass.getCapacity()));
 
+
+        // all students list
         ObservableList<Student> observableList = FXCollections.observableArrayList(Student.studentList);
 
         studentIdColumn.setCellValueFactory(new PropertyValueFactory<>("studentId"));
@@ -92,6 +102,40 @@ public class ViewClassController implements Initializable {
         lastnameColumn.setCellValueFactory(new PropertyValueFactory<>("lastName"));
 
         studentsTable.setItems(observableList);
+        // end all students list
+
+
+        // students this class
+
+        ObservableList<Student> observableListThisClass =
+                FXCollections.observableArrayList(ManageClassesController.selectedClass.getStudentsList());
+
+        studentIdThisClassColumn.setCellValueFactory(new PropertyValueFactory<>("studentId"));
+        fNameThisClassColumn.setCellValueFactory(new PropertyValueFactory<>("firstName"));
+        lNameThisClassColumn.setCellValueFactory(new PropertyValueFactory<>("lastName"));
+
+        thisClassStudentTable.setItems(observableListThisClass);
+
+
+        // end students this class
+
+
+
+        addBTN.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+
+                Student student = null;
+                try {
+                    student = new Student(firstnameField.getText()
+                            ,lastnameField.getText(),userField.getText()," ",mailField.getText(),phoneField.getText());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                ManageClassesController.selectedClass.getStudentsList().add(student);
+                thisClassStudentTable.getItems().add(student);
+            }
+        });
 
 
         studentsTable.setOnMouseClicked(new EventHandler<MouseEvent>() {

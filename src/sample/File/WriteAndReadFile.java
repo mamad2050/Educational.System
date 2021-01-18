@@ -1,5 +1,6 @@
 package sample.File;
 
+import sample.Model.Class;
 import sample.Model.Master;
 import sample.Model.Student;
 
@@ -44,7 +45,31 @@ public class WriteAndReadFile {
         }
         bufferedWriter.close();
         fileWriter.close();
+
+
+
+// class
+//
+//        fileWriter = new FileWriter("File/Class.txt");
+//        bufferedWriter = new BufferedWriter(fileWriter);
+//        bufferedWriter.write(String.valueOf(Master.lastId));
+//        bufferedWriter.newLine();
+//
+//        for (int i = 0; i < Class.classList.size(); i++) {
+//            Class classs = Class.classList.get(i);
+//            String forSave = classs.getClassId() + " " + classs.+ " " + master.getLastName() + " " +
+//                    master.getUserName() + " " + master.getPassword() + " " + master.getEmail() + " " + master.getPhone();
+//            bufferedWriter.write(forSave);
+//            bufferedWriter.newLine();
+//        }
+//        bufferedWriter.close();
+//        fileWriter.close();
+//
     }
+
+
+
+
 
 
 
@@ -74,6 +99,8 @@ public class WriteAndReadFile {
 
 
 // master
+
+
          fileReader = new FileReader("File/Master.txt");
          bufferedReader = new BufferedReader(fileReader);
 
