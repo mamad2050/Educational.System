@@ -79,11 +79,11 @@ public class ViewClassController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        classIdField.setText("10");
-        masterField.setText("matin");
-        numberOfStudentField.setText("0");
-        lessonField.setText("math");
-        capacityField.setText("20");
+        classIdField.setText(Integer.toString(ManageClassesController.selectedClass.getClassId()));
+        masterField.setText(ManageClassesController.selectedClass.getMaster());
+        numberOfStudentField.setText(Integer.toString(ManageClassesController.selectedClass.getClassNumber()));
+        lessonField.setText(ManageClassesController.selectedClass.getLessonName());
+        capacityField.setText(Integer.toString(ManageClassesController.selectedClass.getCapacity()));
 
         ObservableList<Student> observableList = FXCollections.observableArrayList(Student.studentList);
 

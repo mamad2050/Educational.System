@@ -13,12 +13,13 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
 import sample.Main;
 import sample.Model.Class;
 import sample.Model.Master;
-import sample.Model.Student;
 
 import java.io.IOException;
 import java.net.URL;
@@ -70,12 +71,15 @@ public class ManageClassesController implements Initializable {
     private JFXTextField lessonField;
 
     @FXML
+    private JFXTextField masterIdField;
+
+    @FXML
     private Label errorLBL;
 
     AnchorPane pane;
 
-    //
-//    public static Class classs;
+    public static Class selectedClass;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         errorLBL.setText("");
@@ -85,25 +89,34 @@ public class ManageClassesController implements Initializable {
         capacityColumn.setCellValueFactory(new PropertyValueFactory<>("capacity"));
         lessonColumn.setCellValueFactory(new PropertyValueFactory<>("lessonName"));
         masterColumn.setCellValueFactory(new PropertyValueFactory<>("master"));
-        classTable.setItems(observableList);
 
+        classTable.setItems(observableList);
+        masterIdField.setOnMouseReleased(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                if (!checkMaster()) {
+                    masterNameField.setText("");
+                }
+            }
+        });
         addBTN.setOnAction(event -> {
             if (checkAllField() && checkIntegerFields()) {
                 addClassToTable(new Class(Integer.parseInt(capacityField.getText()), Integer.parseInt(classNumField.getText())
                         , masterNameField.getText(), lessonField.getText()));
-
             }
 
-
         });
+
+
         classTable.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                Class classs = classTable.getSelectionModel().getSelectedItem();
-                capacityField.setText(Integer.toString(classs.getCapacity()));
-                lessonField.setText(classs.getLessonName());
-                masterNameField.setText(classs.getMaster());
-                classNumField.setText(Integer.toString(classs.getClassNumber()));
+                selectedClass = classTable.getSelectionModel().getSelectedItem();
+                capacityField.setText(Integer.toString(selectedClass.getCapacity()));
+                lessonField.setText(selectedClass.getLessonName());
+                masterNameField.setText(selectedClass.getMaster());
+                classNumField.setText(Integer.toString(selectedClass.getClassNumber()));
+
 
                 FXMLLoader loader = new FXMLLoader(Main.class.getResource("View/Manager/ViewCLassPage.fxml"));
                 try {
@@ -114,6 +127,7 @@ public class ManageClassesController implements Initializable {
                 showPane.getChildren().setAll(pane);
             }
         });
+
 
         deleteBTN.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -163,5 +177,19 @@ public class ManageClassesController implements Initializable {
         }
 
         return true;
+    }
+
+    private boolean checkMaster() {
+        for (Master master : Master.masterList) {
+            if (Integer.parseInt(masterIdField.getText()) == master.getMasterId()) {
+                masterNameField.setText(master.getFirstName() + " " + master.getLastName());
+                errorLBL.setText("");
+                return true;
+
+            }
+        }
+        errorLBL.setTextFill(Color.RED);
+        errorLBL.setText("Master Not Found");
+        return false;
     }
 }
