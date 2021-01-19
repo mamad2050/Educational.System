@@ -100,7 +100,7 @@
                   <Font name="System Bold" size="16.0" />
                </font>
             </Text>
-            <TextField layoutX="195.0" layoutY="11.0" promptText="Search" style="-fx-background-radius: 20;" />
+            <TextField fx:id="searchField" layoutX="195.0" layoutY="11.0" promptText="Search" style="-fx-background-radius: 20;" />
             <FontAwesomeIconView glyphName="SEARCH" layoutX="180.0" layoutY="28.0" opacity="0.4" />
             </children>
         </AnchorPane>

@@ -139,6 +139,7 @@ public class ManageMastersController implements Initializable {
                     Master.masterList.get(selectMaster.getMasterId() - 1).setEmail(mailField.getText());
                     masterTable.refresh();
                     errorLBL.setText("");
+
                 }
             }
         });

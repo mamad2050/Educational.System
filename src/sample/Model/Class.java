@@ -18,7 +18,7 @@ public class Class {
         this.phone = phone;
     }
 
-    public String setPhone( ) {
+    public String getPhone() {
         return phone;
     }
 
@@ -93,15 +93,15 @@ public class Class {
         this.studentsList = studentsList;
     }
 
-    public Class(int capacity, int classNumber, String master, String lessonName,Master masterObj) {
+    public Class(int capacity, int classNumber, String master, String lessonName, Master masterObj) {
 
         this.capacity = capacity;
         this.master = master;
         this.lessonName = lessonName;
         this.classNumber = classNumber;
         this.masterObj = masterObj;
+        this.phone = masterObj.getPhone();
         setClassId();
     }
-
 
 }

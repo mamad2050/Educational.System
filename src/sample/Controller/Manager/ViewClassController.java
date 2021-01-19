@@ -4,6 +4,8 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -11,6 +13,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -21,6 +24,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.function.Predicate;
 
 public class ViewClassController implements Initializable {
 
@@ -83,6 +87,9 @@ public class ViewClassController implements Initializable {
     @FXML
     private JFXTextField mailField;
 
+    @FXML
+    private TextField searchField;
+
     // buttons
     @FXML
     private JFXButton addBTN;
@@ -95,7 +102,7 @@ public class ViewClassController implements Initializable {
 
     Student selectStudent;
 
-    
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -136,6 +143,33 @@ public class ViewClassController implements Initializable {
 
         // end students this class
 
+
+
+
+        //      // search box
+                FilteredList<Student> filteredList = new FilteredList<>(observableList, e -> true);
+                searchField.setOnKeyReleased(e -> {
+                    searchField.textProperty().addListener((observableValue, oldValue, newValue) -> {
+                        filteredList.setPredicate((Predicate<? super Student>) student -> {
+                            if (newValue == null || newValue.isEmpty()) {
+                                return true;
+                            }
+                            String lowerCaseFilter = newValue.toLowerCase();
+                            if (student.getStringId().contains(newValue)) {
+                                return true;
+                            } else if (student.getFirstName().toLowerCase().contains(lowerCaseFilter)) {
+                                return true;
+                            } else if (student.getLastName().toLowerCase().contains(lowerCaseFilter)) {
+                                return true;
+                            }
+                            return false;
+                        });
+                    });
+                    SortedList<Student> sortedList = new SortedList<>(filteredList);
+                    sortedList.comparatorProperty().bind(studentsTable.comparatorProperty());
+                    studentsTable.setItems(sortedList);
+                });
+        //        // end search
 
         addBTN.setOnAction(new EventHandler<ActionEvent>() {
             @Override
