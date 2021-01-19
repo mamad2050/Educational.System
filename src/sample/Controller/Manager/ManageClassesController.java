@@ -2,6 +2,8 @@ package sample.Controller.Manager;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -90,9 +92,11 @@ public class ManageClassesController implements Initializable {
         classNumColumn.setCellValueFactory(new PropertyValueFactory<>("classNumber"));
         capacityColumn.setCellValueFactory(new PropertyValueFactory<>("capacity"));
         lessonColumn.setCellValueFactory(new PropertyValueFactory<>("lessonName"));
-        masterColumn.setCellValueFactory(new PropertyValueFactory<>("masterName"));
         occupyColumn.setCellValueFactory(new PropertyValueFactory<>("occupy"));
-        masterPhoneColumn.setCellValueFactory(new PropertyValueFactory<>("phone"));
+        masterPhoneColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().
+                getMasterObj().getPhone()));
+        masterColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getMasterObj()
+                .getFirstName()+ " " + cellData.getValue().getMasterObj().getLastName()));
 
 
         classTable.setItems(observableList);
@@ -107,7 +111,7 @@ public class ManageClassesController implements Initializable {
         addBTN.setOnAction(event -> {
             if (checkAllField() && checkIntegerFields()) {
                 addClassToTable(new Class(Integer.parseInt(capacityField.getText()), Integer.parseInt(classNumField.getText())
-                        , masterNameField.getText(), lessonField.getText(),findMaster()));
+                        , masterNameField.getText(), lessonField.getText(), findMaster()));
             }
 
         });
@@ -207,7 +211,7 @@ public class ManageClassesController implements Initializable {
     }
 
 
-    private Master findMaster(){
+    private Master findMaster() {
 
 
         for (Master master : Master.masterList) {
