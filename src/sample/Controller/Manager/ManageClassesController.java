@@ -47,13 +47,14 @@ public class ManageClassesController implements Initializable {
 
     @FXML
     private TableColumn<Class, String> masterColumn;
+       @FXML
+    private TableColumn<Class, Integer> occupyColumn;
+
 
 
     @FXML
     private JFXButton addBTN;
 
-    @FXML
-    private JFXButton editBTN;
 
     @FXML
     private JFXButton deleteBTN;
@@ -89,6 +90,8 @@ public class ManageClassesController implements Initializable {
         capacityColumn.setCellValueFactory(new PropertyValueFactory<>("capacity"));
         lessonColumn.setCellValueFactory(new PropertyValueFactory<>("lessonName"));
         masterColumn.setCellValueFactory(new PropertyValueFactory<>("master"));
+//        occupyColumn.setCellValueFactory(new PropertyValueFactory<>("occupy"));
+
 
         classTable.setItems(observableList);
         masterIdField.setOnMouseReleased(new EventHandler<MouseEvent>() {
@@ -112,10 +115,10 @@ public class ManageClassesController implements Initializable {
             @Override
             public void handle(MouseEvent event) {
                 selectedClass = classTable.getSelectionModel().getSelectedItem();
-                capacityField.setText(Integer.toString(selectedClass.getCapacity()));
-                lessonField.setText(selectedClass.getLessonName());
-                masterNameField.setText(selectedClass.getMaster());
-                classNumField.setText(Integer.toString(selectedClass.getClassNumber()));
+//                capacityField.setText(Integer.toString(selectedClass.getCapacity()));
+//                lessonField.setText(selectedClass.getLessonName());
+//                masterNameField.setText(selectedClass.getMaster());
+//                classNumField.setText(Integer.toString(selectedClass.getClassNumber()));
 
 
                 FXMLLoader loader = new FXMLLoader(Main.class.getResource("View/Manager/ViewCLassPage.fxml"));
@@ -151,10 +154,10 @@ public class ManageClassesController implements Initializable {
 
     }
 
-
+//
     private boolean checkAllField() {
         if (capacityField.getText().isEmpty() || classNumField.getText().isEmpty()
-                || lessonField.getText().isEmpty() || masterNameField.getText().isEmpty()) {
+                || lessonField.getText().isEmpty() || masterNameField.getText().isEmpty() || masterIdField.getText().isEmpty()) {
             errorLBL.setText("Please fill all fields.");
             return false;
         }
@@ -167,6 +170,7 @@ public class ManageClassesController implements Initializable {
         lessonField.clear();
         masterNameField.clear();
         classNumField.clear();
+        masterIdField.clear();
 
     }
 
@@ -178,8 +182,13 @@ public class ManageClassesController implements Initializable {
 
         return true;
     }
-
+//
     private boolean checkMaster() {
+
+        if (masterIdField.getText().equals("")) {
+            return false;
+        }
+
         for (Master master : Master.masterList) {
             if (Integer.parseInt(masterIdField.getText()) == master.getMasterId()) {
                 masterNameField.setText(master.getFirstName() + " " + master.getLastName());

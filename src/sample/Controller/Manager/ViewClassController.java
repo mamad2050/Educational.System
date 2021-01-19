@@ -19,6 +19,7 @@ import sample.Model.Student;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class ViewClassController implements Initializable {
@@ -83,6 +84,8 @@ public class ViewClassController implements Initializable {
 
     AnchorPane pane = null;
 
+    Student selectStudent;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
@@ -107,6 +110,7 @@ public class ViewClassController implements Initializable {
 
         // students this class
 
+
         ObservableList<Student> observableListThisClass =
                 FXCollections.observableArrayList(ManageClassesController.selectedClass.getStudentsList());
 
@@ -124,16 +128,13 @@ public class ViewClassController implements Initializable {
         addBTN.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-
-                Student student = null;
-                try {
-                    student = new Student(firstnameField.getText()
-                            ,lastnameField.getText(),userField.getText()," ",mailField.getText(),phoneField.getText());
-                } catch (IOException e) {
-                    e.printStackTrace();
+            
+                if (checkThisStudent(selectStudent)) {
+                    ManageClassesController.selectedClass.getStudentsList().add(selectStudent);
+                    thisClassStudentTable.getItems().add(selectStudent);
                 }
-                ManageClassesController.selectedClass.getStudentsList().add(student);
-                thisClassStudentTable.getItems().add(student);
+               
+
             }
         });
 
@@ -141,13 +142,13 @@ public class ViewClassController implements Initializable {
         studentsTable.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                Student student = studentsTable.getSelectionModel().getSelectedItem();
-                studentIdField.setText(student.getStringId());
-                firstnameField.setText(student.getFirstName());
-                lastnameField.setText(student.getLastName());
-                userField.setText(student.getUserName());
-                phoneField.setText(student.getPhone());
-                mailField.setText(student.getEmail());
+                selectStudent = studentsTable.getSelectionModel().getSelectedItem();
+                studentIdField.setText(selectStudent.getStringId());
+                firstnameField.setText(selectStudent.getFirstName());
+                lastnameField.setText(selectStudent.getLastName());
+                userField.setText(selectStudent.getUserName());
+                phoneField.setText(selectStudent.getPhone());
+                mailField.setText(selectStudent.getEmail());
             }
         });
 
@@ -166,5 +167,22 @@ public class ViewClassController implements Initializable {
 
         });
 
+    }
+    
+    private boolean checkThisStudent(Student student){
+
+        ArrayList<Student>thisClassList = ManageClassesController.selectedClass.getStudentsList();
+
+        if ( thisClassList.isEmpty() ) {
+            return true;
+        }
+
+      for (Student std : thisClassList ){
+          if (std == student) {
+              return false;
+
+          }
+      }
+        return true;
     }
 }

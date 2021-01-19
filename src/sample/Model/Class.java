@@ -11,8 +11,11 @@ public class Class {
     private String master;
     private String lessonName;
 
+
     public static ArrayList<Class> classList = new ArrayList<>();
     private ArrayList<Student> studentsList = new ArrayList<>();
+
+    private int occupy = studentsList.size();
 
     public int getClassNumber() {
         return classNumber;

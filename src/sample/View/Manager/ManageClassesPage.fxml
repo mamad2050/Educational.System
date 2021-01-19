@@ -26,7 +26,7 @@
                         <TableColumn fx:id="capacityColumn" maxWidth="3500.0" prefWidth="156.22232055664062" text="Capacity" />
                         <TableColumn fx:id="lessonColumn" maxWidth="4000.0" prefWidth="171.33334350585938" text="Lesson Name" />
                   <TableColumn fx:id="masterColumn" maxWidth="4000.0" prefWidth="171.33334350585938" text="Master" />
-                  <TableColumn fx:id="studentCountColumn" maxWidth="4000.0" prefWidth="171.33334350585938" text="Students" />
+                  <TableColumn fx:id="occupyColumn" maxWidth="4000.0" prefWidth="171.33334350585938" text="Students" />
                     </columns>
                     <columnResizePolicy>
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

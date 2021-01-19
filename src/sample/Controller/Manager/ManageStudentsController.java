@@ -162,15 +162,17 @@ public class ManageStudentsController implements Initializable {
     }
 
     private void studentCheckConditions(Student student) throws IOException {
-        if (checkAllField()) {
+        if (checkAllField() ) {
             if (nonDuplicatedUser(student.getUserName())) {
                 if (checkPhoneField() && checkMailField() && checkUserField()) {
-                    Student.studentList.add(student);
-                    WriteAndReadFile.write();
-                    studentTable.getItems().add(student);
-                    Student.lastId++;
-                    clearFields();
-                    errorLBL.setText("");
+
+                        Student.studentList.add(student);
+                        WriteAndReadFile.write();
+                        studentTable.getItems().add(student);
+                        Student.lastId++;
+                        clearFields();
+                        errorLBL.setText("");
+
                 }
             }
         }
@@ -246,6 +248,7 @@ public class ManageStudentsController implements Initializable {
         errorLBL.setText("");
         return true;
     }
+
 
 }
 
