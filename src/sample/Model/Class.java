@@ -5,14 +5,16 @@ import java.util.ArrayList;
 public class Class {
 
     public static int lastId = 1;
+
     private int classId;
     private int capacity;
     private int classNumber;
-    private String master;
     private String lessonName;
     private Master masterObj;
 
     private String phone;
+
+
 
     public void setPhone(String phone) {
         this.phone = phone;
@@ -24,9 +26,7 @@ public class Class {
 
     public static ArrayList<Class> classList = new ArrayList<>();
     private ArrayList<Student> studentsList = new ArrayList<>();
-
-    private int occupy = 0;
-
+    private int occupy = 0 ;
 
     public Master getMasterObj() {
         return masterObj;
@@ -40,8 +40,8 @@ public class Class {
         return occupy;
     }
 
-    public void setOccupy(int occupy) {
-        this.occupy = occupy;
+    public void setOccupy() {
+        occupy++;
     }
 
     public int getClassNumber() {
@@ -68,13 +68,6 @@ public class Class {
         this.capacity = capacity;
     }
 
-    public String getMasterName() {
-        return master;
-    }
-
-    public void setMasterName(String master) {
-        this.master = master;
-    }
 
     public String getLessonName() {
         return lessonName;
@@ -93,14 +86,14 @@ public class Class {
         this.studentsList = studentsList;
     }
 
-    public Class(int capacity, int classNumber, String master, String lessonName, Master masterObj) {
+    public Class(int capacity, int classNumber, String lessonName, Master masterObj) {
 
         this.capacity = capacity;
-        this.master = master;
+
         this.lessonName = lessonName;
         this.classNumber = classNumber;
         this.masterObj = masterObj;
-        this.phone = masterObj.getPhone();
+//        this.phone = masterObj.getPhone();
         setClassId();
     }
 

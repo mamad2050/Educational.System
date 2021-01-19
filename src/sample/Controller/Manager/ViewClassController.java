@@ -102,15 +102,14 @@ public class ViewClassController implements Initializable {
 
     Student selectStudent;
 
-
-
     @Override
+
     public void initialize(URL location, ResourceBundle resources) {
 
         // this class fields
         classIdField.setText(Integer.toString(ManageClassesController.selectedClass.getClassId()));
-        masterField.setText(ManageClassesController.selectedClass.getMasterObj().getFirstName()+" "+
-                ManageClassesController.selectedClass.getMasterObj().getLastName()  );
+        masterField.setText(ManageClassesController.selectedClass.getMasterObj().getFirstName() + " " +
+                ManageClassesController.selectedClass.getMasterObj().getLastName());
         numberOfStudentField.setText(Integer.toString(ManageClassesController.selectedClass.getClassNumber()));
         lessonField.setText(ManageClassesController.selectedClass.getLessonName());
         capacityField.setText(Integer.toString(ManageClassesController.selectedClass.getCapacity()));
@@ -144,31 +143,29 @@ public class ViewClassController implements Initializable {
         // end students this class
 
 
-
-
         //      // search box
-                FilteredList<Student> filteredList = new FilteredList<>(observableList, e -> true);
-                searchField.setOnKeyReleased(e -> {
-                    searchField.textProperty().addListener((observableValue, oldValue, newValue) -> {
-                        filteredList.setPredicate((Predicate<? super Student>) student -> {
-                            if (newValue == null || newValue.isEmpty()) {
-                                return true;
-                            }
-                            String lowerCaseFilter = newValue.toLowerCase();
-                            if (student.getStringId().contains(newValue)) {
-                                return true;
-                            } else if (student.getFirstName().toLowerCase().contains(lowerCaseFilter)) {
-                                return true;
-                            } else if (student.getLastName().toLowerCase().contains(lowerCaseFilter)) {
-                                return true;
-                            }
-                            return false;
-                        });
-                    });
-                    SortedList<Student> sortedList = new SortedList<>(filteredList);
-                    sortedList.comparatorProperty().bind(studentsTable.comparatorProperty());
-                    studentsTable.setItems(sortedList);
+        FilteredList<Student> filteredList = new FilteredList<>(observableList, e -> true);
+        searchField.setOnKeyReleased(e -> {
+            searchField.textProperty().addListener((observableValue, oldValue, newValue) -> {
+                filteredList.setPredicate((Predicate<? super Student>) student -> {
+                    if (newValue == null || newValue.isEmpty()) {
+                        return true;
+                    }
+                    String lowerCaseFilter = newValue.toLowerCase();
+                    if (student.getStringId().contains(newValue)) {
+                        return true;
+                    } else if (student.getFirstName().toLowerCase().contains(lowerCaseFilter)) {
+                        return true;
+                    } else if (student.getLastName().toLowerCase().contains(lowerCaseFilter)) {
+                        return true;
+                    }
+                    return false;
                 });
+            });
+            SortedList<Student> sortedList = new SortedList<>(filteredList);
+            sortedList.comparatorProperty().bind(studentsTable.comparatorProperty());
+            studentsTable.setItems(sortedList);
+        });
         //        // end search
 
         addBTN.setOnAction(new EventHandler<ActionEvent>() {
@@ -178,6 +175,7 @@ public class ViewClassController implements Initializable {
                 if (checkThisStudent(selectStudent)) {
                     ManageClassesController.selectedClass.getStudentsList().add(selectStudent);
                     thisClassStudentTable.getItems().add(selectStudent);
+                    ManageClassesController.selectedClass.setOccupy();
                 }
 
 
