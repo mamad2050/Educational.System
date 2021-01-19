@@ -86,6 +86,10 @@ public class ManageMastersController implements Initializable {
     @FXML
     private TextField searchField;
 
+    Master selectMaster;
+
+    String currentUser;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
@@ -112,15 +116,36 @@ public class ManageMastersController implements Initializable {
         masterTable.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                Master master = masterTable.getSelectionModel().getSelectedItem();
+                selectMaster = masterTable.getSelectionModel().getSelectedItem();
 
-                firstNameField.setText(master.getFirstName());
-                lastNameField.setText(master.getLastName());
-                userField.setText(master.getUserName());
-                phoneField.setText(master.getPhone());
-                mailField.setText(master.getEmail());
+                firstNameField.setText(selectMaster.getFirstName());
+                lastNameField.setText(selectMaster.getLastName());
+                userField.setText(selectMaster.getUserName());
+                phoneField.setText(selectMaster.getPhone());
+                mailField.setText(selectMaster.getEmail());
+                currentUser = userField.getText();
             }
         });
+// edit student by manager
+        editBTN.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+
+                if (userEditable(userField.getText()) && checkAllField() && checkUserField() && checkMailField() && checkPhoneField()) {
+                    Master.masterList.get(selectMaster.getMasterId() - 1).setFirstName(firstNameField.getText());
+                    Master.masterList.get(selectMaster.getMasterId() - 1).setLastName(lastNameField.getText());
+                    Master.masterList.get(selectMaster.getMasterId() - 1).setUserName(userField.getText());
+                    Master.masterList.get(selectMaster.getMasterId() - 1).setPhone(phoneField.getText());
+                    Master.masterList.get(selectMaster.getMasterId() - 1).setEmail(mailField.getText());
+                    masterTable.refresh();
+                    errorLBL.setText("");
+                }
+            }
+        });
+
+
+
+
 
         deleteBTN.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -229,6 +254,24 @@ public class ManageMastersController implements Initializable {
         userField.clear();
         mailField.clear();
         phoneField.clear();
+    }
+
+    private boolean userEditable(String user) {
+
+        if (currentUser.equals(userField.getText())) {
+
+            errorLBL.setText("");
+            return true;
+        }
+        for (Master master : Master.masterList) {
+            if (master.getUserName().equals(user)) {
+                errorLBL.setText("This username has already been selected.");
+                return false;
+            }
+
+        }
+        errorLBL.setText("");
+        return true;
     }
 }
 

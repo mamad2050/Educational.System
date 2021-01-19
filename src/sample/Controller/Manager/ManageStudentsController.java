@@ -64,6 +64,8 @@ public class ManageStudentsController implements Initializable {
     @FXML
     private TextField searchField;
 
+    Student selectStudent;
+    String currentUser;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -117,12 +119,29 @@ public class ManageStudentsController implements Initializable {
         studentTable.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                Student student = studentTable.getSelectionModel().getSelectedItem();
-                firstNameField.setText(student.getFirstName());
-                lastNameField.setText(student.getLastName());
-                userField.setText(student.getUserName());
-                phoneField.setText(student.getPhone());
-                mailField.setText(student.getEmail());
+                selectStudent = studentTable.getSelectionModel().getSelectedItem();
+                firstNameField.setText(selectStudent.getFirstName());
+                lastNameField.setText(selectStudent.getLastName());
+                userField.setText(selectStudent.getUserName());
+                phoneField.setText(selectStudent.getPhone());
+                mailField.setText(selectStudent.getEmail());
+                currentUser = userField.getText();
+            }
+        });
+
+        editBTN.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+
+                if ( userEditable(userField.getText())&& checkAllField() && checkUserField() && checkMailField() && checkPhoneField()) {
+                    Student.studentList.get(selectStudent.getStudentId() - 1).setFirstName(firstNameField.getText());
+                    Student.studentList.get(selectStudent.getStudentId() - 1).setLastName(lastNameField.getText());
+                    Student.studentList.get(selectStudent.getStudentId() - 1).setUserName(userField.getText());
+                    Student.studentList.get(selectStudent.getStudentId() - 1).setPhone(phoneField.getText());
+                    Student.studentList.get(selectStudent.getStudentId() - 1).setEmail(mailField.getText());
+                    studentTable.refresh();
+                    errorLBL.setText("");
+                }
             }
         });
 
@@ -178,7 +197,7 @@ public class ManageStudentsController implements Initializable {
         return true;
     }
 
-    public  boolean checkPhoneField() {
+    public boolean checkPhoneField() {
         if (phoneField.getText().matches("\\d{11}") && phoneField.getText().startsWith("09")) {
             return true;
         }
@@ -209,5 +228,24 @@ public class ManageStudentsController implements Initializable {
         mailField.clear();
         phoneField.clear();
     }
+
+    private boolean userEditable(String user) {
+
+        if (currentUser.equals(userField.getText())) {
+
+            errorLBL.setText("");
+            return true;
+        }
+        for (Student student : Student.studentList) {
+            if (student.getUserName().equals(user)) {
+                errorLBL.setText("This username has already been selected.");
+                return false;
+            }
+
+        }
+        errorLBL.setText("");
+        return true;
+    }
+
 }
 
