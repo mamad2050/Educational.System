@@ -13,7 +13,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
@@ -44,12 +43,14 @@ public class ManageClassesController implements Initializable {
 
     @FXML
     private TableColumn<Class, String> lessonColumn;
+    @FXML
+    private TableColumn<Class, String> masterPhoneColumn;
 
     @FXML
     private TableColumn<Class, String> masterColumn;
-       @FXML
-    private TableColumn<Class, Integer> occupyColumn;
 
+    @FXML
+    private TableColumn<Class, Integer> occupyColumn;
 
 
     @FXML
@@ -89,8 +90,9 @@ public class ManageClassesController implements Initializable {
         classNumColumn.setCellValueFactory(new PropertyValueFactory<>("classNumber"));
         capacityColumn.setCellValueFactory(new PropertyValueFactory<>("capacity"));
         lessonColumn.setCellValueFactory(new PropertyValueFactory<>("lessonName"));
-        masterColumn.setCellValueFactory(new PropertyValueFactory<>("master"));
-//        occupyColumn.setCellValueFactory(new PropertyValueFactory<>("occupy"));
+        masterColumn.setCellValueFactory(new PropertyValueFactory<>("masterName"));
+        occupyColumn.setCellValueFactory(new PropertyValueFactory<>("occupy"));
+        masterPhoneColumn.setCellValueFactory(new PropertyValueFactory<>("phone"));
 
 
         classTable.setItems(observableList);
@@ -105,7 +107,7 @@ public class ManageClassesController implements Initializable {
         addBTN.setOnAction(event -> {
             if (checkAllField() && checkIntegerFields()) {
                 addClassToTable(new Class(Integer.parseInt(capacityField.getText()), Integer.parseInt(classNumField.getText())
-                        , masterNameField.getText(), lessonField.getText()));
+                        , masterNameField.getText(), lessonField.getText(),findMaster()));
             }
 
         });
@@ -154,7 +156,7 @@ public class ManageClassesController implements Initializable {
 
     }
 
-//
+    //
     private boolean checkAllField() {
         if (capacityField.getText().isEmpty() || classNumField.getText().isEmpty()
                 || lessonField.getText().isEmpty() || masterNameField.getText().isEmpty() || masterIdField.getText().isEmpty()) {
@@ -182,7 +184,8 @@ public class ManageClassesController implements Initializable {
 
         return true;
     }
-//
+
+    //
     private boolean checkMaster() {
 
         if (masterIdField.getText().equals("")) {
@@ -192,6 +195,7 @@ public class ManageClassesController implements Initializable {
         for (Master master : Master.masterList) {
             if (Integer.parseInt(masterIdField.getText()) == master.getMasterId()) {
                 masterNameField.setText(master.getFirstName() + " " + master.getLastName());
+
                 errorLBL.setText("");
                 return true;
 
@@ -200,5 +204,18 @@ public class ManageClassesController implements Initializable {
         errorLBL.setTextFill(Color.RED);
         errorLBL.setText("Master Not Found");
         return false;
+    }
+
+
+    private Master findMaster(){
+
+
+        for (Master master : Master.masterList) {
+            if (Integer.parseInt(masterIdField.getText()) == master.getMasterId()) {
+
+                return master;
+            }
+        }
+        return null;
     }
 }

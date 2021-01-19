@@ -10,12 +10,39 @@ public class Class {
     private int classNumber;
     private String master;
     private String lessonName;
+    private Master masterObj;
 
+    private String phone;
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String setPhone( ) {
+        return phone;
+    }
 
     public static ArrayList<Class> classList = new ArrayList<>();
     private ArrayList<Student> studentsList = new ArrayList<>();
 
-    private int occupy = studentsList.size();
+    private int occupy = 0;
+
+
+    public Master getMasterObj() {
+        return masterObj;
+    }
+
+    public void setMasterObj(Master masterObj) {
+        this.masterObj = masterObj;
+    }
+
+    public int getOccupy() {
+        return occupy;
+    }
+
+    public void setOccupy(int occupy) {
+        this.occupy = occupy;
+    }
 
     public int getClassNumber() {
         return classNumber;
@@ -41,11 +68,11 @@ public class Class {
         this.capacity = capacity;
     }
 
-    public String getMaster() {
+    public String getMasterName() {
         return master;
     }
 
-    public void setMaster(String master) {
+    public void setMasterName(String master) {
         this.master = master;
     }
 
@@ -66,12 +93,15 @@ public class Class {
         this.studentsList = studentsList;
     }
 
-    public Class(int capacity, int classNumber, String master, String lessonName) {
+    public Class(int capacity, int classNumber, String master, String lessonName,Master masterObj) {
 
         this.capacity = capacity;
         this.master = master;
         this.lessonName = lessonName;
         this.classNumber = classNumber;
+        this.masterObj = masterObj;
         setClassId();
     }
+
+
 }

@@ -50,6 +50,13 @@ public class ViewClassController implements Initializable {
     private JFXTextField numberOfStudentField;
     @FXML
     private JFXTextField classIdField;
+    @FXML
+    private JFXTextField masterPhoneField;
+
+    @FXML
+    private JFXTextField masterMailField;
+
+
     // this class columns
     @FXML
     private TableView<Student> thisClassStudentTable;
@@ -59,6 +66,8 @@ public class ViewClassController implements Initializable {
     private TableColumn<Student, String> fNameThisClassColumn;
     @FXML
     private TableColumn<Student, String> lNameThisClassColumn;
+    @FXML
+    private TableColumn<Student, String> phoneColumn;
 
     //select student fields
     @FXML
@@ -86,16 +95,20 @@ public class ViewClassController implements Initializable {
 
     Student selectStudent;
 
+    
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
         // this class fields
         classIdField.setText(Integer.toString(ManageClassesController.selectedClass.getClassId()));
-        masterField.setText(ManageClassesController.selectedClass.getMaster());
+        masterField.setText(ManageClassesController.selectedClass.getMasterObj().getFirstName()+" "+
+                ManageClassesController.selectedClass.getMasterObj().getLastName()  );
         numberOfStudentField.setText(Integer.toString(ManageClassesController.selectedClass.getClassNumber()));
         lessonField.setText(ManageClassesController.selectedClass.getLessonName());
         capacityField.setText(Integer.toString(ManageClassesController.selectedClass.getCapacity()));
-
+        masterPhoneField.setText(ManageClassesController.selectedClass.getMasterObj().getPhone());
+        masterMailField.setText(ManageClassesController.selectedClass.getMasterObj().getEmail());
 
         // all students list
         ObservableList<Student> observableList = FXCollections.observableArrayList(Student.studentList);
@@ -117,23 +130,22 @@ public class ViewClassController implements Initializable {
         studentIdThisClassColumn.setCellValueFactory(new PropertyValueFactory<>("studentId"));
         fNameThisClassColumn.setCellValueFactory(new PropertyValueFactory<>("firstName"));
         lNameThisClassColumn.setCellValueFactory(new PropertyValueFactory<>("lastName"));
-
+        phoneColumn.setCellValueFactory(new PropertyValueFactory<>("phone"));
         thisClassStudentTable.setItems(observableListThisClass);
 
 
         // end students this class
 
 
-
         addBTN.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-            
+
                 if (checkThisStudent(selectStudent)) {
                     ManageClassesController.selectedClass.getStudentsList().add(selectStudent);
                     thisClassStudentTable.getItems().add(selectStudent);
                 }
-               
+
 
             }
         });
@@ -168,21 +180,21 @@ public class ViewClassController implements Initializable {
         });
 
     }
-    
-    private boolean checkThisStudent(Student student){
 
-        ArrayList<Student>thisClassList = ManageClassesController.selectedClass.getStudentsList();
+    private boolean checkThisStudent(Student student) {
 
-        if ( thisClassList.isEmpty() ) {
+        ArrayList<Student> thisClassList = ManageClassesController.selectedClass.getStudentsList();
+
+        if (thisClassList.isEmpty()) {
             return true;
         }
 
-      for (Student std : thisClassList ){
-          if (std == student) {
-              return false;
+        for (Student std : thisClassList) {
+            if (std == student) {
+                return false;
 
-          }
-      }
+            }
+        }
         return true;
     }
 }

@@ -30,7 +30,7 @@
                         <Font name="System Bold" size="15.0" />
                      </font>
                   </Label>
-                  <JFXButton fx:id="logoutBTN" layoutX="21.0" layoutY="573.0" prefHeight="32.0" prefWidth="137.0" style="-fx-background-color: darkred; -fx-background-radius: 20; -fx-cursor: hand;" text="Log Out" textFill="WHITE" />
+                  <JFXButton fx:id="logoutBTN" layoutX="21.0" layoutY="587.0" prefHeight="32.0" prefWidth="137.0" style="-fx-background-color: darkred; -fx-background-radius: 20; -fx-cursor: hand;" text="Log Out" textFill="WHITE" />
                   <Label fx:id="userLBL" alignment="CENTER" layoutX="35.0" layoutY="137.0" prefHeight="18.0" prefWidth="101.0" />
                </children>
             </AnchorPane>
