@@ -79,9 +79,9 @@
                </children>
             </Group>
             <JFXButton fx:id="clearBTN" layoutX="706.0" layoutY="14.0" text="CLEAR">
-               <graphic>
-                  <FontAwesomeIconView glyphName="REFRESH" />
-               </graphic>
+               <font>
+                  <Font size="9.0" />
+               </font>
             </JFXButton>
             </children>
         </AnchorPane>

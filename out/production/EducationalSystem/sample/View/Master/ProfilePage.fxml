@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.Group?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -18,12 +19,88 @@
         </ImageView>
         <AnchorPane layoutY="-3.0" prefHeight="632.0" prefWidth="958.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="-1.0" AnchorPane.topAnchor="-3.0">
             <children>
-                <Text fill="#1f1685" layoutX="411.0" layoutY="64.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PROFILE">
+                <Text fill="#1f1685" layoutX="410.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PROFILE">
                     <font>
                         <Font name="System Bold" size="27.0" />
                     </font>
                 </Text>
-                <HBox layoutX="577.0" layoutY="359.0">
+            <ImageView fx:id="imageField" fitHeight="100.0" fitWidth="113.0" layoutX="411.0" layoutY="67.0" pickOnBounds="true" preserveRatio="true" />
+            <JFXButton fx:id="chooseBTN" layoutX="415.0" layoutY="171.0" text="Choose image" />
+            </children>
+        </AnchorPane>
+      <Group layoutX="202.0" layoutY="239.0">
+         <children>
+              <HBox>
+                  <children>
+                      <Label text="First Name : ">
+                          <font>
+                              <Font size="18.0" />
+                          </font>
+                      </Label>
+                      <Label fx:id="firstNameLBL">
+                          <font>
+                              <Font size="18.0" />
+                          </font>
+                      </Label>
+                  </children>
+              </HBox>
+              <HBox layoutX="400.0">
+                  <children>
+                      <Label text="Last Name : ">
+                          <font>
+                              <Font size="18.0" />
+                          </font>
+                      </Label>
+                      <Label fx:id="lastNameLBL">
+                          <font>
+                              <Font size="18.0" />
+                          </font>
+                      </Label>
+                  </children>
+              </HBox>
+              <HBox layoutY="97.33334350585938">
+                  <children>
+                      <Label text="Personnel ID : ">
+                          <font>
+                              <Font size="18.0" />
+                          </font>
+                      </Label>
+                      <Label fx:id="userLBL">
+                          <font>
+                              <Font size="18.0" />
+                          </font>
+                      </Label>
+                  </children>
+              </HBox>
+              <HBox layoutX="402.0" layoutY="97.33334350585938">
+                  <children>
+                      <Label text="Email : ">
+                          <font>
+                              <Font size="18.0" />
+                          </font>
+                      </Label>
+                      <Label fx:id="emailLBL">
+                          <font>
+                              <Font size="18.0" />
+                          </font>
+                      </Label>
+                  </children>
+              </HBox>
+              <HBox layoutY="194.66668701171875">
+                  <children>
+                      <Label text="Master ID : ">
+                          <font>
+                              <Font size="18.0" />
+                          </font>
+                      </Label>
+                      <Label fx:id="idLBL">
+                          <font>
+                              <Font size="18.0" />
+                          </font>
+                      </Label>
+                  </children>
+              </HBox>
+                <HBox layoutX="400.0" layoutY="194.0">
                     <children>
                         <Label text="Phone : ">
                             <font>
@@ -37,105 +114,8 @@
                         </Label>
                     </children>
                 </HBox>
-            </children>
-        </AnchorPane>
-        <HBox layoutX="182.0" layoutY="161.0">
-            <children>
-                <Label text="First Name : ">
-                    <font>
-                        <Font size="18.0" />
-                    </font>
-                </Label>
-                <Label fx:id="firstNameLBL">
-                    <font>
-                        <Font size="18.0" />
-                    </font>
-                </Label>
-            </children>
-        </HBox>
-        <HBox layoutX="582.0" layoutY="161.0">
-            <children>
-                <Label text="Last Name : ">
-                    <font>
-                        <Font size="18.0" />
-                    </font>
-                </Label>
-                <Label fx:id="lastNameLBL">
-                    <font>
-                        <Font size="18.0" />
-                    </font>
-                </Label>
-            </children>
-        </HBox>
-        <HBox layoutX="182.0" layoutY="258.3333435058594">
-            <children>
-                <Label text="Personnel ID : ">
-                    <font>
-                        <Font size="18.0" />
-                    </font>
-                </Label>
-                <Label fx:id="userLBL">
-                    <font>
-                        <Font size="18.0" />
-                    </font>
-                </Label>
-            </children>
-        </HBox>
-        <HBox layoutX="584.0" layoutY="258.3333435058594">
-            <children>
-                <Label text="Email : ">
-                    <font>
-                        <Font size="18.0" />
-                    </font>
-                </Label>
-                <Label fx:id="emailLBL">
-                    <font>
-                        <Font size="18.0" />
-                    </font>
-                </Label>
-            </children>
-        </HBox>
-        <HBox layoutX="182.0" layoutY="355.66668701171875">
-            <children>
-                <Label text="Master ID : ">
-                    <font>
-                        <Font size="18.0" />
-                    </font>
-                </Label>
-                <Label fx:id="idLBL">
-                    <font>
-                        <Font size="18.0" />
-                    </font>
-                </Label>
-            </children>
-        </HBox>
-        <HBox layoutX="182.0" layoutY="453.0" spacing="300.0">
-            <children>
-                <HBox>
-                    <children>
-                        <Label text="Gender : ">
-                            <font>
-                                <Font size="18.0" />
-                            </font>
-                        </Label>
-                        <Label>
-                            <font>
-                                <Font size="18.0" />
-                            </font>
-                        </Label>
-                    </children>
-                </HBox>
-                <HBox>
-                    <children>
-                        <Label>
-                            <font>
-                                <Font size="18.0" />
-                            </font>
-                        </Label>
-                    </children>
-                </HBox>
-            </children>
-        </HBox>
+         </children>
+      </Group>
         <JFXButton fx:id="editBTN" layoutX="412.0" layoutY="544.0" prefHeight="30.0" prefWidth="100.0" style="-fx-background-radius: 20; -fx-background-color: green; -fx-cursor: hand;" text="Edit" textFill="WHITE" />
     </children>
 </AnchorPane>

@@ -10,7 +10,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import sample.Controller.Login.LoginPageController;
-import sample.Controller.Manager.FileChooser;
+import sample.Controller.FileChooser;
 import sample.Main;
 
 import java.io.IOException;

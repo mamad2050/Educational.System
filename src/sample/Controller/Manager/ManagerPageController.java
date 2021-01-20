@@ -13,6 +13,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import sample.Controller.FileChooser;
 import sample.Controller.Login.LoginPageController;
 import sample.Main;
 import sample.Model.Manager;

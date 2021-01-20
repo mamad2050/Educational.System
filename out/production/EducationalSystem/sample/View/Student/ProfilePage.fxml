@@ -19,7 +19,7 @@
                     </font>
                 </Text>
             <ImageView fx:id="imageField" fitHeight="107.0" fitWidth="124.0" layoutX="404.0" layoutY="82.0" pickOnBounds="true" preserveRatio="true" />
-            <JFXButton fx:id="chooseBTN" layoutX="410.0" layoutY="191.0" prefHeight="25.0" prefWidth="111.0" text="Change image" />
+            <JFXButton fx:id="chooseBTN" layoutX="404.0" layoutY="191.0" prefHeight="25.0" prefWidth="111.0" text="Change image" />
             </children>
         </AnchorPane>
       <Group layoutX="208.0" layoutY="238.0">

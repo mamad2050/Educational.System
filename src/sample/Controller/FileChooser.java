@@ -1,4 +1,4 @@
-package sample.Controller.Manager;
+package sample.Controller;
 
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
@@ -8,6 +8,7 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import sample.Controller.Login.LoginPageController;
 import sample.Model.Manager;
+import sample.Model.Master;
 import sample.Model.Student;
 
 
@@ -23,6 +24,7 @@ public class FileChooser {
 
     private Manager manager;
     private Student student;
+    private Master master;
 
     public FileChooser(Manager manager) {
         this.manager = manager;
@@ -31,6 +33,8 @@ public class FileChooser {
     public FileChooser(Student student){
         this.student=student;
     }
+
+    public FileChooser(Master master){this.master = master ;}
 
     public void chooseImageButtonPush(ActionEvent event, ImageView imageField) {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -43,6 +47,7 @@ public class FileChooser {
         File userDirectory;
 
 //        if (!userDirectory.canRead()) {
+
         userDirectory = new File("c:/");
         fileChooser.setInitialDirectory(userDirectory);
         try {
@@ -55,13 +60,14 @@ public class FileChooser {
             }else if (student != null) {
                 student.setPhoto(image);
                 imageField.setImage(student.getPhoto());
+            }else if (master != null) {
+                master.setPhoto(image);
+                imageField.setImage(master.getPhoto());
             }
-
 
         } catch (IOException e) {
             System.err.println(e.getMessage());
         }
-
     }
 
 

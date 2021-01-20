@@ -15,6 +15,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
@@ -31,6 +33,13 @@ import java.util.ResourceBundle;
 import java.util.function.Predicate;
 
 public class ManageMastersController implements Initializable {
+
+
+    @FXML
+    private ImageView imageField;
+
+    @FXML
+    private ImageView addimg;
 
 
     @FXML
@@ -86,6 +95,9 @@ public class ManageMastersController implements Initializable {
     @FXML
     private TextField searchField;
 
+    @FXML
+    private JFXButton clearBTN;
+
     Master selectMaster;
 
     String currentUser;
@@ -114,17 +126,26 @@ public class ManageMastersController implements Initializable {
             }
 
         });
+        clearBTN.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                clearFields();
+                addimg.setVisible(true);
+                imageField.setImage(new Image("sample/view/drawable/headmaster.png"));
+            }
+        });
         masterTable.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
                 selectMaster = masterTable.getSelectionModel().getSelectedItem();
-
+                addimg.setVisible(false);
                 firstNameField.setText(selectMaster.getFirstName());
                 lastNameField.setText(selectMaster.getLastName());
                 userField.setText(selectMaster.getUserName());
                 phoneField.setText(selectMaster.getPhone());
                 mailField.setText(selectMaster.getEmail());
                 currentUser = userField.getText();
+                imageField.setImage(selectMaster.getPhoto());
             }
         });
 // edit student by manager
@@ -144,9 +165,6 @@ public class ManageMastersController implements Initializable {
                 }
             }
         });
-
-
-
 
 
         deleteBTN.setOnAction(new EventHandler<ActionEvent>() {

@@ -17,6 +17,7 @@ public class Student extends Person {
 
     public static int lastId = 1;
     public static ArrayList<Student> studentList = new ArrayList<>();
+
     private Image photo;
 
     public Image getPhoto() {

@@ -60,12 +60,12 @@
                      </children>
                   </VBox>
                   <Label fx:id="errorLBL" alignment="CENTER" layoutX="17.0" layoutY="434.0" prefHeight="49.0" prefWidth="160.0" textAlignment="CENTER" wrapText="true" />
-                  <ImageView fitHeight="108.0" fitWidth="108.0" layoutX="41.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="imageField" fitHeight="108.0" fitWidth="108.0" layoutX="41.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../Drawable/headmaster.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="73.0" fitWidth="69.0" layoutX="102.0" layoutY="70.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="addimg" fitHeight="73.0" fitWidth="69.0" layoutX="102.0" layoutY="70.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../Drawable/1610717315596.png" />
                      </image>
@@ -77,6 +77,7 @@
                   <Font name="System Bold" size="25.0" />
                </font>
             </Text>
+            <JFXButton fx:id="clearBTN" layoutX="701.0" layoutY="16.0" text="Clear" />
          </children>
       </AnchorPane>
       <Group layoutX="17.0" layoutY="8.0">

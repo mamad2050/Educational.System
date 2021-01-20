@@ -1,11 +1,15 @@
 package sample.Controller.Master;
 
 import com.jfoenix.controls.JFXButton;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import sample.Controller.FileChooser;
 import sample.Controller.Login.LoginPageController;
 import sample.Main;
 
@@ -17,6 +21,12 @@ public class MasterProfileController implements Initializable {
 
     @FXML
     private AnchorPane showPane;
+
+    @FXML
+    private ImageView imageField;
+
+    @FXML
+    private JFXButton chooseBTN;
 
     @FXML
     private JFXButton editBTN;
@@ -42,6 +52,15 @@ public class MasterProfileController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+        imageField.setImage(LoginPageController.masterLoggedIn.getPhoto());
+        chooseBTN.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                FileChooser chooser = new FileChooser(LoginPageController.masterLoggedIn);
+                chooser.chooseImageButtonPush(event,imageField);
+            }
+        });
         firstNameLBL.setText(LoginPageController.masterLoggedIn.getFirstName());
         lastNameLBL.setText(LoginPageController.masterLoggedIn.getLastName());
         emailLBL.setText(LoginPageController.masterLoggedIn.getEmail());

@@ -9,6 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -32,13 +33,16 @@ public class MasterPageController implements Initializable {
     private Label userLBL;
 
     @FXML
+    private ImageView imageField;
+
+    @FXML
     private AnchorPane showPane;
     static AnchorPane pane = null;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-
+        imageField.setImage(LoginPageController.masterLoggedIn.getPhoto());
 
         try {
             CreatePage("MasterDashboardPage");
