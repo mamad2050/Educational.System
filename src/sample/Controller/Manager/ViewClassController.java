@@ -17,6 +17,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
+import sample.Controller.Login.LoginPageController;
 import sample.Main;
 import sample.Model.Student;
 
@@ -93,8 +95,10 @@ public class ViewClassController implements Initializable {
     // buttons
     @FXML
     private JFXButton addBTN;
+
     @FXML
     private JFXButton deleteBTN;
+
     @FXML
     private JFXButton backBTN;
 
@@ -102,6 +106,8 @@ public class ViewClassController implements Initializable {
 
     Student selectStudent;
 
+    @FXML
+    private StackPane stackPane;
 
 
     @Override
@@ -177,13 +183,33 @@ public class ViewClassController implements Initializable {
                 if (checkThisStudent(selectStudent)) {
                     ManageClassesController.selectedClass.getStudentsList().add(selectStudent);
                     thisClassStudentTable.getItems().add(selectStudent);
-                    ManageClassesController.selectedClass.setOccupy();
+                    ManageClassesController.selectedClass.setOccupy("+");
+                    LoginPageController.loadDialog(stackPane, "Add Student",
+                            "A student with the following profile was added to this class : \n\n\n"
+                                    + "Student id : " + selectStudent.getStringId() + "\n" +
+                                    "Name : " + selectStudent.getFirstName() + " " + selectStudent.getLastName() + "\n"
+                                  +"Phone : " + selectStudent.getPhone() );
                 }
 
 
             }
         });
 
+        deleteBTN.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                ManageClassesController.selectedClass.getStudentsList().remove(selectStudent);
+                thisClassStudentTable.getItems().remove(selectStudent);
+                ManageClassesController.selectedClass.setOccupy("-");
+
+                LoginPageController.loadDialog(stackPane, "Remove Student",
+                        "A student with the following profile was Deleted from this class : \n\n\n"
+                                + "Student id : " + selectStudent.getStringId() + "\n" +
+                                "Name : " + selectStudent.getFirstName() + " " + selectStudent.getLastName() + "\n"
+                                +"Phone : " + selectStudent.getPhone() );
+            }
+        });
+//
 
         studentsTable.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override

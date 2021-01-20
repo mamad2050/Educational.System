@@ -98,10 +98,6 @@ public class CreateClassController implements Initializable {
         masterNameField.setText(LoginPageController.masterLoggedIn.getFirstName() + " " + LoginPageController
                 .masterLoggedIn.getLastName());
 
-
-
-
-
         errorLBL.setText("");
 
 

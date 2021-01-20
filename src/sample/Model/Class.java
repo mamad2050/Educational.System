@@ -40,8 +40,16 @@ public class Class {
         return occupy;
     }
 
-    public void setOccupy() {
-        occupy++;
+    public void setOccupy(String s) {
+
+        if (s.equals("+")) {
+            occupy++;
+        }else if (s.equals("-")) {
+            occupy--;
+        }else if (s.equals("0")) {
+            occupy=0;
+        }
+
     }
 
     public int getClassNumber() {

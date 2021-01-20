@@ -17,6 +17,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
 import sample.Controller.Login.LoginPageController;
 import sample.File.WriteAndReadFile;
 import sample.Model.Student;
@@ -75,6 +76,9 @@ public class ManageStudentsController implements Initializable {
     @FXML
     private ImageView addimg;
 
+    @FXML
+    private StackPane stackPane;
+
     Student selectStudent;
     String currentUser;
 
@@ -119,19 +123,21 @@ public class ManageStudentsController implements Initializable {
 
         addBTN.setOnAction(event -> {
 
+
             try {
-                studentCheckConditions(new Student(firstNameField.getText(), lastNameField.getText(), userField.getText(),
+                studentCheckConditions( new Student(firstNameField.getText(), lastNameField.getText(), userField.getText(),
                         userField.getText(), mailField.getText(), phoneField.getText()));
             } catch (IOException e) {
                 e.printStackTrace();
             }
+
 
         });
 
         clearBTN.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-        clearFields();
+                clearFields();
                 addimg.setVisible(true);
                 imageField.setImage(new Image("sample/view/drawable/teacher.png"));
             }
@@ -174,6 +180,11 @@ public class ManageStudentsController implements Initializable {
                 Student deleteStudent = studentTable.getSelectionModel().getSelectedItem();
                 Student.studentList.remove(deleteStudent);
                 studentTable.getItems().remove(deleteStudent);
+                LoginPageController.loadDialog(stackPane, "Delete Student",
+                        "A student with the following profile was deleted from System : \n\n\n"
+                                + "Student id : " + selectStudent.getStringId() + "\n" +
+                                "Name : " + selectStudent.getFirstName() + " " + selectStudent.getLastName() + "\n"
+                                + "Phone : " + selectStudent.getPhone());
                 try {
                     WriteAndReadFile.write();
                 } catch (IOException e) {
@@ -192,6 +203,11 @@ public class ManageStudentsController implements Initializable {
                     Student.studentList.add(student);
                     WriteAndReadFile.write();
                     studentTable.getItems().add(student);
+                    LoginPageController.loadDialog(stackPane, "Add Student",
+                            "A student with the following profile was added to the System : \n\n\n"
+                                    + "Student id : " + student.getStringId() + "\n" +
+                                    "Name : " + student.getFirstName() + " " + student.getLastName() + "\n"
+                                    + "Phone : " + student.getPhone());
                     Student.lastId++;
                     clearFields();
                     errorLBL.setText("");
@@ -206,7 +222,7 @@ public class ManageStudentsController implements Initializable {
         if (firstNameField.getText().isEmpty() || lastNameField.getText().isEmpty() || userField.getText().isEmpty()
                 || phoneField.getText().isEmpty() || mailField.getText().isEmpty()) {
 //            errorLBL.setText("Please fill all fields.");
-
+            LoginPageController.loadDialog(stackPane, "Register Error","Please fill all fields.");
 
             return false;
         }
@@ -216,7 +232,9 @@ public class ManageStudentsController implements Initializable {
     private boolean nonDuplicatedUser(String user) {
         for (Student student : Student.studentList) {
             if (student.getUserName().equals(user)) {
-                errorLBL.setText("This username has already been selected.");
+//                errorLBL.setText("This username has already been selected.");
+                LoginPageController.loadDialog(stackPane, "Register Error","This username has already been selected.");
+
                 return false;
             }
 
@@ -228,15 +246,21 @@ public class ManageStudentsController implements Initializable {
         if (phoneField.getText().matches("\\d{11}") && phoneField.getText().startsWith("09")) {
             return true;
         }
-        errorLBL.setText("Phone must start with (09) and contains 11 digits. ");
+//        errorLBL.setText("Phone must start with (09) and contains 11 digits. ");
+        LoginPageController.loadDialog(stackPane, "Register Error","Phone must start with (09) and contains 11 digits.");
+
         return false;
+
+
     }
 
     private boolean checkMailField() {
         if (mailField.getText().matches("^(.+)@(.+)$")) {
             return true;
         }
-        errorLBL.setText("Mail must contain (@) and (.com)");
+//        errorLBL.setText("Mail must contain (@) and (.)");
+        LoginPageController.loadDialog(stackPane, "Register Error","Mail must contain (@) and (.)");
+
         return false;
     }
 
@@ -244,7 +268,9 @@ public class ManageStudentsController implements Initializable {
         if (userField.getText().matches("[a-zA-Z0-9]{3,12}")) {
             return true;
         }
-        errorLBL.setText("Username must 3 - 12 character");
+        LoginPageController.loadDialog(stackPane, "Register Error","Username must 3 - 12 character");
+
+//        errorLBL.setText("Username must 3 - 12 character");
         return false;
     }
 
@@ -265,7 +291,9 @@ public class ManageStudentsController implements Initializable {
         }
         for (Student student : Student.studentList) {
             if (student.getUserName().equals(user)) {
-                errorLBL.setText("This username has already been selected.");
+                LoginPageController.loadDialog(stackPane, "Register Error","This username has already been selected.");
+//                errorLBL.setText("This username has already been selected.");
+
                 return false;
             }
 
