@@ -1,6 +1,10 @@
 package sample.Model;
 
+import javafx.scene.image.ImageView;
+
 abstract public  class Person {
+
+//    protected ImageView view;
     private String firstName, lastName, userName, password, email, phone;
 
     public Person(String firstName, String lastName, String userName, String password, String email, String phone) {
