@@ -7,11 +7,10 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
 import sample.Controller.Login.LoginPageController;
 import sample.Controller.Manager.ManagerPageController;
 import sample.Main;
@@ -22,6 +21,8 @@ import java.util.ResourceBundle;
 
 public class StudentPageController implements Initializable {
 
+    @FXML
+    private ImageView imageField;
 
     @FXML
     private JFXListView<Label> listview;
@@ -32,6 +33,7 @@ public class StudentPageController implements Initializable {
     @FXML
     private Label userLBL;
 
+
     @FXML
     private AnchorPane showPane;
 
@@ -40,6 +42,7 @@ public class StudentPageController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+        imageField.setImage(LoginPageController.studentLoggedIn.getPhoto());
         userLBL.setText(LoginPageController.studentLoggedIn.getUserName());
         Label dashboardLBL = new Label("Dashboard");
         Label profileLBL = new Label("Profile");

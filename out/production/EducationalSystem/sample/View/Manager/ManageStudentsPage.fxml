@@ -60,12 +60,12 @@
                      </children>
                   </VBox>
                   <Label fx:id="errorLBL" alignment="CENTER" layoutX="17.0" layoutY="434.0" prefHeight="54.0" prefWidth="160.0" textAlignment="CENTER" wrapText="true" />
-                  <ImageView fitHeight="108.0" fitWidth="109.0" layoutX="47.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="imageField" fitHeight="108.0" fitWidth="109.0" layoutX="47.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../Drawable/teacher.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="72.0" fitWidth="71.0" layoutX="100.0" layoutY="69.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="addimg" fitHeight="72.0" fitWidth="71.0" layoutX="100.0" layoutY="69.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../Drawable/1610717315596.png" />
                      </image>
@@ -78,6 +78,11 @@
                   <FontAwesomeIconView glyphName="SEARCH" layoutX="1.0" layoutY="18.599998474121094" opacity="0.36" />
                </children>
             </Group>
+            <JFXButton fx:id="clearBTN" layoutX="706.0" layoutY="14.0" text="CLEAR">
+               <graphic>
+                  <FontAwesomeIconView glyphName="REFRESH" />
+               </graphic>
+            </JFXButton>
             </children>
         </AnchorPane>
       <Text fill="#1f1685" fontSmoothingType="LCD" layoutX="365.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="STUDENTS" wrappingWidth="173.24789428710938">

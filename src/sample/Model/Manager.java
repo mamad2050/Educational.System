@@ -1,7 +1,7 @@
 package sample.Model;
 
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+
 
 import java.util.ArrayList;
 
@@ -22,7 +22,7 @@ public class Manager extends Person {
 
     public Manager(String firstName, String lastName, String userName, String password, String email, String phone) {
         super(firstName, lastName, userName, password, email, phone);
-        
+
         this.photo = new Image("sample/View/Drawable/manager.png");
     }
 

@@ -13,6 +13,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import sample.Controller.Login.LoginPageController;
@@ -64,6 +66,14 @@ public class ManageStudentsController implements Initializable {
     private Label errorLBL;
     @FXML
     private TextField searchField;
+    @FXML
+    private JFXButton clearBTN;
+
+    @FXML
+    private ImageView imageField;
+
+    @FXML
+    private ImageView addimg;
 
     Student selectStudent;
     String currentUser;
@@ -117,9 +127,19 @@ public class ManageStudentsController implements Initializable {
             }
 
         });
+
+        clearBTN.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+        clearFields();
+                addimg.setVisible(true);
+                imageField.setImage(new Image("sample/view/drawable/teacher.png"));
+            }
+        });
         studentTable.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
+                addimg.setVisible(false);
                 selectStudent = studentTable.getSelectionModel().getSelectedItem();
                 firstNameField.setText(selectStudent.getFirstName());
                 lastNameField.setText(selectStudent.getLastName());
@@ -127,6 +147,8 @@ public class ManageStudentsController implements Initializable {
                 phoneField.setText(selectStudent.getPhone());
                 mailField.setText(selectStudent.getEmail());
                 currentUser = userField.getText();
+
+                imageField.setImage(selectStudent.getPhoto());
             }
         });
 
@@ -134,7 +156,7 @@ public class ManageStudentsController implements Initializable {
             @Override
             public void handle(ActionEvent event) {
 
-                if ( userEditable(userField.getText())&& checkAllField() && checkUserField() && checkMailField() && checkPhoneField()) {
+                if (userEditable(userField.getText()) && checkAllField() && checkUserField() && checkMailField() && checkPhoneField()) {
                     Student.studentList.get(selectStudent.getStudentId() - 1).setFirstName(firstNameField.getText());
                     Student.studentList.get(selectStudent.getStudentId() - 1).setLastName(lastNameField.getText());
                     Student.studentList.get(selectStudent.getStudentId() - 1).setUserName(userField.getText());
@@ -163,16 +185,16 @@ public class ManageStudentsController implements Initializable {
     }
 
     private void studentCheckConditions(Student student) throws IOException {
-        if (checkAllField() ) {
+        if (checkAllField()) {
             if (nonDuplicatedUser(student.getUserName())) {
                 if (checkPhoneField() && checkMailField() && checkUserField()) {
 
-                        Student.studentList.add(student);
-                        WriteAndReadFile.write();
-                        studentTable.getItems().add(student);
-                        Student.lastId++;
-                        clearFields();
-                        errorLBL.setText("");
+                    Student.studentList.add(student);
+                    WriteAndReadFile.write();
+                    studentTable.getItems().add(student);
+                    Student.lastId++;
+                    clearFields();
+                    errorLBL.setText("");
 
                 }
             }
