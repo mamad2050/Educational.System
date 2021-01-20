@@ -25,7 +25,9 @@ import sample.Model.Master;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Date;
 import java.util.ResourceBundle;
+import java.util.SimpleTimeZone;
 
 public class CreateClassController implements Initializable {
 
@@ -124,7 +126,9 @@ public class CreateClassController implements Initializable {
         capacityColumn.setCellValueFactory(new PropertyValueFactory<>("capacity"));
         lessonColumn.setCellValueFactory(new PropertyValueFactory<>("lessonName"));
         occupyColumn.setCellValueFactory(new PropertyValueFactory<>("occupy"));
-        masterPhoneColumn.setCellValueFactory(new PropertyValueFactory<>("phone"));
+        masterPhoneColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getMasterObj().getPhone()));
+        masterColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getMasterObj().getFirstName()
+        +" " + cellData.getValue().getMasterObj().getLastName()));
 
 
         myClassTable.setItems(observableList);
@@ -144,7 +148,6 @@ public class CreateClassController implements Initializable {
                 addClassToTable(new Class(Integer.parseInt(capacityField.getText()), Integer.parseInt(classNumField.getText())
                         , lessonField.getText(), findMaster()));
 
-
             }
 
         });
@@ -154,10 +157,10 @@ public class CreateClassController implements Initializable {
 //            @Override
 //            public void handle(MouseEvent event) {
 //                selectedClass = classTable.getSelectionModel().getSelectedItem();
-////                capacityField.setText(Integer.toString(selectedClass.getCapacity()));
-////                lessonField.setText(selectedClass.getLessonName());
-////                masterNameField.setText(selectedClass.getMaster());
-////                classNumField.setText(Integer.toString(selectedClass.getClassNumber()));
+//                capacityField.setText(Integer.toString(selectedClass.getCapacity()));
+//                lessonField.setText(selectedClass.getLessonName());
+//                masterNameField.setText(selectedClass.getMaster());
+//                classNumField.setText(Integer.toString(selectedClass.getClassNumber()));
 //
 //
 //                FXMLLoader loader = new FXMLLoader(Main.class.getResource("View/Manager/ViewCLassPage.fxml"));
@@ -170,7 +173,6 @@ public class CreateClassController implements Initializable {
 //            }
 //        });
 
-
         deleteBTN.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -180,20 +182,17 @@ public class CreateClassController implements Initializable {
                 Class.classList.remove(deleteClass);
             }
         });
-
     }
 
     private void addClassToTable(Class classs) {
-
         Class.classList.add(classs);
         myClassTable.getItems().add(classs);
         Class.lastId++;
         clearFields();
         errorLBL.setText("");
-
     }
 
-    //
+
     private boolean checkAllField() {
         if (capacityField.getText().isEmpty() || classNumField.getText().isEmpty()
                 || lessonField.getText().isEmpty() || masterNameField.getText().isEmpty() || masterIdField.getText().isEmpty()) {
@@ -207,9 +206,7 @@ public class CreateClassController implements Initializable {
     private void clearFields() {
         capacityField.clear();
         lessonField.clear();
-//        masterNameField.clear();
         classNumField.clear();
-//        masterIdField.clear();
     }
 
     private boolean checkIntegerFields() {
@@ -217,13 +214,11 @@ public class CreateClassController implements Initializable {
             errorLBL.setText("Please check your inputs.");
             return false;
         }
-
         return true;
     }
 
 
     private boolean checkMaster() {
-
         if (masterIdField.getText().equals("")) {
             return false;
         }
