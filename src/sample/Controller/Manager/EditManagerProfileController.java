@@ -10,6 +10,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import sample.Controller.Login.LoginPageController;
@@ -52,7 +53,10 @@ public class EditManagerProfileController implements Initializable {
     private JFXTextField newPassField;
 
     @FXML
-    private Label saveLBL;
+    private StackPane stackPane;
+
+//    @FXML
+//    private Label saveLBL;
 
     @FXML
     private Label changeLBL;
@@ -106,8 +110,9 @@ public class EditManagerProfileController implements Initializable {
                     Manager.managerList.get(managerId).setUserName(userField.getText());
                     Manager.managerList.get(managerId).setPhone(phoneField.getText());
                     Manager.managerList.get(managerId).setEmail(mailField.getText());
-                    saveLBL.setTextFill(Color.GREEN);
-                    saveLBL.setText("Successful.");
+//                    saveLBL.setTextFill(Color.GREEN);
+//                    saveLBL.setText("Successful.");
+                    LoginPageController.loadDialog(stackPane,"Edit Profile","Successful");
                 }
                 }
         });
@@ -119,7 +124,8 @@ public class EditManagerProfileController implements Initializable {
                     if (!newPassField.getText().isEmpty()) {
                         Manager.managerList.get(managerId).setPassword(newPassField.getText());
                         changeLBL.setTextFill(Color.GREEN);
-                        changeLBL.setText("Successful.");
+//                        changeLBL.setText("Successful.");
+                        LoginPageController.loadDialog(stackPane,"Change Password","Successful");
                     }
                 }
             }
@@ -128,8 +134,9 @@ public class EditManagerProfileController implements Initializable {
     private boolean checkAllField() {
         if (firstnameField.getText().isEmpty() || lastnameField.getText().isEmpty() || userField.getText().isEmpty()
                 || phoneField.getText().isEmpty() || mailField.getText().isEmpty()) {
-            saveLBL.setTextFill(Color.RED);
-            saveLBL.setText("Please fill all fields.");
+//            saveLBL.setTextFill(Color.RED);
+//            saveLBL.setText("Please fill all fields.");
+            LoginPageController.loadDialog(stackPane,"Edit Profile","Please fill all fields");
             return false;
         }
         return true;
@@ -140,8 +147,10 @@ public class EditManagerProfileController implements Initializable {
         if (phoneField.getText().matches("\\d{11}") && phoneField.getText().startsWith("09")) {
             return true;
         }
-        saveLBL.setTextFill(Color.RED);
-        saveLBL.setText("Phone must start with (09) and contains 11 digits. ");
+        ///////////////////////
+//        saveLBL.setTextFill(Color.RED);
+//        saveLBL.setText("Phone must start with (09) and contains 11 digits. ");
+        LoginPageController.loadDialog(stackPane,"Edit Profile","Phone must start with (09) and contains 11 digits.");
         return false;
     }
 
@@ -149,8 +158,10 @@ public class EditManagerProfileController implements Initializable {
         if (mailField.getText().matches("^(.+)@(.+)$")) {
             return true;
         }
-        saveLBL.setTextFill(Color.RED);
-        saveLBL.setText("Mail must contain (@) and (.com)");
+//        saveLBL.setTextFill(Color.RED);
+//        saveLBL.setText("Mail must contain (@) and (.com)");
+        LoginPageController.loadDialog(stackPane,"Edit Profile","Mail must contain (@) and (.com)");
+
         return false;
     }
 
@@ -158,8 +169,10 @@ public class EditManagerProfileController implements Initializable {
         if (userField.getText().matches("[a-zA-Z0-9]{3,12}")) {
             return true;
         }
-        saveLBL.setTextFill(Color.RED);
-        saveLBL.setText("Username must 3 - 12 character");
+//        saveLBL.setTextFill(Color.RED);
+//        saveLBL.setText("Username must 3 - 12 character");
+        LoginPageController.loadDialog(stackPane,"Edit Profile","Username must 3 - 12 character");
+
         return false;
     }
 

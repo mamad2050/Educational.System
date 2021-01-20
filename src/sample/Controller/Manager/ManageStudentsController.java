@@ -15,6 +15,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import sample.Controller.Login.LoginPageController;
 import sample.File.WriteAndReadFile;
 import sample.Model.Student;
 
@@ -182,7 +183,9 @@ public class ManageStudentsController implements Initializable {
     private boolean checkAllField() {
         if (firstNameField.getText().isEmpty() || lastNameField.getText().isEmpty() || userField.getText().isEmpty()
                 || phoneField.getText().isEmpty() || mailField.getText().isEmpty()) {
-            errorLBL.setText("Please fill all fields.");
+//            errorLBL.setText("Please fill all fields.");
+
+
             return false;
         }
         return true;

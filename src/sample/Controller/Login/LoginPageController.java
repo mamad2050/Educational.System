@@ -9,6 +9,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
+import javafx.scene.layout.StackPane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import sample.Main;
@@ -27,7 +29,8 @@ public class LoginPageController implements Initializable {
     public static Student studentLoggedIn;
     public static Master masterLoggedIn;
 
-
+    @FXML
+    private StackPane stackPane;
     @FXML
     private Label errorLBL;
 
@@ -75,6 +78,8 @@ public class LoginPageController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+
         Manager.managerList.add(manager);
         errorLBL.setText("");
         resetPassLink.setOnAction(new EventHandler<ActionEvent>() {
@@ -134,7 +139,10 @@ public class LoginPageController implements Initializable {
             managerLoggedIn = manager;
             createPage("Manager/ManagerPage");
         } else {
-            errorLBL.setText("User not found.");
+//            errorLBL.setText("User not found.");
+
+            loadDialog(stackPane, "Error", "User Not Found.");
+
         }
 
     }
@@ -150,6 +158,23 @@ public class LoginPageController implements Initializable {
         stage.setResizable(false);
         stage.show();
 
+    }
+
+    public static void loadDialog(StackPane stackPane, String Heading, String Body) {
+
+        JFXDialogLayout content = new JFXDialogLayout();
+        content.setHeading(new Text(Heading));
+        content.setBody(new Text(Body));
+        JFXDialog dialog = new JFXDialog(stackPane, content, JFXDialog.DialogTransition.BOTTOM);
+        dialog.show();
+        JFXButton button = new JFXButton("OK");
+        button.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                dialog.close();
+            }
+        });
+        content.setActions(button);
     }
 
 

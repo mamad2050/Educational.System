@@ -38,16 +38,24 @@ public class MasterPageController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+
+
+        try {
+            CreatePage("MasterDashboardPage");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         userLBL.setText(LoginPageController.masterLoggedIn.getUserName());
         Label dashboardLBL = new Label("Dashboard");
         Label profileLBL = new Label("Profile");
         Label classesLBL = new Label("My Classes");
-        Label lessonsLBL = new Label("My Lessons");
-        Label messagesLBL = new Label("My Messages");
-        listview.getItems().addAll(dashboardLBL, profileLBL, classesLBL, lessonsLBL, messagesLBL);
+//        Label lessonsLBL = new Label("My Lessons");
+//        Label messagesLBL = new Label("My Messages");
+        listview.getItems().addAll(dashboardLBL, profileLBL, classesLBL);
 
 
-        listview.setOnMouseClicked(new EventHandler<MouseEvent>() {
+        listview.setOnMouseClicked (new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
                 try {
@@ -83,11 +91,11 @@ public class MasterPageController implements Initializable {
         String selectedLabel = listview.getSelectionModel().getSelectedItem().getText().trim();
 
         if (selectedLabel.equals(listview.getItems().get(0).getText().trim())) {
-            CreatePage("ManagerDashboard");
+            CreatePage("MasterDashboardPage");
         } else if (selectedLabel.equals(listview.getItems().get(1).getText())) {
             CreatePage("ProfilePage");
         } else if (selectedLabel.equals(listview.getItems().get(2).getText().trim())) {
-            CreatePage("ManageMastersPage");
+            CreatePage("CreateClassPage");
         } else if (selectedLabel.equals(listview.getItems().get(3).getText().trim())) {
             CreatePage("ManageClassesPage");
         }
