@@ -85,6 +85,8 @@ public class CreateClassController implements Initializable {
     @FXML
     private TextField searchField;
 
+    Master master;
+
     @Override
 
 
@@ -92,23 +94,42 @@ public class CreateClassController implements Initializable {
 
         masterIdField.setText(Integer.toString(LoginPageController.masterLoggedIn.getMasterId()));
         masterNameField.setText(LoginPageController.masterLoggedIn.getFirstName() + " " + LoginPageController
-        .masterLoggedIn.getLastName());
+                .masterLoggedIn.getLastName());
+
+
+
+
 
         errorLBL.setText("");
-        ObservableList<Class> observableList = FXCollections.observableArrayList(Class.classList);
+
+
+
+        for (Master find : Master.masterList) {
+            if (find == LoginPageController.masterLoggedIn) {
+                master = find;
+            }
+        }
+        ObservableList<Class> observableList = FXCollections.observableArrayList();
+        for (int i = 0; i < Class.classList.size() ; i++) {
+            if (Class.classList.get(i) .getMasterObj() == master ) {
+               observableList.add(Class.classList.get(i));
+            }
+        }
+
+
+
+
         classIdColumn.setCellValueFactory(new PropertyValueFactory<>("classId"));
         classNumColumn.setCellValueFactory(new PropertyValueFactory<>("classNumber"));
         capacityColumn.setCellValueFactory(new PropertyValueFactory<>("capacity"));
         lessonColumn.setCellValueFactory(new PropertyValueFactory<>("lessonName"));
-
         occupyColumn.setCellValueFactory(new PropertyValueFactory<>("occupy"));
-        masterPhoneColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().
-                getMasterObj().getPhone()));
-        masterColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getMasterObj()
-                .getFirstName() + " " + cellData.getValue().getMasterObj().getLastName()));
+        masterPhoneColumn.setCellValueFactory(new PropertyValueFactory<>("phone"));
 
 
         myClassTable.setItems(observableList);
+
+
         masterIdField.setOnMouseReleased(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -186,9 +207,9 @@ public class CreateClassController implements Initializable {
     private void clearFields() {
         capacityField.clear();
         lessonField.clear();
-        masterNameField.clear();
+//        masterNameField.clear();
         classNumField.clear();
-        masterIdField.clear();
+//        masterIdField.clear();
     }
 
     private boolean checkIntegerFields() {

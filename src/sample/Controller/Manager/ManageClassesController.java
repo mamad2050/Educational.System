@@ -2,8 +2,6 @@ package sample.Controller.Manager;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
-
-import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -83,6 +81,8 @@ public class ManageClassesController implements Initializable {
 
     AnchorPane pane;
 
+    Class classs;
+
     public static Class selectedClass;
 
     @Override
@@ -98,8 +98,7 @@ public class ManageClassesController implements Initializable {
         masterPhoneColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().
                 getMasterObj().getPhone()));
         masterColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getMasterObj()
-                .getFirstName()+ " " + cellData.getValue().getMasterObj().getLastName()));
-
+                .getFirstName() + " " + cellData.getValue().getMasterObj().getLastName()));
 
 
         classTable.setItems(observableList);
@@ -113,13 +112,10 @@ public class ManageClassesController implements Initializable {
         });
         addBTN.setOnAction(event -> {
             if (checkAllField() && checkIntegerFields()) {
-
-                addClassToTable(new Class(Integer.parseInt(capacityField.getText()), Integer.parseInt(classNumField.getText())
-                        ,  lessonField.getText(), findMaster()));
-//                 ManageClassesController.selectedClass.setOccupy();
-
+                 classs = new Class(Integer.parseInt(capacityField.getText()), Integer.parseInt(classNumField.getText())
+                        , lessonField.getText(), findMaster());
+                addClassToTable(classs);
             }
-
         });
 
 
@@ -219,10 +215,9 @@ public class ManageClassesController implements Initializable {
 
     private Master findMaster() {
 
-
         for (Master master : Master.masterList) {
             if (Integer.parseInt(masterIdField.getText()) == master.getMasterId()) {
-
+                master.getMyClasses().add(classs);
                 return master;
             }
         }

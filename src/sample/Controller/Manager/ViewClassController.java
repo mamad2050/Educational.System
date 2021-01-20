@@ -102,6 +102,8 @@ public class ViewClassController implements Initializable {
 
     Student selectStudent;
 
+
+
     @Override
 
     public void initialize(URL location, ResourceBundle resources) {
