@@ -1,5 +1,8 @@
 package sample;
 
+import javafx.scene.layout.StackPane;
+import sample.Controller.Login.LoginPageController;
+
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
@@ -9,7 +12,7 @@ import java.util.Random;
 
 public class SendMail {
 
-
+private StackPane stackPane;
     public  static  StringBuilder sb = new StringBuilder();
     public void sendEmailTo(String receiver) throws MessagingException {
 
@@ -33,6 +36,7 @@ public class SendMail {
         assert message != null;
         Transport.send(message);
         System.out.println("Message sent successfully!");
+//        LoginPageController.loadDialog(stackPane,"Reset Password","Send.");
     }
 
     private static Message prepareMessage(Session session, String myAccountEmail, String receiver) {

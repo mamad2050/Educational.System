@@ -1,4 +1,4 @@
-package sample.Controller.Manager;
+package sample.Controller.Master;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
@@ -19,8 +19,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import sample.Controller.Login.LoginPageController;
+import sample.Controller.Manager.ManageClassesController;
 import sample.Main;
-import sample.Model.Class;
 import sample.Model.Student;
 
 import java.io.IOException;
@@ -30,7 +30,6 @@ import java.util.ResourceBundle;
 import java.util.function.Predicate;
 
 public class ViewClassController implements Initializable {
-
     @FXML
     private AnchorPane showPane;
 
@@ -91,6 +90,8 @@ public class ViewClassController implements Initializable {
     private JFXTextField mailField;
 
     @FXML
+    private JFXButton openBTN;
+    @FXML
     private TextField searchField;
 
     // buttons
@@ -105,7 +106,7 @@ public class ViewClassController implements Initializable {
 
     AnchorPane pane = null;
 
-    Student selectStudent ;
+  public static   Student selectStudent ;
 
     @FXML
     private StackPane stackPane;
@@ -116,14 +117,14 @@ public class ViewClassController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 
         // this class fields
-        classIdField.setText(Integer.toString(ManageClassesController.selectedClass.getClassId()));
-        masterField.setText(ManageClassesController.selectedClass.getMasterObj().getFirstName() + " " +
-                ManageClassesController.selectedClass.getMasterObj().getLastName());
-        numberOfStudentField.setText(Integer.toString(ManageClassesController.selectedClass.getClassNumber()));
-        lessonField.setText(ManageClassesController.selectedClass.getLessonName());
-        capacityField.setText(Integer.toString(ManageClassesController.selectedClass.getCapacity()));
-        masterPhoneField.setText(ManageClassesController.selectedClass.getMasterObj().getPhone());
-        masterMailField.setText(ManageClassesController.selectedClass.getMasterObj().getEmail());
+        classIdField.setText(Integer.toString(CreateClassController.selectedClass.getClassId()));
+        masterField.setText(CreateClassController.selectedClass.getMasterObj().getFirstName() + " " +
+                CreateClassController.selectedClass.getMasterObj().getLastName());
+        numberOfStudentField.setText(Integer.toString(CreateClassController.selectedClass.getClassNumber()));
+        lessonField.setText(CreateClassController.selectedClass.getLessonName());
+        capacityField.setText(Integer.toString(CreateClassController.selectedClass.getCapacity()));
+        masterPhoneField.setText(CreateClassController.selectedClass.getMasterObj().getPhone());
+        masterMailField.setText(CreateClassController.selectedClass.getMasterObj().getEmail());
 
         // all students list
         ObservableList<Student> observableList = FXCollections.observableArrayList(Student.studentList);
@@ -140,7 +141,7 @@ public class ViewClassController implements Initializable {
 
 
         ObservableList<Student> observableListThisClass =
-                FXCollections.observableArrayList(ManageClassesController.selectedClass.getStudentsList());
+                FXCollections.observableArrayList(CreateClassController.selectedClass.getStudentsList());
 
         studentIdThisClassColumn.setCellValueFactory(new PropertyValueFactory<>("studentId"));
         fNameThisClassColumn.setCellValueFactory(new PropertyValueFactory<>("firstName"));
@@ -187,9 +188,9 @@ public class ViewClassController implements Initializable {
                 }else
 
                 if (checkThisStudent(selectStudent)) {
-                    ManageClassesController.selectedClass.getStudentsList().add(selectStudent);
+                    CreateClassController.selectedClass.getStudentsList().add(selectStudent);
                     thisClassStudentTable.getItems().add(selectStudent);
-                    ManageClassesController.selectedClass.setOccupy("+");
+                    CreateClassController.selectedClass.setOccupy("+");
                     LoginPageController.loadDialog(stackPane, "Add Student",
                             "A student with the following profile was added to this class : \n\n\n"
                                     + "Student id : " + selectStudent.getStringId() + "\n" +
@@ -198,7 +199,7 @@ public class ViewClassController implements Initializable {
 
                     for (Student student : Student.studentList) {
                         if (student == selectStudent ) {
-                            student.getMyClasses().add(ManageClassesController.selectedClass);
+                            student.getMyClasses().add(CreateClassController.selectedClass);
                             clearFields();
                         }
                     }
@@ -213,9 +214,9 @@ public class ViewClassController implements Initializable {
 
             @Override
             public void handle(ActionEvent event) {
-                ManageClassesController.selectedClass.getStudentsList().remove(selectStudent);
+                CreateClassController.selectedClass.getStudentsList().remove(selectStudent);
                 thisClassStudentTable.getItems().remove(selectStudent);
-                ManageClassesController.selectedClass.setOccupy("-");
+                CreateClassController.selectedClass.setOccupy("-");
 
                 LoginPageController.loadDialog(stackPane, "Remove Student",
                         "A student with the following profile was Deleted from this class : \n\n\n"
@@ -245,7 +246,7 @@ public class ViewClassController implements Initializable {
         backBTN.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                FXMLLoader loader = new FXMLLoader(Main.class.getResource("View/Manager/ManageClassesPage.fxml"));
+                FXMLLoader loader = new FXMLLoader(Main.class.getResource("View/Master/CreateClassPage.fxml"));
                 try {
                     pane = loader.load();
                 } catch (IOException e) {
@@ -261,7 +262,7 @@ public class ViewClassController implements Initializable {
 
     private boolean checkThisStudent(Student student) {
 
-        ArrayList<Student> thisClassList = ManageClassesController.selectedClass.getStudentsList();
+        ArrayList<Student> thisClassList = CreateClassController.selectedClass.getStudentsList();
 
         if (thisClassList.isEmpty()) {
             return true;

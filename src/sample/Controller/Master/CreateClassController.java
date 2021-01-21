@@ -61,6 +61,9 @@ public class CreateClassController implements Initializable {
     private JFXButton addBTN;
 
     @FXML
+    JFXButton openBTN;
+
+    @FXML
     private JFXButton editBTN;
 
     @FXML
@@ -81,13 +84,17 @@ public class CreateClassController implements Initializable {
     @FXML
     private JFXTextField lessonField;
 
-    @FXML
-    private Label errorLBL;
+//    @FXML
+//    private Label errorLBL;
 
     @FXML
     private TextField searchField;
 
     Master master;
+    public static Class selectedClass;
+
+    AnchorPane pane ;
+
 
     @Override
 
@@ -98,8 +105,7 @@ public class CreateClassController implements Initializable {
         masterNameField.setText(LoginPageController.masterLoggedIn.getFirstName() + " " + LoginPageController
                 .masterLoggedIn.getLastName());
 
-        errorLBL.setText("");
-
+//        errorLBL.setText("");
 
 
         for (Master find : Master.masterList) {
@@ -108,13 +114,11 @@ public class CreateClassController implements Initializable {
             }
         }
         ObservableList<Class> observableList = FXCollections.observableArrayList();
-        for (int i = 0; i < Class.classList.size() ; i++) {
-            if (Class.classList.get(i) .getMasterObj() == master ) {
-               observableList.add(Class.classList.get(i));
+        for (int i = 0; i < Class.classList.size(); i++) {
+            if (Class.classList.get(i).getMasterObj() == master) {
+                observableList.add(Class.classList.get(i));
             }
         }
-
-
 
 
         classIdColumn.setCellValueFactory(new PropertyValueFactory<>("classId"));
@@ -124,7 +128,7 @@ public class CreateClassController implements Initializable {
         occupyColumn.setCellValueFactory(new PropertyValueFactory<>("occupy"));
         masterPhoneColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getMasterObj().getPhone()));
         masterColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getMasterObj().getFirstName()
-        +" " + cellData.getValue().getMasterObj().getLastName()));
+                + " " + cellData.getValue().getMasterObj().getLastName()));
 
 
         myClassTable.setItems(observableList);
@@ -149,26 +153,30 @@ public class CreateClassController implements Initializable {
         });
 
 //
-//        myClassTable.setOnMouseClicked(new EventHandler<MouseEvent>() {
-//            @Override
-//            public void handle(MouseEvent event) {
-//                selectedClass = classTable.getSelectionModel().getSelectedItem();
-//                capacityField.setText(Integer.toString(selectedClass.getCapacity()));
-//                lessonField.setText(selectedClass.getLessonName());
+        myClassTable.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                selectedClass = myClassTable.getSelectionModel().getSelectedItem();
+                capacityField.setText(Integer.toString(selectedClass.getCapacity()));
+                lessonField.setText(selectedClass.getLessonName());
 //                masterNameField.setText(selectedClass.getMaster());
-//                classNumField.setText(Integer.toString(selectedClass.getClassNumber()));
-//
-//
-//                FXMLLoader loader = new FXMLLoader(Main.class.getResource("View/Manager/ViewCLassPage.fxml"));
-//                try {
-//                    pane = loader.load();
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
-//                showPane.getChildren().setAll(pane);
-//            }
-//        });
+                classNumField.setText(Integer.toString(selectedClass.getClassNumber()));
 
+            }
+        });
+        openBTN.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+
+                FXMLLoader loader = new FXMLLoader(Main.class.getResource("View/Master/ViewCLassPage.fxml"));
+                try {
+                    pane = loader.load();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                showPane.getChildren().setAll(pane);
+            }
+        });
         deleteBTN.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -185,14 +193,14 @@ public class CreateClassController implements Initializable {
         myClassTable.getItems().add(classs);
         Class.lastId++;
         clearFields();
-        errorLBL.setText("");
+//        errorLBL.setText("");
     }
 
 
     private boolean checkAllField() {
         if (capacityField.getText().isEmpty() || classNumField.getText().isEmpty()
                 || lessonField.getText().isEmpty() || masterNameField.getText().isEmpty() || masterIdField.getText().isEmpty()) {
-            errorLBL.setText("Please fill all fields.");
+//            errorLBL.setText("Please fill all fields.");
             return false;
         }
         return true;
@@ -207,7 +215,7 @@ public class CreateClassController implements Initializable {
 
     private boolean checkIntegerFields() {
         if (!classNumField.getText().matches("\\d{1,3}") || !capacityField.getText().matches("\\d{2}")) {
-            errorLBL.setText("Please check your inputs.");
+//            errorLBL.setText("Please check your inputs.");
             return false;
         }
         return true;
@@ -223,12 +231,12 @@ public class CreateClassController implements Initializable {
             if (Integer.parseInt(masterIdField.getText()) == master.getMasterId()) {
                 masterNameField.setText(master.getFirstName() + " " + master.getLastName());
 
-                errorLBL.setText("");
+//                errorLBL.setText("");
                 return true;
             }
         }
-        errorLBL.setTextFill(Color.RED);
-        errorLBL.setText("Master Not Found");
+//        errorLBL.setTextFill(Color.RED);
+//        errorLBL.setText("Master Not Found");
         return false;
     }
 

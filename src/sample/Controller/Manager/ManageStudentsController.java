@@ -236,7 +236,7 @@ public class ManageStudentsController implements Initializable {
 
     private boolean nonDuplicatedUser(String user) {
         for (Student student : Student.studentList) {
-            if (student.getUserName().equals(user)) {
+            if (student.getUserName().equalsIgnoreCase(user)) {
 //                errorLBL.setText("This username has already been selected.");
                 LoginPageController.loadDialog(stackPane, "Register Error","This username has already been selected.");
 
@@ -260,7 +260,7 @@ public class ManageStudentsController implements Initializable {
     }
 
     private boolean checkMailField() {
-        if (mailField.getText().matches("^(.+)@(.+)$")) {
+        if (mailField.getText().contains("@") && mailField.getText().contains(".")) {
             return true;
         }
 //        errorLBL.setText("Mail must contain (@) and (.)");

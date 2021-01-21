@@ -9,6 +9,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import sample.Main;
 import sample.Model.Student;
@@ -22,14 +23,16 @@ import java.util.ResourceBundle;
 public class ForgotPasswordController implements Initializable {
 
     private Stage stage;
+
     private Student student;
 
     public Stage getStage() {
         return stage;
     }
 
+
     @FXML
-    private Label errorLBL;
+    private StackPane stackpane;
 
     @FXML
     private Button sendBTN;
@@ -37,8 +40,6 @@ public class ForgotPasswordController implements Initializable {
     @FXML
     private Button backBTN;
 
-    @FXML
-    private Button nextBTN;
 
     @FXML
     private JFXTextField verifField;
@@ -52,7 +53,7 @@ public class ForgotPasswordController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        errorLBL.setText("");
+
 
         sendBTN.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -67,15 +68,8 @@ public class ForgotPasswordController implements Initializable {
                             e.printStackTrace();
                         }
                         student.setPassword(SendMail.sb.toString());
+                        LoginPageController.loadDialog(stackpane, "Reset Password Request ", "Your New Password send to you mail.");
                     }
-                }
-            }
-        });
-        nextBTN.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                if (verifField.getText().equals(SendMail.sb.toString())) {
-
                 }
             }
         });

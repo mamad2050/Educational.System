@@ -17,7 +17,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
-        WriteAndReadFile.read();
+//        WriteAndReadFile.read();
 
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(this.getClass().getResource("View/Login/LoginPage.fxml"));
@@ -28,8 +28,6 @@ public class Main extends Application {
         primaryStage.setResizable(false);
         primaryStage.show();
 
-        lessons.add(new Lesson("sample/view/drawable/headmaster.png", "math", "ali abbasi"));
-        lessons.add(new Lesson("sample/view/drawable/headmaster.png", "chem", "rez adibian"));
     }
 
     public static void main(String[] args) {

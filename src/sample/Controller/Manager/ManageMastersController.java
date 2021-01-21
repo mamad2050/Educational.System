@@ -120,7 +120,7 @@ public class ManageMastersController implements Initializable {
             try {
                 masterCheckConditions(new Master(firstNameField.getText(), lastNameField.getText(), userField.getText()
                         , "0000", mailField.getText(), phoneField.getText()));
-                ManageClassesController.selectedClass.setOccupy("0");
+//                ManageClassesController.selectedClass.setOccupy("0");
             } catch (IOException e) {
                 e.printStackTrace();
             }
