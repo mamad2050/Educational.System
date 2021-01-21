@@ -16,7 +16,10 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
+import sample.Controller.Login.LoginPageController;
+import sample.File.WriteAndReadFile;
 import sample.Main;
 import sample.Model.Class;
 import sample.Model.Master;
@@ -24,6 +27,7 @@ import sample.Model.Master;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.Stack;
 
 public class ManageClassesController implements Initializable {
 
@@ -56,7 +60,8 @@ public class ManageClassesController implements Initializable {
 
     @FXML
     private JFXButton addBTN;
-
+    @FXML
+    private JFXButton openBTN;
 
     @FXML
     private JFXButton deleteBTN;
@@ -77,7 +82,7 @@ public class ManageClassesController implements Initializable {
     private JFXTextField masterIdField;
 
     @FXML
-    private Label errorLBL;
+    private StackPane stackPane;
 
     AnchorPane pane;
 
@@ -87,7 +92,7 @@ public class ManageClassesController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        errorLBL.setText("");
+//        errorLBL.setText("");
         ObservableList<Class> observableList = FXCollections.observableArrayList(Class.classList);
         classIdColumn.setCellValueFactory(new PropertyValueFactory<>("classId"));
         classNumColumn.setCellValueFactory(new PropertyValueFactory<>("classNumber"));
@@ -112,9 +117,14 @@ public class ManageClassesController implements Initializable {
         });
         addBTN.setOnAction(event -> {
             if (checkAllField() && checkIntegerFields()) {
-                 classs = new Class(Integer.parseInt(capacityField.getText()), Integer.parseInt(classNumField.getText())
+                classs = new Class(Integer.parseInt(capacityField.getText()), Integer.parseInt(classNumField.getText())
                         , lessonField.getText(), findMaster());
                 addClassToTable(classs);
+                try {
+                    WriteAndReadFile.write();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -128,14 +138,18 @@ public class ManageClassesController implements Initializable {
 //                masterNameField.setText(selectedClass.getMaster());
 //                classNumField.setText(Integer.toString(selectedClass.getClassNumber()));
 
-
-                FXMLLoader loader = new FXMLLoader(Main.class.getResource("View/Manager/ViewCLassPage.fxml"));
-                try {
-                    pane = loader.load();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                showPane.getChildren().setAll(pane);
+                openBTN.setOnAction(new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent event) {
+                        FXMLLoader loader = new FXMLLoader(Main.class.getResource("View/Manager/ViewCLassPage.fxml"));
+                        try {
+                            pane = loader.load();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        showPane.getChildren().setAll(pane);
+                    }
+                });
             }
         });
 
@@ -158,15 +172,16 @@ public class ManageClassesController implements Initializable {
         classTable.getItems().add(classs);
         Class.lastId++;
         clearFields();
-        errorLBL.setText("");
+
 
     }
 
-    //
     private boolean checkAllField() {
         if (capacityField.getText().isEmpty() || classNumField.getText().isEmpty()
                 || lessonField.getText().isEmpty() || masterNameField.getText().isEmpty() || masterIdField.getText().isEmpty()) {
-            errorLBL.setText("Please fill all fields.");
+
+            LoginPageController.loadDialog(stackPane,"Add Class", "Please fill all fields.");
+
             return false;
         }
         return true;
@@ -184,7 +199,8 @@ public class ManageClassesController implements Initializable {
 
     private boolean checkIntegerFields() {
         if (!classNumField.getText().matches("\\d{1,3}") || !capacityField.getText().matches("\\d{2}")) {
-            errorLBL.setText("Please check your inputs.");
+
+            LoginPageController.loadDialog(stackPane,"Add Class", "Please check your inputs.");
             return false;
         }
 
@@ -201,14 +217,12 @@ public class ManageClassesController implements Initializable {
         for (Master master : Master.masterList) {
             if (Integer.parseInt(masterIdField.getText()) == master.getMasterId()) {
                 masterNameField.setText(master.getFirstName() + " " + master.getLastName());
-
-                errorLBL.setText("");
                 return true;
 
             }
         }
-        errorLBL.setTextFill(Color.RED);
-        errorLBL.setText("Master Not Found");
+
+        LoginPageController.loadDialog(stackPane,"Add Class", "Master Not Found");
         return false;
     }
 

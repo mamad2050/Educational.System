@@ -17,6 +17,16 @@ public class Student extends Person {
 
     public static int lastId = 1;
     public static ArrayList<Student> studentList = new ArrayList<>();
+    private ArrayList<Class> myClasses = new ArrayList<>();
+
+
+    public ArrayList<Class> getMyClasses() {
+        return myClasses;
+    }
+
+    public void setMyClasses(ArrayList<Class> myClasses) {
+        this.myClasses = myClasses;
+    }
 
     private Image photo;
 

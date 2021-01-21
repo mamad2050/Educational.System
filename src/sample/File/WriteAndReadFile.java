@@ -48,23 +48,29 @@ public class WriteAndReadFile {
 
 
 
-// class
-//
-//        fileWriter = new FileWriter("File/Class.txt");
-//        bufferedWriter = new BufferedWriter(fileWriter);
-//        bufferedWriter.write(String.valueOf(Master.lastId));
-//        bufferedWriter.newLine();
-//
-//        for (int i = 0; i < Class.classList.size(); i++) {
-//            Class classs = Class.classList.get(i);
-//            String forSave = classs.getClassId() + " " + classs.+ " " + master.getLastName() + " " +
-//                    master.getUserName() + " " + master.getPassword() + " " + master.getEmail() + " " + master.getPhone();
-//            bufferedWriter.write(forSave);
-//            bufferedWriter.newLine();
-//        }
-//        bufferedWriter.close();
-//        fileWriter.close();
-//
+ //class
+
+        fileWriter = new FileWriter("File/Class.txt");
+        bufferedWriter = new BufferedWriter(fileWriter);
+        bufferedWriter.write(String.valueOf(Class.lastId));
+        bufferedWriter.newLine();
+
+        for (int i = 0; i < Class.classList.size(); i++) {
+            Class classs = Class.classList.get(i);
+            String forSave = classs.getCapacity()+ " " + classs.getOccupy() + " " +
+                    classs.getClassNumber() + " " + classs.getLessonName() + " " ;
+
+            forSave += classs.getMasterObj().getFirstName() + " " + classs.getMasterObj().getLastName() +" "
+           + classs.getMasterObj().getUserName() + " " + classs.getMasterObj().getPassword()+" "
+                    + classs.getMasterObj().getEmail() +" " + classs.getMasterObj().getPhone()
+                     ;
+
+            bufferedWriter.write(forSave);
+            bufferedWriter.newLine();
+        }
+        bufferedWriter.close();
+        fileWriter.close();
+
     }
 
 
@@ -116,5 +122,33 @@ public class WriteAndReadFile {
         }
         bufferedReader.close();
         fileReader.close();
+
+
+
+
+
+
+
+
+        //class
+
+        fileReader = new FileReader("File/Class.txt");
+        bufferedReader = new BufferedReader(fileReader);
+
+        Class.lastId = Integer.parseInt(bufferedReader.readLine());
+        Class.lastId = 1;
+        while ((str = bufferedReader.readLine()) != null) {
+            String[] tmp = str.split(" ");
+            Master master = new Master(tmp[4],tmp[5],tmp[6],tmp[7],tmp[8],tmp[9]);
+            Class classs = new Class(Integer.parseInt(tmp[0]), Integer.parseInt(tmp[2]), tmp[3], master, Integer.parseInt(tmp[1]) );
+
+            Class.classList.add(classs);
+            Class.lastId++;
+        }
+        bufferedReader.close();
+        fileReader.close();
+
+
+
     }
 }

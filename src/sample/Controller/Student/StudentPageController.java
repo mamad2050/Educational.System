@@ -38,6 +38,7 @@ public class StudentPageController implements Initializable {
     private AnchorPane showPane;
 
     static AnchorPane pane = null;
+    
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -76,11 +77,11 @@ public class StudentPageController implements Initializable {
         String selectedLabel = listview.getSelectionModel().getSelectedItem().getText().trim();
 
         if (selectedLabel.equals(listview.getItems().get(0).getText().trim())) {
-            CreatePage("ManagerDashboard");
+            CreatePage("DashboardPage");
         } else if (selectedLabel.equals(listview.getItems().get(1).getText())) {
             CreatePage("ProfilePage");
         } else if (selectedLabel.equals(listview.getItems().get(2).getText().trim())) {
-            CreatePage("ManageMastersPage");
+            CreatePage("MyClassesPage");
         } else if (selectedLabel.equals(listview.getItems().get(3).getText().trim())) {
             CreatePage("ManageClassesPage");
         }

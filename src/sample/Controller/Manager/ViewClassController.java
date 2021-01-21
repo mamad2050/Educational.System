@@ -20,6 +20,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import sample.Controller.Login.LoginPageController;
 import sample.Main;
+import sample.Model.Class;
 import sample.Model.Student;
 
 import java.io.IOException;
@@ -180,6 +181,11 @@ public class ViewClassController implements Initializable {
             @Override
             public void handle(ActionEvent event) {
 
+                if (selectStudent == null) {
+                    LoginPageController.loadDialog(stackPane, "Add Student",
+                            "Please Select Student. ");
+                }else
+
                 if (checkThisStudent(selectStudent)) {
                     ManageClassesController.selectedClass.getStudentsList().add(selectStudent);
                     thisClassStudentTable.getItems().add(selectStudent);
@@ -188,14 +194,23 @@ public class ViewClassController implements Initializable {
                             "A student with the following profile was added to this class : \n\n\n"
                                     + "Student id : " + selectStudent.getStringId() + "\n" +
                                     "Name : " + selectStudent.getFirstName() + " " + selectStudent.getLastName() + "\n"
-                                  +"Phone : " + selectStudent.getPhone() );
+                                    + "Phone : " + selectStudent.getPhone());
+
+                    for (Student student : Student.studentList) {
+                        if (student == selectStudent ) {
+                            student.getMyClasses().add(ManageClassesController.selectedClass);
+                            clearFields();
+                        }
+                    }
+
                 }
 
-
             }
+
         });
 
         deleteBTN.setOnAction(new EventHandler<ActionEvent>() {
+
             @Override
             public void handle(ActionEvent event) {
                 ManageClassesController.selectedClass.getStudentsList().remove(selectStudent);
@@ -206,8 +221,10 @@ public class ViewClassController implements Initializable {
                         "A student with the following profile was Deleted from this class : \n\n\n"
                                 + "Student id : " + selectStudent.getStringId() + "\n" +
                                 "Name : " + selectStudent.getFirstName() + " " + selectStudent.getLastName() + "\n"
-                                +"Phone : " + selectStudent.getPhone() );
+                                + "Phone : " + selectStudent.getPhone());
+                clearFields();
             }
+
         });
 //
 
@@ -256,5 +273,14 @@ public class ViewClassController implements Initializable {
             }
         }
         return true;
+    }
+
+    private void clearFields(){
+        firstnameField.clear();
+        lastnameField.clear();
+        studentIdField.clear();
+        userField.clear();
+        phoneField.clear();
+        mailField.clear();
     }
 }

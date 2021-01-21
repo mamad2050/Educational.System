@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import com.jfoenix.controls.JFXTimePicker?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="showPane" prefHeight="615.0" prefWidth="942.0" style="-fx-background-color: ffff;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller.Student.EditProfileController">
+    <children>
+        <JFXButton fx:id="backBTN" layoutX="11.0" layoutY="579.0" prefHeight="30.0" prefWidth="85.0" style="-fx-background-radius: 20; -fx-background-color: purple; -fx-cursor: hand;" text="Back" textFill="WHITE" />
+      <TextArea layoutX="64.0" layoutY="141.0" prefHeight="251.0" prefWidth="683.0" promptText="Description">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </TextArea>
+      <Text fill="#1f1685" layoutX="382.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ADD ASSIGNMENT" wrappingWidth="225.6922607421875">
+         <font>
+            <Font name="System Bold" size="25.0" />
+         </font>
+      </Text>
+      <JFXTextField labelFloat="true" layoutX="70.0" layoutY="98.0" prefHeight="25.0" prefWidth="454.0" promptText="Subject : " unFocusColor="WHITE">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </JFXTextField>
+      <ImageView fitHeight="123.0" fitWidth="122.0" layoutX="795.0" layoutY="-10.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Drawable/icons8-task-100.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="92.0" fitWidth="64.0" layoutX="846.0" layoutY="58.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Drawable/1610717315596.png" />
+         </image>
+      </ImageView>
+      <JFXTimePicker layoutX="558.0" layoutY="462.0" promptText="DeadLin Time" />
+      <JFXDatePicker layoutX="555.0" layoutY="399.0" promptText="DeadLine Date" />
+      <JFXButton layoutX="769.0" layoutY="563.0" prefHeight="30.0" prefWidth="156.0" style="-fx-background-color: green; -fx-background-radius: 20;" text="SEND" textFill="WHITE" />
+      <JFXButton layoutX="371.0" layoutY="493.0" prefHeight="12.0" prefWidth="109.0" style="-fx-background-color: transparent; -fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: red;" text="Choose File" />
+      <VBox layoutX="767.0" layoutY="126.0" prefHeight="310.0" prefWidth="157.0" spacing="40.0">
+         <children>
+            <JFXTextField />
+            <JFXTextField />
+            <JFXTextField />
+            <JFXTextField layoutX="10.0" layoutY="150.0" />
+            <JFXTextField layoutX="10.0" layoutY="220.0" />
+         </children>
+      </VBox>
+    </children>
+</AnchorPane>

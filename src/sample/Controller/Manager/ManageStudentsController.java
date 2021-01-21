@@ -170,6 +170,11 @@ public class ManageStudentsController implements Initializable {
                     Student.studentList.get(selectStudent.getStudentId() - 1).setEmail(mailField.getText());
                     studentTable.refresh();
                     errorLBL.setText("");
+                    try {
+                        WriteAndReadFile.write();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         });

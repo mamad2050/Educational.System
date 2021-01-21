@@ -1,5 +1,9 @@
 package sample.Model;
 
+import javafx.scene.control.Label;
+import javafx.scene.layout.Pane;
+
+import java.awt.*;
 import java.util.ArrayList;
 
 public class Class {
@@ -11,10 +15,7 @@ public class Class {
     private int classNumber;
     private String lessonName;
     private Master masterObj;
-
     private String phone;
-
-
 
     public void setPhone(String phone) {
         this.phone = phone;
@@ -26,7 +27,7 @@ public class Class {
 
     public static ArrayList<Class> classList = new ArrayList<>();
     private ArrayList<Student> studentsList = new ArrayList<>();
-    private int occupy = 0 ;
+    private int occupy = 0;
 
     public Master getMasterObj() {
         return masterObj;
@@ -44,10 +45,10 @@ public class Class {
 
         if (s.equals("+")) {
             occupy++;
-        }else if (s.equals("-")) {
+        } else if (s.equals("-")) {
             occupy--;
-        }else if (s.equals("0")) {
-            occupy=0;
+        } else if (s.equals("0")) {
+            occupy = 0;
         }
 
     }
@@ -101,7 +102,19 @@ public class Class {
         this.lessonName = lessonName;
         this.classNumber = classNumber;
         this.masterObj = masterObj;
-//        this.phone = masterObj.getPhone();
+        setClassId();
+    }
+//
+//
+    public Class(int capacity, int classNumber, String lessonName, Master masterObj, int occupy) {
+
+        this.capacity = capacity;
+
+        this.lessonName = lessonName;
+        this.classNumber = classNumber;
+        this.masterObj = masterObj;
+//        this.studentsList = students;
+        this.occupy =occupy;
         setClassId();
     }
 
