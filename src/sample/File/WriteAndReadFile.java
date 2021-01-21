@@ -1,5 +1,6 @@
 package sample.File;
 
+import javafx.scene.image.Image;
 import sample.Model.Class;
 import sample.Model.Master;
 import sample.Model.Student;
@@ -21,7 +22,8 @@ public class WriteAndReadFile {
         for (int i = 0; i < Student.studentList.size(); i++) {
             Student student = Student.studentList.get(i);
             String forSave = student.getStudentId() + " " + student.getFirstName() + " " + student.getLastName() + " " +
-                    student.getUserName() + " " + student.getPassword() + " " + student.getEmail() + " " + student.getPhone();
+                    student.getUserName() + " " + student.getPassword() + " " + student.getEmail() + " " + student.getPhone()
+                   ;
             bufferedWriter.write(forSave);
             bufferedWriter.newLine();
         }
@@ -95,6 +97,7 @@ public class WriteAndReadFile {
 
             String[] tmp = str.split(" ");
             Student student = new Student(tmp[1], tmp[2], tmp[3], tmp[4], tmp[5], tmp[6]);
+//            student.setPhoto(new Image(tmp[7]));
 
             Student.studentList.add(student);
             Student.lastId++;
@@ -132,21 +135,21 @@ public class WriteAndReadFile {
 
         //class
 
-        fileReader = new FileReader("File/Class.txt");
-        bufferedReader = new BufferedReader(fileReader);
-
-        Class.lastId = Integer.parseInt(bufferedReader.readLine());
-        Class.lastId = 1;
-        while ((str = bufferedReader.readLine()) != null) {
-            String[] tmp = str.split(" ");
-            Master master = new Master(tmp[4],tmp[5],tmp[6],tmp[7],tmp[8],tmp[9]);
-            Class classs = new Class(Integer.parseInt(tmp[0]), Integer.parseInt(tmp[2]), tmp[3], master, Integer.parseInt(tmp[1]) );
-
-            Class.classList.add(classs);
-            Class.lastId++;
-        }
-        bufferedReader.close();
-        fileReader.close();
+//        fileReader = new FileReader("File/Class.txt");
+//        bufferedReader = new BufferedReader(fileReader);
+//
+//        Class.lastId = Integer.parseInt(bufferedReader.readLine());
+//        Class.lastId = 1;
+//        while ((str = bufferedReader.readLine()) != null) {
+//            String[] tmp = str.split(" ");
+//            Master master = new Master(tmp[4],tmp[5],tmp[6],tmp[7],tmp[8],tmp[9]);
+//            Class classs = new Class(Integer.parseInt(tmp[0]), Integer.parseInt(tmp[2]), tmp[3], master, Integer.parseInt(tmp[1]) );
+//
+//            Class.classList.add(classs);
+//            Class.lastId++;
+//        }
+//        bufferedReader.close();
+//        fileReader.close();
 
 
 

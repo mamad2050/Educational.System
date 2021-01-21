@@ -121,19 +121,31 @@ public class ManageStudentsController implements Initializable {
         });
         // end search
 
-        addBTN.setOnAction(event -> {
+//        addBTN.setOnAction(event -> {
+//
+//
+////            try {
+//                studentCheckConditions( new Student(firstNameField.getText(), lastNameField.getText(), userField.getText(),
+//                        userField.getText(), mailField.getText(), phoneField.getText()));
+////            } catch (IOException e) {
+////                e.printStackTrace();
+////            }
+//
+//
+//        });
 
 
-            try {
-                studentCheckConditions( new Student(firstNameField.getText(), lastNameField.getText(), userField.getText(),
-                        userField.getText(), mailField.getText(), phoneField.getText()));
-            } catch (IOException e) {
-                e.printStackTrace();
+        addBTN.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                try {
+                    studentCheckConditions( new Student(firstNameField.getText(), lastNameField.getText(), userField.getText(),
+                            userField.getText(), mailField.getText(), phoneField.getText()));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
-
-
         });
-
         clearBTN.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -206,17 +218,16 @@ public class ManageStudentsController implements Initializable {
                 if (checkPhoneField() && checkMailField() && checkUserField()) {
 
                     Student.studentList.add(student);
-                    WriteAndReadFile.write();
+
                     studentTable.getItems().add(student);
+                    Student.lastId++;
+                    clearFields();
                     LoginPageController.loadDialog(stackPane, "Add Student",
                             "A student with the following profile was added to the System : \n\n\n"
                                     + "Student id : " + student.getStringId() + "\n" +
                                     "Name : " + student.getFirstName() + " " + student.getLastName() + "\n"
                                     + "Phone : " + student.getPhone());
-                    Student.lastId++;
-                    clearFields();
-                    errorLBL.setText("");
-
+                    WriteAndReadFile.write();
                 }
             }
         }

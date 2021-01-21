@@ -11,6 +11,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import sample.Controller.Login.LoginPageController;
 import sample.Controller.FileChooser;
+import sample.File.WriteAndReadFile;
 import sample.Main;
 
 import java.io.IOException;
@@ -51,7 +52,9 @@ public class StudentProfileController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
         imageField.setImage(LoginPageController.studentLoggedIn.getPhoto());
+
         chooseBTN.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {

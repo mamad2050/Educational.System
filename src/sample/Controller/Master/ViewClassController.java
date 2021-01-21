@@ -120,7 +120,8 @@ public class ViewClassController implements Initializable {
         classIdField.setText(Integer.toString(CreateClassController.selectedClass.getClassId()));
         masterField.setText(CreateClassController.selectedClass.getMasterObj().getFirstName() + " " +
                 CreateClassController.selectedClass.getMasterObj().getLastName());
-        numberOfStudentField.setText(Integer.toString(CreateClassController.selectedClass.getClassNumber()));
+        numberOfStudentField.setPromptText("Occupy");
+        numberOfStudentField.setText(Integer.toString(CreateClassController.selectedClass.getOccupy()));
         lessonField.setText(CreateClassController.selectedClass.getLessonName());
         capacityField.setText(Integer.toString(CreateClassController.selectedClass.getCapacity()));
         masterPhoneField.setText(CreateClassController.selectedClass.getMasterObj().getPhone());
@@ -203,6 +204,7 @@ public class ViewClassController implements Initializable {
                             clearFields();
                         }
                     }
+                    numberOfStudentField.setText(Integer.toString(CreateClassController.selectedClass.getOccupy()));
 
                 }
 
@@ -224,6 +226,14 @@ public class ViewClassController implements Initializable {
                                 "Name : " + selectStudent.getFirstName() + " " + selectStudent.getLastName() + "\n"
                                 + "Phone : " + selectStudent.getPhone());
                 clearFields();
+                for (Student student : Student.studentList) {
+                    if (student == selectStudent ) {
+                        student.getMyClasses().remove(CreateClassController.selectedClass);
+                        clearFields();
+                    }
+                }
+                numberOfStudentField.setText(Integer.toString(CreateClassController.selectedClass.getOccupy()));
+
             }
 
         });

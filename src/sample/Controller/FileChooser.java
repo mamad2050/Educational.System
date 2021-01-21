@@ -7,6 +7,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import sample.Controller.Login.LoginPageController;
+import sample.File.WriteAndReadFile;
 import sample.Model.Manager;
 import sample.Model.Master;
 import sample.Model.Student;
@@ -60,6 +61,16 @@ public class FileChooser {
             }else if (student != null) {
                 student.setPhoto(image);
                 imageField.setImage(student.getPhoto());
+                for (Student std: Student.studentList
+                     ) {
+                    if (std == student) {
+                        std.setPhoto(image);
+                        WriteAndReadFile.write();
+                    }
+                }
+
+
+
             }else if (master != null) {
                 master.setPhoto(image);
                 imageField.setImage(master.getPhoto());

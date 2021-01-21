@@ -17,7 +17,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
-//        WriteAndReadFile.read();
+        WriteAndReadFile.read();
 
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(this.getClass().getResource("View/Login/LoginPage.fxml"));

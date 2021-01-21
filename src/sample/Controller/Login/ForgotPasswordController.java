@@ -12,6 +12,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import sample.Main;
+import sample.Model.Master;
 import sample.Model.Student;
 import sample.SendMail;
 
@@ -42,9 +43,6 @@ public class ForgotPasswordController implements Initializable {
 
 
     @FXML
-    private JFXTextField verifField;
-
-    @FXML
     private JFXTextField mailField;
 
     public void setStage(Stage stage) {
@@ -68,9 +66,24 @@ public class ForgotPasswordController implements Initializable {
                             e.printStackTrace();
                         }
                         student.setPassword(SendMail.sb.toString());
-                        LoginPageController.loadDialog(stackpane, "Reset Password Request ", "Your New Password send to you mail.");
+                        LoginPageController.loadDialog(stackpane, "Reset Password Request ", " New Password send to your mail.");
                     }
                 }
+                // master
+                for (Master master : Master.masterList) {
+                    if (mailField.getText().equals(master.getEmail())) {
+
+                        SendMail sendMail = new SendMail();
+                        try {
+                            sendMail.sendEmailTo(master.getEmail());
+                        } catch (MessagingException e) {
+                            e.printStackTrace();
+                        }
+                        master.setPassword(SendMail.sb.toString());
+                        LoginPageController.loadDialog(stackpane, "Reset Password Request ", " New Password send to your mail.");
+                    }
+                }
+
             }
         });
 

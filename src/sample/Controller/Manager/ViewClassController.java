@@ -119,7 +119,8 @@ public class ViewClassController implements Initializable {
         classIdField.setText(Integer.toString(ManageClassesController.selectedClass.getClassId()));
         masterField.setText(ManageClassesController.selectedClass.getMasterObj().getFirstName() + " " +
                 ManageClassesController.selectedClass.getMasterObj().getLastName());
-        numberOfStudentField.setText(Integer.toString(ManageClassesController.selectedClass.getClassNumber()));
+        numberOfStudentField.setPromptText("Occupy");
+        numberOfStudentField.setText(Integer.toString(ManageClassesController.selectedClass.getOccupy()));
         lessonField.setText(ManageClassesController.selectedClass.getLessonName());
         capacityField.setText(Integer.toString(ManageClassesController.selectedClass.getCapacity()));
         masterPhoneField.setText(ManageClassesController.selectedClass.getMasterObj().getPhone());
@@ -199,10 +200,11 @@ public class ViewClassController implements Initializable {
                     for (Student student : Student.studentList) {
                         if (student == selectStudent ) {
                             student.getMyClasses().add(ManageClassesController.selectedClass);
-                            clearFields();
+
                         }
                     }
-
+                    numberOfStudentField.setText(Integer.toString(ManageClassesController.selectedClass.getOccupy()));
+                    clearFields();
                 }
 
             }
@@ -222,7 +224,16 @@ public class ViewClassController implements Initializable {
                                 + "Student id : " + selectStudent.getStringId() + "\n" +
                                 "Name : " + selectStudent.getFirstName() + " " + selectStudent.getLastName() + "\n"
                                 + "Phone : " + selectStudent.getPhone());
+                for (Student student : Student.studentList) {
+                    if (student == selectStudent ) {
+                        student.getMyClasses().remove(ManageClassesController.selectedClass);
+                        clearFields();
+                    }
+                }
+                numberOfStudentField.setText(Integer.toString(ManageClassesController.selectedClass.getOccupy()));
+
                 clearFields();
+
             }
 
         });
