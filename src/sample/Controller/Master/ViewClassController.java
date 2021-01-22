@@ -193,8 +193,7 @@ public class ViewClassController implements Initializable {
             @Override
             public void handle(ActionEvent event) {
                 if (selectStudent == null) {
-                    LoginPageController.loadDialog(stackPane, "Add Student",
-                            "Please Select Student. ");
+                    LoginPageController.loadDialog(stackPane, "Add Student", "Please Select Student. ");
                 } else if (checkThisStudent(selectStudent)) {
                     CreateClassController.selectedClass.getStudentsList().add(selectStudent);
                     thisClassStudentTable.getItems().add(selectStudent);
@@ -207,6 +206,7 @@ public class ViewClassController implements Initializable {
                     for (Student student : Student.studentList) {
                         if (student == selectStudent) {
                             student.getMyClasses().add(CreateClassController.selectedClass);
+                            student.setNotification(true);
                             clearFields();
                         }
                     }

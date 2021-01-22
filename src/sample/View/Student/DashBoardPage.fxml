@@ -4,60 +4,63 @@
 <?import javafx.scene.Group?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
 
-<AnchorPane fx:id="showPane" prefHeight="615.0" prefWidth="942.0" xmlns="http://javafx.com/javafx/11.0.1"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller.Student.DashboardController">
+<AnchorPane fx:id="showPane" prefHeight="615.0" prefWidth="942.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller.Student.DashboardController">
     <children>
-        <AnchorPane prefHeight="627.0" prefWidth="964.0" style="-fx-background-color: white;"
-                    AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
-            <children>
-                <Group layoutX="127.33332824707031" layoutY="103.33333587646484">
-                    <children>
-                        <HBox fx:id="hboxMan" layoutX="13.666671752929688" layoutY="169.66666412353516" spacing="8.0">
-                            <cursor>
-                                <Cursor fx:constant="HAND"/>
-                            </cursor>
-                        </HBox>
-                    </children>
-                </Group>
-                <Group fx:id="masterGRP" layoutX="407.0" layoutY="101.0">
-                    <children>
-                        <HBox layoutX="29.0" layoutY="175.0" spacing="8.0">
-                            <cursor>
-                                <Cursor fx:constant="HAND"/>
-                            </cursor>
-                        </HBox>
-                    </children>
-                </Group>
-                <Group fx:id="studentGRP" layoutX="691.3333129882812" layoutY="103.33333587646484">
-                    <children>
-                        <HBox layoutX="17.66668701171875" layoutY="169.66666412353516" spacing="8.0"/>
-                    </children>
-                </Group>
-                <Group fx:id="classGRP" layoutX="126.33332824707031" layoutY="358.3333435058594">
-                    <children>
-                        <HBox layoutX="34.66667175292969" layoutY="163.66665649414062" spacing="8.0">
-                            <cursor>
-                                <Cursor fx:constant="HAND"/>
-                            </cursor>
-                        </HBox>
-                    </children>
-                </Group>
-                <Group fx:id="messageGRP" layoutX="405.66668701171875" layoutY="355.0">
-                    <children>
-                        <HBox layoutX="23.33331298828125" layoutY="167.0" spacing="8.0">
-                            <cursor>
-                                <Cursor fx:constant="HAND"/>
-                            </cursor>
-                        </HBox>
-                    </children>
-                </Group>
-                <Group fx:id="profileGRP" layoutX="712.0" layoutY="369.0">
-                    <children>
-                        <HBox layoutX="18.0" layoutY="153.0" prefHeight="39.0" prefWidth="91.0" spacing="8.0"/>
-                    </children>
-                </Group>
-            </children>
-        </AnchorPane>
+      <StackPane fx:id="stackpane" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+              <AnchorPane prefHeight="627.0" prefWidth="964.0" style="-fx-background-color: white;">
+                  <children>
+                      <Group layoutX="127.33332824707031" layoutY="103.33333587646484">
+                          <children>
+                              <HBox fx:id="hboxMan" layoutX="13.666671752929688" layoutY="169.66666412353516" spacing="8.0">
+                                  <cursor>
+                                      <Cursor fx:constant="HAND" />
+                                  </cursor>
+                              </HBox>
+                          </children>
+                      </Group>
+                      <Group fx:id="masterGRP" layoutX="407.0" layoutY="101.0">
+                          <children>
+                              <HBox layoutX="29.0" layoutY="175.0" spacing="8.0">
+                                  <cursor>
+                                      <Cursor fx:constant="HAND" />
+                                  </cursor>
+                              </HBox>
+                          </children>
+                      </Group>
+                      <Group fx:id="studentGRP" layoutX="691.3333129882812" layoutY="103.33333587646484">
+                          <children>
+                              <HBox layoutX="17.66668701171875" layoutY="169.66666412353516" spacing="8.0" />
+                          </children>
+                      </Group>
+                      <Group fx:id="classGRP" layoutX="126.33332824707031" layoutY="358.3333435058594">
+                          <children>
+                              <HBox layoutX="34.66667175292969" layoutY="163.66665649414062" spacing="8.0">
+                                  <cursor>
+                                      <Cursor fx:constant="HAND" />
+                                  </cursor>
+                              </HBox>
+                          </children>
+                      </Group>
+                      <Group fx:id="messageGRP" layoutX="405.66668701171875" layoutY="355.0">
+                          <children>
+                              <HBox layoutX="23.33331298828125" layoutY="167.0" spacing="8.0">
+                                  <cursor>
+                                      <Cursor fx:constant="HAND" />
+                                  </cursor>
+                              </HBox>
+                          </children>
+                      </Group>
+                      <Group fx:id="profileGRP" layoutX="712.0" layoutY="369.0">
+                          <children>
+                              <HBox layoutX="18.0" layoutY="153.0" prefHeight="39.0" prefWidth="91.0" spacing="8.0" />
+                          </children>
+                      </Group>
+                  </children>
+              </AnchorPane>
+         </children>
+      </StackPane>
     </children>
 </AnchorPane>

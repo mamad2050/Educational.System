@@ -11,6 +11,17 @@ public class Student extends Person {
 
     private int studentId;
 
+    private boolean notification = false;
+
+
+    public boolean isNotification() {
+        return notification;
+    }
+
+    public void setNotification(boolean notification) {
+        this.notification = notification;
+    }
+
     public void setStudentId(int studentId) {
         this.studentId = studentId;
     }
