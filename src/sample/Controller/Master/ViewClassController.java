@@ -206,7 +206,7 @@ public class ViewClassController implements Initializable {
                     for (Student student : Student.studentList) {
                         if (student == selectStudent) {
                             student.getMyClasses().add(CreateClassController.selectedClass);
-                            student.setNotification(true);
+                            student.getNotification()[1] = true ;
                             clearFields();
                         }
                     }

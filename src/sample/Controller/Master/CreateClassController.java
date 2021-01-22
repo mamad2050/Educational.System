@@ -15,6 +15,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
@@ -192,8 +193,9 @@ public class CreateClassController implements Initializable {
         Class.classList.add(classs);
         myClassTable.getItems().add(classs);
         Class.lastId++;
+        classs.setPhoto(new Image("sample/view/drawable/iconfinder_board-math-class-school_2824448.png"));
         clearFields();
-//        errorLBL.setText("");
+//
     }
 
 

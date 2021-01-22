@@ -13,6 +13,7 @@ import sample.Controller.Login.LoginPageController;
 import sample.Controller.Master.CreateClassController;
 import sample.Main;
 import sample.Model.Post;
+import sample.Model.Student;
 
 import java.io.IOException;
 import java.net.URL;
@@ -48,6 +49,7 @@ public class PostController implements Initializable {
             Post.posts.add(post);
             CreateClassController.selectedClass.setPost(post);
             LoginPageController.loadDialog(stackpane,"Send Post" , "Successful");
+
         });
 
         backBTN.setOnAction(event -> {

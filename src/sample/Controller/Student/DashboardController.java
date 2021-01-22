@@ -18,24 +18,13 @@ public class DashboardController extends Control implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-
-//        LoginPageController.loadDialog(stackpane,"Notification","Welcome");
-
-        System.out.println(LoginPageController.studentLoggedIn.isNotification());
-//
-//
-//        for (int i = 0; i < ; i++) {
-//
-//        }
-        for (Student student :Student.studentList
-                ) {
-            if (student == LoginPageController.studentLoggedIn) {
-                if (student.isNotification()) {
-                    LoginPageController.loadDialog(stackpane,"Notification","You added to new Class");
-                    LoginPageController.studentLoggedIn.setNotification(false);
+                if (LoginPageController.studentLoggedIn.getNotification()[1]) {
+                    LoginPageController.loadDialog(stackpane, "Notification", "You added to new Class");
+                    LoginPageController.studentLoggedIn.getNotification()[1] = false;
                 }
-            }
-        }
 
+        LoginPageController.loadDialog(stackpane, "Notification", "Welcome" +
+                "   " + LoginPageController.studentLoggedIn.getFirstName());
     }
+
 }
