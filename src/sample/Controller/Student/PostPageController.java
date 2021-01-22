@@ -1,10 +1,12 @@
 package sample.Controller.Student;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -26,11 +28,10 @@ public class PostPageController implements Initializable {
     private JFXButton backBTN;
 
     @FXML
-    private TextArea textArea;
+    private JFXTextArea area;
 
-    @FXML
-    private JFXTextField subjectField;
-
+//    @FXML
+//    private JFXTextField subjectField;
 
 
     @FXML
@@ -46,29 +47,35 @@ public class PostPageController implements Initializable {
     private JFXTextField masterField;
 
     @FXML
-    private JFXTextField senderField;
+    private Label senderLBL;
+
+    @FXML
+    private Label lessonLBL;
+
+    @FXML
+    private ImageView masterIMG;
 
     AnchorPane pane;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+        masterIMG.setImage(MyClassController.selectedClass.getMasterObj().getPhoto());
         imageField.setImage(MyClassController.selectedClass.getPhoto());
-        senderField.setText(MyClassController.selectedClass.getMasterObj().getUserName());
+
         masterField.setText(MyClassController.selectedClass.getMasterObj().getFirstName() +
                 " " + MyClassController.selectedClass.getMasterObj().getLastName());
         classNumberField.setText(Integer.toString(MyClassController.selectedClass.getClassNumber()));
         lessonField.setText(MyClassController.selectedClass.getLessonName());
 
-
-
-
-        subjectField.setText(MyClassController.selectedClass.getPost().getSubject());
-        textArea.setText(MyClassController.selectedClass.getPost().getArea());
+        senderLBL.setText(MyClassController.selectedClass.getMasterObj().getUserName());
+        lessonLBL.setText(MyClassController.selectedClass.getLessonName());
+//        subjectField.setText(MyClassController.selectedClass.getPost().getSubject());
+        area.setText(MyClassController.selectedClass.getPost().getArea());
 
 
         backBTN.setOnAction(event -> {
-            FXMLLoader loader = new FXMLLoader(Main.class.getResource("View/Student/MyClassPage.fxml"));
+            FXMLLoader loader = new FXMLLoader(Main.class.getResource("View/Student/MyClassesPage.fxml"));
 
             try {
                 pane = loader.load();
