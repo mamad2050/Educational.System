@@ -6,6 +6,7 @@
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.geometry.Insets?>
 <?import javafx.geometry.Rectangle2D?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.effect.DropShadow?>
@@ -26,7 +27,10 @@
             <children>
                 <AnchorPane fx:id="showPane" prefHeight="615.0" prefWidth="1021.0" style="-fx-background-color: ffff;">
                     <children>
-                        <JFXButton fx:id="backBTN" layoutX="11.0" layoutY="576.0" prefHeight="30.0" prefWidth="85.0" style="-fx-background-radius: 20; -fx-background-color: purple; -fx-cursor: hand;" text="Back" textFill="WHITE" />
+                        <JFXButton fx:id="backBTN" layoutX="11.0" layoutY="576.0" prefHeight="30.0" prefWidth="85.0" style="-fx-background-radius: 20; -fx-background-color: purple; -fx-cursor: hand;" text="Back" textFill="WHITE">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></JFXButton>
                         <Text fill="#1f1685" layoutX="443.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="POSTS" wrappingWidth="117.24774169921875">
                             <font>
                                 <Font name="System Bold" size="25.0" />
@@ -41,11 +45,11 @@
                      </children>
                   </VBox>
                   <FontAwesomeIconView fill="#1f1685" glyphName="BOOK" layoutX="529.0" layoutY="42.0" size="25" wrappingWidth="19.11114501953125" />
-                  <Pane layoutX="28.0" layoutY="78.0" prefHeight="210.0" prefWidth="710.0" style="-fx-background-color: #ffff; -fx-border-radius: 0;">
+                  <Pane layoutX="28.0" layoutY="63.0" prefHeight="210.0" prefWidth="710.0" style="-fx-background-color: #ffff; -fx-border-radius: 0;">
                      <children>
-                        <Pane layoutX="33.0" layoutY="-40.0" prefHeight="91.0" prefWidth="98.0" style="-fx-background-color: aqua; -fx-background-radius: 20px; -fx-border-radius: 20px;">
+                        <Pane layoutX="33.0" layoutY="-40.0" prefHeight="88.0" prefWidth="88.0" style="-fx-background-color: aqua; -fx-background-radius: 20px; -fx-border-radius: 20px;">
                            <children>
-                              <ImageView fx:id="masterIMG" fitHeight="76.0" fitWidth="74.0" layoutX="13.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="masterIMG" fitHeight="68.0" fitWidth="66.0" layoutX="12.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
                                  <viewport>
                                     <Rectangle2D />
                                  </viewport></ImageView>
@@ -63,15 +67,15 @@
                         <DropShadow />
                      </effect>
                   </Pane>
-                  <AnchorPane layoutX="29.0" layoutY="313.0" prefHeight="248.0" prefWidth="920.0" style="-fx-background-color: #ffff; -fx-background-repeat: 5px;">
+                  <AnchorPane layoutX="29.0" layoutY="295.0" prefHeight="248.0" prefWidth="920.0" style="-fx-background-color: #ffff; -fx-background-repeat: 5px;">
                      <effect>
                         <DropShadow radius="9.0125" width="17.05" />
                      </effect>
                      <children>
-                        <Text layoutX="31.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Comments" />
+                        <Text layoutX="31.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Comments" />
                         <ScrollPane layoutX="14.0" layoutY="41.0" minHeight="180.0" prefHeight="180.0" prefWidth="894.0">
                            <content>
-                              <VBox fx:id="content" minHeight="180.0" prefHeight="180.0" prefWidth="882.0">
+                              <VBox fx:id="content" minHeight="180.0" prefWidth="882.0">
                                  <children>
                                     <Pane fx:id="root" minHeight="75.0" prefWidth="890.0">
                                        <children>
@@ -94,7 +98,7 @@
                         </ScrollPane>
                      </children>
                   </AnchorPane>
-                  <HBox layoutX="197.0" layoutY="89.0" spacing="10.0">
+                  <HBox layoutX="163.0" layoutY="71.0" spacing="10.0">
                      <children>
                         <Label text="Sender :">
                            <font>
@@ -108,7 +112,7 @@
                         </Label>
                      </children>
                   </HBox>
-                  <HBox layoutX="196.0" layoutY="115.0" spacing="10.0">
+                  <HBox layoutX="162.0" layoutY="97.0" spacing="10.0">
                      <children>
                         <Label text="Lesson :">
                            <font>
@@ -122,7 +126,12 @@
                         </Label>
                      </children>
                   </HBox>
-                  <JFXTextField fx:id="messageField" layoutX="376.0" layoutY="579.0" prefHeight="26.0" prefWidth="476.0" />
+                  <JFXTextField fx:id="messageField" layoutX="283.0" layoutY="567.0" prefHeight="26.0" prefWidth="506.0" promptText="Comment : " />
+                  <JFXButton fx:id="sendBTN" layoutX="833.0" layoutY="572.0" prefHeight="30.0" prefWidth="85.0" style="-fx-background-radius: 20; -fx-background-color: green; -fx-cursor: hand;" text="Send" textFill="WHITE">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </JFXButton>
                     </children>
                 </AnchorPane>
             </children>

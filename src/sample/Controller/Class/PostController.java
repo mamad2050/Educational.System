@@ -45,11 +45,12 @@ public class PostController extends Control implements Initializable {
 // -----------------------------------  set on actions  -------------------------------------
 
         sendBTN.setOnAction(event -> {
-            Post post = new Post(subjectField.getText(), textArea.getText());
-            Post.posts.add(post);
-            CreateClassController.selectedClass.setPost(post);
-            LoginPageController.loadDialog(stackpane, "Send Post", "Successful");
-
+          if  (  checkFields()   ) {
+              Post post = new Post(subjectField.getText(), textArea.getText());
+              Post.posts.add(post);
+              CreateClassController.selectedClass.setPost(post);
+              LoginPageController.loadDialog(stackpane, "Send Post", "Successful");
+          }
         });
 // --------------------------------     back to   all classes page  ---------------------------
 
@@ -64,7 +65,19 @@ public class PostController extends Control implements Initializable {
             }
             showPane.getChildren().setAll(pane);
         });
+    }//----------------------------------------check fields -------------------------------------
+
+
+    private boolean checkFields(){
+        if (textArea.getText().isEmpty() || subjectField.getText().isEmpty()) {
+            LoginPageController.loadDialog(stackpane, "Send Post", "Please fill all fields.");
+            return false;
+
+        }
+        return true;
     }
+
+
     // ----------------------------------------   end  ------------------------------------------
 
 }

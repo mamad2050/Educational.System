@@ -17,6 +17,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
 import sample.Controller.Login.LoginPageController;
 import sample.Main;
 import sample.Model.Class;
@@ -27,7 +28,7 @@ import java.util.ResourceBundle;
 
 public class MyClassController implements Initializable {
 
-
+    // ---------------------------------- components ------------------------
     @FXML
     private ImageView imageField;
 
@@ -58,13 +59,7 @@ public class MyClassController implements Initializable {
     private TableColumn<Class, String> mailColumn;
 
     @FXML
-    private JFXButton addBTN;
-
-    @FXML
-    private JFXButton editBTN;
-
-    @FXML
-    private JFXButton deleteBTN;
+    private StackPane stackPane;
 
     @FXML
     private JFXTextField classNumField;
@@ -81,10 +76,8 @@ public class MyClassController implements Initializable {
     @FXML
     private JFXButton openBTN;
 
-    @FXML
-    private TextField searchField;
     AnchorPane pane;
-
+    // ---------------------------------- end ------------------------
     public static Class selectedClass;
 
     @Override
@@ -99,7 +92,7 @@ public class MyClassController implements Initializable {
                 }
             }
         }
-
+// ---------------------------------- set table properties ------------------------
         classIdColumn.setCellValueFactory(new PropertyValueFactory<>("classId"));
         classNumColumn.setCellValueFactory(new PropertyValueFactory<>("classNumber"));
         lessonColumn.setCellValueFactory(new PropertyValueFactory<>("lessonName"));
@@ -113,7 +106,7 @@ public class MyClassController implements Initializable {
 
         myClassTable.setItems(observableList);
 
-
+// ---------------------------------- select classs  ------------------------
         myClassTable.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -126,16 +119,21 @@ public class MyClassController implements Initializable {
                 masterIdField.setText(selectedClass.getMasterObj().getEmail());
             }
         });
-
+// ---------------------------------- open class ------------------------
         openBTN.setOnAction(event -> {
-            FXMLLoader loader = new FXMLLoader(Main.class.getResource("View/Student/PostPage.fxml"));
-            try {
-                pane = loader.load();
-            } catch (IOException e) {
-                e.printStackTrace();
+            if (selectedClass.getPost() == null) {
+                LoginPageController.loadDialog(stackPane,"error","not found post.");
             }
-            showPane.getChildren().setAll(pane);
+            else {
+                FXMLLoader loader = new FXMLLoader(Main.class.getResource("View/Student/PostPage.fxml"));
+                try {
+                    pane = loader.load();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                showPane.getChildren().setAll(pane);
+            }
         });
-
+// ---------------------------------- end ------------------------
     }
 }
