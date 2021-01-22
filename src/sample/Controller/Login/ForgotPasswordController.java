@@ -24,27 +24,23 @@ import java.util.ResourceBundle;
 
 public class ForgotPasswordController implements Initializable {
 
+    // ----------------------------------- components    ----------------------------------
+
+
     private Stage stage;
-
-    private Student student;
-
     public Stage getStage() {
         return stage;
     }
 
-
     @FXML
     private StackPane stackpane;
-
     @FXML
     private Button sendBTN;
-
     @FXML
     private Button backBTN;
-
-
     @FXML
     private JFXTextField mailField;
+    // -----------------------------------  end   ----------------------------------
 
     public void setStage(Stage stage) {
         this.stage = stage;
@@ -53,11 +49,12 @@ public class ForgotPasswordController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+        // ----------------------------------- find user and email    ----------------------------------
 
         sendBTN.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-
+               // student
                 for (Student student : Student.studentList) {
                     if (mailField.getText().equalsIgnoreCase(student.getEmail())) {
 
@@ -85,7 +82,7 @@ public class ForgotPasswordController implements Initializable {
                         LoginPageController.loadDialog(stackpane, "Reset Password Request ", " New Password send to your mail.");
                     }
                 }
-
+                // manager
                 if (mailField.getText().equalsIgnoreCase(LoginPageController.manager.getEmail())) {
 
                     SendMail sendMail = new SendMail();
@@ -99,10 +96,9 @@ public class ForgotPasswordController implements Initializable {
                 } else {
                     LoginPageController.loadDialog(stackpane,"Reset Password Request","User Not Found.");
                 }
-
-
             }
         });
+        // -----------------------------------   back to loginpage  ----------------------------------
 
 
         backBTN.setOnAction(event -> {

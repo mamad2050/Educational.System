@@ -28,7 +28,7 @@ import java.util.ResourceBundle;
 import java.util.function.Predicate;
 
 public class ManageStudentsController implements Initializable {
-
+ //--------------------------------- components ---------------------------
     @FXML
     private JFXButton deleteBTN;
     @FXML
@@ -36,10 +36,7 @@ public class ManageStudentsController implements Initializable {
     @FXML
     private JFXButton addBTN;
     @FXML
-    private AnchorPane showPane;
-    @FXML
     private TableView<Student> studentTable;
-
     @FXML
     private TableColumn<Student, Integer> studentIdColumn;
     @FXML
@@ -52,7 +49,6 @@ public class ManageStudentsController implements Initializable {
     private TableColumn<Student, String> phoneColumn;
     @FXML
     private TableColumn<Student, String> emailColumn;
-
     @FXML
     private JFXTextField firstNameField;
     @FXML
@@ -69,22 +65,20 @@ public class ManageStudentsController implements Initializable {
     private TextField searchField;
     @FXML
     private JFXButton clearBTN;
-
     @FXML
     private ImageView imageField;
-
     @FXML
     private ImageView addimg;
-
     @FXML
     private StackPane stackPane;
 
     Student selectStudent;
     String currentUser;
+// -------------------------------------- end ----------------------------
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+// ----------------------- set table properties ------------------
         ObservableList<Student> observableList = FXCollections.observableArrayList(Student.studentList);
 
         studentIdColumn.setCellValueFactory(new PropertyValueFactory<>("studentId"));
@@ -96,7 +90,8 @@ public class ManageStudentsController implements Initializable {
 
         studentTable.setItems(observableList);
 
-        // search box
+
+        //---------------------------------------- search box -------------------------------
         FilteredList<Student> filteredList = new FilteredList<>(observableList, e -> true);
         searchField.setOnKeyReleased(e -> {
             searchField.textProperty().addListener((observableValue, oldValue, newValue) -> {
@@ -119,22 +114,10 @@ public class ManageStudentsController implements Initializable {
             sortedList.comparatorProperty().bind(studentTable.comparatorProperty());
             studentTable.setItems(sortedList);
         });
-        // end search
-
-//        addBTN.setOnAction(event -> {
-//
-//
-////            try {
-//                studentCheckConditions( new Student(firstNameField.getText(), lastNameField.getText(), userField.getText(),
-//                        userField.getText(), mailField.getText(), phoneField.getText()));
-////            } catch (IOException e) {
-////                e.printStackTrace();
-////            }
-//
-//
-//        });
+        //--------------------------------------- end search ------------------------
 
 
+      // ---------------------------------  set on actions  -------------- ----------
         addBTN.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -146,6 +129,8 @@ public class ManageStudentsController implements Initializable {
                 }
             }
         });
+
+        // --------------------- clear fields --------------
         clearBTN.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -154,6 +139,7 @@ public class ManageStudentsController implements Initializable {
                 imageField.setImage(new Image("sample/view/drawable/teacher.png"));
             }
         });
+        // --------------  select student from table -------------------
         studentTable.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -165,7 +151,6 @@ public class ManageStudentsController implements Initializable {
                 phoneField.setText(selectStudent.getPhone());
                 mailField.setText(selectStudent.getEmail());
                 currentUser = userField.getText();
-
                 imageField.setImage(selectStudent.getPhoto());
             }
         });
@@ -173,8 +158,9 @@ public class ManageStudentsController implements Initializable {
         editBTN.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-
-                if (userEditable(userField.getText()) && checkAllField() && checkUserField() && checkMailField() && checkPhoneField()) {
+// ------------------------ check conditions for add student -------------------
+                if (userEditable(userField.getText()) && checkAllField() && checkUserField() && checkMailField()
+                        && checkPhoneField() && checkNameField() ) {
                     Student.studentList.get(selectStudent.getStudentId() - 1).setFirstName(firstNameField.getText());
                     Student.studentList.get(selectStudent.getStudentId() - 1).setLastName(lastNameField.getText());
                     Student.studentList.get(selectStudent.getStudentId() - 1).setUserName(userField.getText());
@@ -182,6 +168,7 @@ public class ManageStudentsController implements Initializable {
                     Student.studentList.get(selectStudent.getStudentId() - 1).setEmail(mailField.getText());
                     studentTable.refresh();
                     errorLBL.setText("");
+                    // ------------------- write in file ------------------
                     try {
                         WriteAndReadFile.write();
                     } catch (IOException e) {
@@ -190,7 +177,7 @@ public class ManageStudentsController implements Initializable {
                 }
             }
         });
-
+  //------------------------ delete student from system -------------------
         deleteBTN.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -203,22 +190,21 @@ public class ManageStudentsController implements Initializable {
                                 "Name : " + selectStudent.getFirstName() + " " + selectStudent.getLastName() + "\n"
                                 + "Phone : " + selectStudent.getPhone());
                 try {
+                  //  --------------  write in file ------------------
                     WriteAndReadFile.write();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
         });
-
+   //   ------------------------------ end set on actions -------------------------------
     }
-
+   // ------------------------ check conditions for add student -------------------
     private void studentCheckConditions(Student student) throws IOException {
         if (checkAllField()) {
             if (nonDuplicatedUser(student.getUserName())) {
-                if (checkPhoneField() && checkMailField() && checkUserField()) {
-
+                if (checkPhoneField() && checkMailField() && checkUserField() && checkNameField()) {
                     Student.studentList.add(student);
-
                     studentTable.getItems().add(student);
                     Student.lastId++;
                     clearFields();
@@ -227,69 +213,63 @@ public class ManageStudentsController implements Initializable {
                                     + "Student id : " + student.getStringId() + "\n" +
                                     "Name : " + student.getFirstName() + " " + student.getLastName() + "\n"
                                     + "Phone : " + student.getPhone());
-                    WriteAndReadFile.write();
+                    // -------------- write in file ------------
+                                  WriteAndReadFile.write();
                 }
             }
         }
 
     }
-
+    // ------------------------ check empty fields   -------------------
     private boolean checkAllField() {
         if (firstNameField.getText().isEmpty() || lastNameField.getText().isEmpty() || userField.getText().isEmpty()
                 || phoneField.getText().isEmpty() || mailField.getText().isEmpty()) {
-//            errorLBL.setText("Please fill all fields.");
-            LoginPageController.loadDialog(stackPane, "Register Error","Please fill all fields.");
 
+            LoginPageController.loadDialog(stackPane, "Register Error","Please fill all fields.");
             return false;
         }
         return true;
     }
-
+    // ------------------------ check non duplicated user -------------------
     private boolean nonDuplicatedUser(String user) {
         for (Student student : Student.studentList) {
             if (student.getUserName().equalsIgnoreCase(user)) {
-//                errorLBL.setText("This username has already been selected.");
                 LoginPageController.loadDialog(stackPane, "Register Error","This username has already been selected.");
-
                 return false;
             }
 
         }
         return true;
     }
-
+    // ------------------------ check phone number  -------------------
     public boolean checkPhoneField() {
         if (phoneField.getText().matches("\\d{11}") && phoneField.getText().startsWith("09")) {
             return true;
         }
-//        errorLBL.setText("Phone must start with (09) and contains 11 digits. ");
         LoginPageController.loadDialog(stackPane, "Register Error","Phone must start with (09) and contains 11 digits.");
 
         return false;
 
-
     }
-
+    // ------------------------ check email  -------------------
     private boolean checkMailField() {
         if (mailField.getText().contains("@") && mailField.getText().contains(".")) {
             return true;
         }
-//        errorLBL.setText("Mail must contain (@) and (.)");
         LoginPageController.loadDialog(stackPane, "Register Error","Mail must contain (@) and (.)");
 
         return false;
     }
-
+    // ------------------------ check username -------------------
     private boolean checkUserField() {
         if (userField.getText().matches("[a-zA-Z0-9]{3,12}")) {
             return true;
         }
         LoginPageController.loadDialog(stackPane, "Register Error","Username must 3 - 12 character");
 
-//        errorLBL.setText("Username must 3 - 12 character");
         return false;
     }
-
+    // ------------------------ clear fields -------------------
     private void clearFields() {
         firstNameField.clear();
         lastNameField.clear();
@@ -297,25 +277,28 @@ public class ManageStudentsController implements Initializable {
         mailField.clear();
         phoneField.clear();
     }
-
+    // ------------------------ check user for edit  -------------------
     private boolean userEditable(String user) {
 
         if (currentUser.equals(userField.getText())) {
-
-            errorLBL.setText("");
             return true;
         }
         for (Student student : Student.studentList) {
             if (student.getUserName().equals(user)) {
                 LoginPageController.loadDialog(stackPane, "Register Error","This username has already been selected.");
-//                errorLBL.setText("This username has already been selected.");
-
                 return false;
             }
-
         }
         errorLBL.setText("");
         return true;
+    }
+  // ----------------------- check first and last name ----------------
+    private boolean checkNameField(){
+        if (firstNameField.getText().matches("^[a-zA-Z\\s]+") && lastNameField.getText().matches("^[a-zA-Z\\s]+") ) {
+            return true;
+        }
+        LoginPageController.loadDialog(stackPane,"Register Error"," Firstname and Lastname must contains a-zA-Z");
+        return  false;
     }
 
 

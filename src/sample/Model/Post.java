@@ -37,4 +37,7 @@ public class Post {
     public static void setPosts(ArrayList<Post> posts) {
         Post.posts = posts;
     }
+
+
+
 }

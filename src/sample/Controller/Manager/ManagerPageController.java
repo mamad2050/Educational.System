@@ -23,6 +23,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class ManagerPageController implements Initializable {
+// --------------------------------   components   ---------------------------------
 
     @FXML
     private JFXListView<Label> listview;
@@ -30,26 +31,24 @@ public class ManagerPageController implements Initializable {
     private JFXButton logoutBTN;
     @FXML
     private AnchorPane showPane;
-
     @FXML
     private ImageView imageField;
-
     @FXML
     private Button choose;
-
-//    private FileChooser fileChooser;
-//    private File filePath;
-
     @FXML
     private Label userLBL;
     static AnchorPane pane = null;
     private String user;
+// --------------------------------   end   ---------------------------------
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+// --------------------------------   set image    ---------------------------------
 
         imageField.setImage(LoginPageController.managerLoggedIn.getPhoto());
+
+// --------------------------------   choose photo   ---------------------------------
 
         choose.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -58,10 +57,10 @@ public class ManagerPageController implements Initializable {
                 chooser.chooseImageButtonPush(event,imageField);
             }
         });
+// --------------------------------   set user Label  ---------------------------------
 
         user = LoginPageController.managerLoggedIn.getUserName();
         userLBL.setText(Manager.managerList.get(0).getUserName());
-
 
         try {
             CreatePage("ManagerDashboard");
@@ -69,6 +68,7 @@ public class ManagerPageController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+// --------------------------------  set list view labels    ---------------------------------
 
         Label dashboardLBL = new Label("Dashboard");
         Label studentsLBL = new Label("Students");
@@ -77,7 +77,10 @@ public class ManagerPageController implements Initializable {
         Label messagesLBL = new Label("Messages");
         Label profileLBL = new Label("Profile");
 
-        listview.getItems().addAll(dashboardLBL, studentsLBL, mastersLBL, classesLBL, messagesLBL, profileLBL);
+        listview.getItems().addAll(dashboardLBL, studentsLBL, mastersLBL, classesLBL,
+                messagesLBL, profileLBL);
+
+// --------------------------------  set on action for menu    ---------------------------------
 
         listview.setOnMouseClicked(event -> {
             if (!user.equals(Manager.managerList.get(0).getUserName())) {
@@ -90,6 +93,7 @@ public class ManagerPageController implements Initializable {
                 e.printStackTrace();
             }
         });
+// --------------------------------   logout   ---------------------------------
 
         logoutBTN.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -99,6 +103,7 @@ public class ManagerPageController implements Initializable {
         });
 
     }
+// --------------------------------  call create page    ---------------------------------
 
     private void listViewListener() throws IOException {
 
@@ -119,12 +124,14 @@ public class ManagerPageController implements Initializable {
 
 
     }
+// --------------------------------  create pages and load them    ---------------------------------
 
     public void CreatePage(String address) throws IOException {
         FXMLLoader loader = new FXMLLoader(Main.class.getResource("View/Manager/" + address + ".fxml"));
         pane = loader.load();
         showPane.getChildren().setAll(pane);
     }
+// --------------------------------  static method for logout from account    ---------------------------------
 
     public static void logout(JFXButton button) {
 
@@ -143,32 +150,8 @@ public class ManagerPageController implements Initializable {
         stage.show();
 
     }
+// --------------------------------    end     ---------------------------------
 
-//    public void chooseImageButtonPush(ActionEvent event) {
-//        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-//        fileChooser = new FileChooser();
-//        fileChooser.setTitle("open");
-//        this.filePath = fileChooser.showOpenDialog(stage);
-//        String userDirectoryString = System.getProperty("user.home");
-//        File userDirectory = new File(userDirectoryString);
-//
-////        if (!userDirectory.canRead()) {
-//        userDirectory = new File("c:/");
-//        fileChooser.setInitialDirectory(userDirectory);
-//        try {
-//            BufferedImage bufferedImage = ImageIO.read(filePath);
-//            Image image = SwingFXUtils.toFXImage(bufferedImage, null);
-//
-//            LoginPageController.managerLoggedIn.setPhoto(image);
-//            imageField.setImage(LoginPageController.managerLoggedIn.getPhoto());
-//
-//
-//        } catch (IOException e) {
-//            System.err.println(e.getMessage());
-//        }
-////        }
-//
-//    }
 
 }
 

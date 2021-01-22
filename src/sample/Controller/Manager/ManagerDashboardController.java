@@ -20,54 +20,44 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class ManagerDashboardController implements Initializable {
+// --------------------------------   components   ---------------------------------
 
     @FXML
     private AnchorPane showPane;
-
     @FXML
     private Label managerCount;
-
     @FXML
     private Group masterGRP;
-
     @FXML
     private Label masterCount;
-
     @FXML
     private Group studentGRP;
-
     @FXML
     private Label studCount;
-
     @FXML
     private Group classGRP;
-
     @FXML
     private Label classCount;
-
     @FXML
     private Group profileGRP;
 
-    @FXML
-    private Group messageGRP;
 
-
-    @FXML
-    private Label messagesCount;
-
+// --------------------------------  end    ---------------------------------
 
 
     AnchorPane pane = null;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+// -------------------------------- set labels     ---------------------------------
 
         managerCount.setText("1");
         studCount.setText(Integer.toString(Student.lastId -1));
         masterCount.setText(Integer.toString(Master.lastId -1));
         classCount.setText(Integer.toString(Class.lastId -1));
 
-        
+        // --------------------------------   set on action for groups   ---------------------------------
+
         studentGRP.setOnMouseClicked(new EventHandler<javafx.scene.input.MouseEvent>() {
             @Override
             public void handle(javafx.scene.input.MouseEvent event) {
@@ -77,7 +67,10 @@ public class ManagerDashboardController implements Initializable {
                     e.printStackTrace();
                 }
             }
-        });  masterGRP.setOnMouseClicked(new EventHandler<javafx.scene.input.MouseEvent>() {
+        });
+        // --------------------------------   for  master png   ---------------------------------
+
+        masterGRP.setOnMouseClicked(new EventHandler<javafx.scene.input.MouseEvent>() {
             @Override
             public void handle(javafx.scene.input.MouseEvent event) {
                 try {
@@ -86,7 +79,10 @@ public class ManagerDashboardController implements Initializable {
                     e.printStackTrace();
                 }
             }
-        });  classGRP.setOnMouseClicked(new EventHandler<javafx.scene.input.MouseEvent>() {
+        });
+        // --------------------------------  for class png     ---------------------------------
+
+        classGRP.setOnMouseClicked(new EventHandler<javafx.scene.input.MouseEvent>() {
             @Override
             public void handle(javafx.scene.input.MouseEvent event) {
                 try {
@@ -95,7 +91,10 @@ public class ManagerDashboardController implements Initializable {
                     e.printStackTrace();
                 }
             }
-        }); profileGRP.setOnMouseClicked(new EventHandler<javafx.scene.input.MouseEvent>() {
+        });
+        // --------------------------------  for profile png    ---------------------------------
+
+        profileGRP.setOnMouseClicked(new EventHandler<javafx.scene.input.MouseEvent>() {
             @Override
             public void handle(javafx.scene.input.MouseEvent event) {
                 try {
@@ -105,17 +104,10 @@ public class ManagerDashboardController implements Initializable {
                 }
             }
         });
-
-
-
-
     }
+// --------------------------------   create pages   ---------------------------------
 
     void createPage(String address) throws IOException {
-
-
-
-
         FXMLLoader loader = new FXMLLoader(Main.class.getResource("View/Manager/" + address + ".fxml"));
         pane = loader.load();
         showPane.getChildren().setAll(pane);

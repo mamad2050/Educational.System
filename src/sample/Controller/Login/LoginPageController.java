@@ -139,7 +139,6 @@ public class LoginPageController implements Initializable {
             managerLoggedIn = manager;
             createPage("Manager/ManagerPage");
         } else {
-//            errorLBL.setText("User not found.");
 
             loadDialog(stackPane, "Error", "User Not Found.");
 

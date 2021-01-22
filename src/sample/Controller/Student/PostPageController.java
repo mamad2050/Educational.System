@@ -11,7 +11,12 @@ import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
+import sample.Controller.Login.LoginPageController;
 import sample.Main;
+import sample.Model.Comment;
 import sample.Model.Post;
 
 import java.io.IOException;
@@ -28,7 +33,7 @@ public class PostPageController implements Initializable {
     private JFXButton backBTN;
 
     @FXML
-    private JFXTextArea area;
+    private TextArea area;
 
 //    @FXML
 //    private JFXTextField subjectField;
@@ -48,6 +53,8 @@ public class PostPageController implements Initializable {
 
     @FXML
     private Label senderLBL;
+    @FXML
+    private JFXTextField messageField;
 
     @FXML
     private Label lessonLBL;
@@ -56,9 +63,19 @@ public class PostPageController implements Initializable {
     private ImageView masterIMG;
 
     AnchorPane pane;
+    public VBox content;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+//        TextFlow textFlow =new TextFlow(new Text(""));
+
+
+        content.getChildren().clear();
+        for (Comment comment : Main.comments) {
+            content.getChildren().add(comment.getRoot());
+        }
+
 
         masterIMG.setImage(MyClassController.selectedClass.getMasterObj().getPhoto());
         imageField.setImage(MyClassController.selectedClass.getPhoto());
@@ -83,6 +100,9 @@ public class PostPageController implements Initializable {
                 e.printStackTrace();
             }
             showPane.getChildren().setAll(pane);
+
+            Main.comments.add(new Comment(LoginPageController.studentLoggedIn.getUserName(),LoginPageController
+                    .studentLoggedIn.getPhoto(),messageField.getText()));
         });
 
     }

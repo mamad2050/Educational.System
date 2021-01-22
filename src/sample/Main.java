@@ -6,18 +6,24 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import sample.Controller.Login.LoginPageController;
 import sample.File.WriteAndReadFile;
+import sample.Model.Comment;
 import sample.Model.Lesson;
 
 import java.util.ArrayList;
+import java.util.Collection;
 
 public class Main extends Application {
 
-   public static ArrayList<Lesson> lessons = new ArrayList<>();
+   public static ArrayList<Comment> comments = new ArrayList<>();
 
     @Override
     public void start(Stage primaryStage) throws Exception {
 
         WriteAndReadFile.read();
+
+
+        fillInfo();
+
 
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(this.getClass().getResource("View/Login/LoginPage.fxml"));
@@ -33,4 +39,10 @@ public class Main extends Application {
     public static void main(String[] args) {
         launch(args);
     }
+
+
+    private void fillInfo() {
+
+    }
+
 }
