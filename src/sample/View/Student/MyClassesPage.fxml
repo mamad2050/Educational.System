@@ -32,10 +32,10 @@
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                     </columnResizePolicy>
                 </TableView>
-                <AnchorPane layoutX="769.0" layoutY="6.0" prefHeight="625.0" prefWidth="195.0">
+                <AnchorPane layoutX="769.0" layoutY="6.0" prefHeight="625.0" prefWidth="194.0">
                     <children>
                         <VBox layoutX="22.0" layoutY="480.0" prefHeight="119.0" prefWidth="150.0" spacing="11.0" />
-                        <VBox layoutX="16.0" layoutY="145.0" prefHeight="249.0" prefWidth="164.0" spacing="33.0">
+                        <VBox layoutX="16.0" layoutY="145.0" prefHeight="249.0" prefWidth="158.0" spacing="33.0">
                             <children>
                                 <JFXTextField fx:id="classNumField" labelFloat="true" promptText="Class Number" />
                                 <JFXTextField fx:id="masterIdField" editable="false" labelFloat="true" layoutX="10.0" layoutY="10.0" promptText="Master ID" />
@@ -43,7 +43,7 @@
                                 <JFXTextField fx:id="lessonField" labelFloat="true" layoutX="10.0" layoutY="61.0" promptText="Lesson Name" />
                             </children>
                         </VBox>
-                        <ImageView fitHeight="108.0" fitWidth="109.0" layoutX="47.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="imageField" fitHeight="108.0" fitWidth="109.0" layoutX="47.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@../Drawable/iconfinder_board-math-class-school_2824448.png" />
                             </image>

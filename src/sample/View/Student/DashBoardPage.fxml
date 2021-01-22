@@ -1,57 +1,62 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.Group?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.layout.HBox?>
 
-<AnchorPane fx:id="showPane" prefHeight="615.0" prefWidth="942.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller.Student.DashboardController">
+<AnchorPane fx:id="showPane" prefHeight="615.0" prefWidth="942.0" xmlns="http://javafx.com/javafx/11.0.1"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller.Student.DashboardController">
     <children>
-        <AnchorPane prefHeight="627.0" prefWidth="964.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <AnchorPane prefHeight="627.0" prefWidth="964.0" style="-fx-background-color: white;"
+                    AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
-            <ScrollPane layoutX="11.0" layoutY="37.0" prefHeight="575.0" prefWidth="941.0">
-              <content>
-                  <VBox fx:id="content" prefHeight="564.0" prefWidth="941.0" spacing="20.0">
-                     <children>
-                        <Pane fx:id="root" prefHeight="190.0" prefWidth="891.0" style="-fx-background-color: ffff;">
-                           <children>
-                              <ImageView fx:id="imageView" fitHeight="120.0" fitWidth="123.0" layoutX="7.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../Drawable/iconfinder_ilustracoes_04-10_1519778.png" />
-                                 </image>
-                              </ImageView>
-                              <Label layoutX="145.0" layoutY="32.0" prefHeight="39.0" prefWidth="116.0" text="Name :">
-                                 <font>
-                                    <Font name="System Bold" size="18.0" />
-                                 </font>
-                              </Label>
-                              <Label layoutX="145.0" layoutY="63.0" prefHeight="39.0" prefWidth="116.0" text="Master :">
-                                 <font>
-                                    <Font name="System Bold" size="15.0" />
-                                 </font>
-                              </Label>
-                              <ImageView fitHeight="25.0" fitWidth="26.0" layoutX="40.0" layoutY="159.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../Drawable/icons8-video-100.png" />
-                                 </image>
-                              </ImageView>
-                              <ImageView fitHeight="25.0" fitWidth="26.0" layoutX="153.0" layoutY="160.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../Drawable/icons8-medium-risk-100.png" />
-                                 </image>
-                              </ImageView>
-                              <Label fx:id="lessonName" layoutX="228.0" layoutY="43.0" prefHeight="17.0" prefWidth="204.0" />
-                              <Label fx:id="masterName" layoutX="219.0" layoutY="77.0" prefHeight="17.0" prefWidth="204.0" />
-                           </children>
-                        </Pane>
-                     </children>
-                  </VBox>
-              </content>
-            </ScrollPane>
+                <Group layoutX="127.33332824707031" layoutY="103.33333587646484">
+                    <children>
+                        <HBox fx:id="hboxMan" layoutX="13.666671752929688" layoutY="169.66666412353516" spacing="8.0">
+                            <cursor>
+                                <Cursor fx:constant="HAND"/>
+                            </cursor>
+                        </HBox>
+                    </children>
+                </Group>
+                <Group fx:id="masterGRP" layoutX="407.0" layoutY="101.0">
+                    <children>
+                        <HBox layoutX="29.0" layoutY="175.0" spacing="8.0">
+                            <cursor>
+                                <Cursor fx:constant="HAND"/>
+                            </cursor>
+                        </HBox>
+                    </children>
+                </Group>
+                <Group fx:id="studentGRP" layoutX="691.3333129882812" layoutY="103.33333587646484">
+                    <children>
+                        <HBox layoutX="17.66668701171875" layoutY="169.66666412353516" spacing="8.0"/>
+                    </children>
+                </Group>
+                <Group fx:id="classGRP" layoutX="126.33332824707031" layoutY="358.3333435058594">
+                    <children>
+                        <HBox layoutX="34.66667175292969" layoutY="163.66665649414062" spacing="8.0">
+                            <cursor>
+                                <Cursor fx:constant="HAND"/>
+                            </cursor>
+                        </HBox>
+                    </children>
+                </Group>
+                <Group fx:id="messageGRP" layoutX="405.66668701171875" layoutY="355.0">
+                    <children>
+                        <HBox layoutX="23.33331298828125" layoutY="167.0" spacing="8.0">
+                            <cursor>
+                                <Cursor fx:constant="HAND"/>
+                            </cursor>
+                        </HBox>
+                    </children>
+                </Group>
+                <Group fx:id="profileGRP" layoutX="712.0" layoutY="369.0">
+                    <children>
+                        <HBox layoutX="18.0" layoutY="153.0" prefHeight="39.0" prefWidth="91.0" spacing="8.0"/>
+                    </children>
+                </Group>
             </children>
         </AnchorPane>
     </children>

@@ -5,6 +5,7 @@ import com.jfoenix.controls.JFXTextField;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -12,6 +13,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import sample.Controller.Login.LoginPageController;
 import sample.Model.Class;
@@ -21,6 +24,9 @@ import java.util.ResourceBundle;
 
 public class MyClassController implements Initializable {
 
+
+    @FXML
+    private ImageView imageField;
 
     @FXML
     private AnchorPane showPane;
@@ -75,9 +81,11 @@ public class MyClassController implements Initializable {
     @FXML
     private TextField searchField;
 
+    public static Class selectedClass;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
 
         ObservableList<Class> observableList = FXCollections.observableArrayList();
         for (Class classs : Class.classList) {
@@ -101,6 +109,19 @@ public class MyClassController implements Initializable {
 
         myClassTable.setItems(observableList);
 
+
+        myClassTable.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                selectedClass = myClassTable.getSelectionModel().getSelectedItem();
+                imageField.setImage(selectedClass.getPhoto());
+                classNumField.setText(Integer.toString(selectedClass.getClassNumber()));
+                masterNameField.setText(selectedClass.getMasterObj().getFirstName()+" " + selectedClass
+                .getMasterObj().getLastName());
+                lessonField.setText(selectedClass.getLessonName());
+                masterIdField.setText(selectedClass.getMasterObj().getEmail());
+            }
+        });
 
     }
 }

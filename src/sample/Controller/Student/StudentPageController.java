@@ -44,6 +44,14 @@ public class StudentPageController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 
         imageField.setImage(LoginPageController.studentLoggedIn.getPhoto());
+
+        try {
+            CreatePage("DashboardPage");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
         userLBL.setText(LoginPageController.studentLoggedIn.getUserName());
         Label dashboardLBL = new Label("Dashboard");
         Label profileLBL = new Label("Profile");
@@ -75,6 +83,7 @@ public class StudentPageController implements Initializable {
     private void listViewListener() throws IOException {
 
         String selectedLabel = listview.getSelectionModel().getSelectedItem().getText().trim();
+
 
         if (selectedLabel.equals(listview.getItems().get(0).getText().trim())) {
             CreatePage("DashboardPage");
