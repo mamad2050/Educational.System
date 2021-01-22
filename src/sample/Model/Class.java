@@ -1,5 +1,6 @@
 package sample.Model;
 
+import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
@@ -26,6 +27,16 @@ public class Class {
 
     public void setPhoto(Image photo) {
         this.photo = photo;
+    }
+
+    private Post post ;
+
+    public Post getPost() {
+        return post;
+    }
+
+    public void setPost(Post post) {
+        this.post = post;
     }
 
     public void setPhone(String phone) {
@@ -124,7 +135,7 @@ public class Class {
         this.classNumber = classNumber;
         this.masterObj = masterObj;
         this.photo = new Image("sample/view/drawable/iconfinder_board-math-class-school_2824448.png");
-        this.occupy =occupy;
+        this.occupy = occupy;
         setClassId();
     }
 

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane prefHeight="627.0" prefWidth="953.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller.Class.PostController">
+   <children>
+      <StackPane fx:id="stackpane">
+         <children>
+            <AnchorPane fx:id="showPane" prefHeight="615.0" prefWidth="1021.0" style="-fx-background-color: ffff;">
+                <children>
+                    <JFXButton fx:id="backBTN" layoutX="11.0" layoutY="565.0" prefHeight="30.0" prefWidth="85.0" style="-fx-background-radius: 20; -fx-background-color: purple; -fx-cursor: hand;" text="Back" textFill="WHITE" />
+                    <TextArea fx:id="textArea" layoutX="64.0" layoutY="178.0" prefHeight="251.0" prefWidth="818.0" promptText="Description">
+                        <font>
+                            <Font size="14.0" />
+                        </font>
+                    </TextArea>
+                    <Text fill="#1f1685" layoutX="392.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ADD POST" wrappingWidth="129.6922607421875">
+                        <font>
+                            <Font name="System Bold" size="25.0" />
+                        </font>
+                    </Text>
+                    <JFXTextField fx:id="subjectField" labelFloat="true" layoutX="70.0" layoutY="135.0" prefHeight="25.0" prefWidth="454.0" promptText="Subject : " unFocusColor="WHITE">
+                        <font>
+                            <Font name="System Bold" size="15.0" />
+                        </font>
+                    </JFXTextField>
+                    <ImageView fitHeight="123.0" fitWidth="122.0" layoutX="795.0" layoutY="-10.0" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                            <Image url="@../Drawable/icons8-task-100.png" />
+                        </image>
+                    </ImageView>
+                    <ImageView fitHeight="92.0" fitWidth="64.0" layoutX="846.0" layoutY="58.0" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                            <Image url="@../Drawable/1610717315596.png" />
+                        </image>
+                    </ImageView>
+                    <JFXButton fx:id="sendBTN" layoutX="382.0" layoutY="462.0" prefHeight="30.0" prefWidth="156.0" style="-fx-background-color: green; -fx-background-radius: 20;" text="SEND" textFill="WHITE" />
+                </children>
+            </AnchorPane>
+         </children>
+      </StackPane>
+   </children>
+</AnchorPane>

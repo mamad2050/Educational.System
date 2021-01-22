@@ -92,6 +92,10 @@ public class ViewClassController implements Initializable {
 
     @FXML
     private JFXButton openBTN;
+
+    @FXML
+    private ImageView imageField;
+
     @FXML
     private TextField searchField;
 
@@ -103,17 +107,14 @@ public class ViewClassController implements Initializable {
     private JFXButton deleteBTN;
 
     @FXML
-    private ImageView imageField;
-
-    @FXML
-    private JFXButton chooseBTN;
+    private JFXButton postBTN;
 
     @FXML
     private JFXButton backBTN;
 
     AnchorPane pane = null;
 
-  public static   Student selectStudent ;
+    public static Student selectStudent;
 
     @FXML
     private StackPane stackPane;
@@ -122,6 +123,8 @@ public class ViewClassController implements Initializable {
     @Override
 
     public void initialize(URL location, ResourceBundle resources) {
+
+        imageField.setImage(CreateClassController.selectedClass.getPhoto());
 
         // this class fields
         classIdField.setText(Integer.toString(CreateClassController.selectedClass.getClassId()));
@@ -161,7 +164,7 @@ public class ViewClassController implements Initializable {
         // end students this class
 
 
-        //      // search box
+        //  ------------------  search box for all student -----------------
         FilteredList<Student> filteredList = new FilteredList<>(observableList, e -> true);
         searchField.setOnKeyReleased(e -> {
             searchField.textProperty().addListener((observableValue, oldValue, newValue) -> {
@@ -184,18 +187,15 @@ public class ViewClassController implements Initializable {
             sortedList.comparatorProperty().bind(studentsTable.comparatorProperty());
             studentsTable.setItems(sortedList);
         });
-        //        // end search
+        //    ------------------------------------------------
 
         addBTN.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-
                 if (selectStudent == null) {
                     LoginPageController.loadDialog(stackPane, "Add Student",
                             "Please Select Student. ");
-                }else
-
-                if (checkThisStudent(selectStudent)) {
+                } else if (checkThisStudent(selectStudent)) {
                     CreateClassController.selectedClass.getStudentsList().add(selectStudent);
                     thisClassStudentTable.getItems().add(selectStudent);
                     CreateClassController.selectedClass.setOccupy("+");
@@ -204,19 +204,26 @@ public class ViewClassController implements Initializable {
                                     + "Student id : " + selectStudent.getStringId() + "\n" +
                                     "Name : " + selectStudent.getFirstName() + " " + selectStudent.getLastName() + "\n"
                                     + "Phone : " + selectStudent.getPhone());
-
                     for (Student student : Student.studentList) {
-                        if (student == selectStudent ) {
+                        if (student == selectStudent) {
                             student.getMyClasses().add(CreateClassController.selectedClass);
                             clearFields();
                         }
                     }
                     numberOfStudentField.setText(Integer.toString(CreateClassController.selectedClass.getOccupy()));
-
                 }
-
             }
+        });
 
+        postBTN.setOnAction(event -> {
+            FXMLLoader loader = new FXMLLoader(Main.class.getResource("View/Class/PostPage.fxml"));
+            try {
+
+                pane =loader.load();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            showPane.getChildren().setAll(pane);
         });
 
         deleteBTN.setOnAction(new EventHandler<ActionEvent>() {
@@ -234,7 +241,7 @@ public class ViewClassController implements Initializable {
                                 + "Phone : " + selectStudent.getPhone());
                 clearFields();
                 for (Student student : Student.studentList) {
-                    if (student == selectStudent ) {
+                    if (student == selectStudent) {
                         student.getMyClasses().remove(CreateClassController.selectedClass);
                         clearFields();
                     }
@@ -249,6 +256,7 @@ public class ViewClassController implements Initializable {
         studentsTable.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
+
                 selectStudent = studentsTable.getSelectionModel().getSelectedItem();
                 studentIdField.setText(selectStudent.getStringId());
                 firstnameField.setText(selectStudent.getFirstName());
@@ -270,7 +278,7 @@ public class ViewClassController implements Initializable {
                     e.printStackTrace();
                 }
                 showPane.getChildren().setAll(pane);
-                ManageClassesController.selectedClass=null;
+                ManageClassesController.selectedClass = null;
             }
 
         });
@@ -294,7 +302,7 @@ public class ViewClassController implements Initializable {
         return true;
     }
 
-    private void clearFields(){
+    private void clearFields() {
         firstnameField.clear();
         lastnameField.clear();
         studentIdField.clear();

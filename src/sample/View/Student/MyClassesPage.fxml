@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.Group?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
@@ -34,12 +36,17 @@
                 </TableView>
                 <AnchorPane layoutX="769.0" layoutY="6.0" prefHeight="625.0" prefWidth="194.0">
                     <children>
-                        <VBox layoutX="22.0" layoutY="480.0" prefHeight="119.0" prefWidth="150.0" spacing="11.0" />
+                  <JFXButton fx:id="openBTN" layoutX="16.0" layoutY="480.0" prefHeight="32.0" prefWidth="161.0" style="-fx-background-color: #4f4c4e; -fx-background-radius: 20;" text="Open" textFill="WHITE">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </JFXButton>
                         <VBox layoutX="16.0" layoutY="145.0" prefHeight="249.0" prefWidth="158.0" spacing="33.0">
                             <children>
                                 <JFXTextField fx:id="classNumField" labelFloat="true" promptText="Class Number" />
-                                <JFXTextField fx:id="masterIdField" editable="false" labelFloat="true" layoutX="10.0" layoutY="10.0" promptText="Master ID" />
                                 <JFXTextField fx:id="masterNameField" editable="false" labelFloat="true" layoutX="10.0" layoutY="10.0" promptText="Master Name" />
+                                <JFXTextField fx:id="masterIdField" editable="false" labelFloat="true" layoutX="10.0" layoutY="10.0" promptText="Master Phone" />
+                        <JFXTextField fx:id="masterPhoneField" editable="false" labelFloat="true" layoutX="10.0" layoutY="127.0" promptText="Master Mail" />
                                 <JFXTextField fx:id="lessonField" labelFloat="true" layoutX="10.0" layoutY="61.0" promptText="Lesson Name" />
                             </children>
                         </VBox>
@@ -49,6 +56,7 @@
                             </image>
                         </ImageView>
                         <Label fx:id="errorLBL" alignment="CENTER" layoutX="28.0" layoutY="422.0" prefHeight="50.0" prefWidth="136.0" textAlignment="CENTER" wrapText="true" />
+                  <FontAwesomeIconView fill="WHITE" glyphName="EYE" layoutX="59.0" layoutY="500.0" />
                     </children>
                 </AnchorPane>
             </children>

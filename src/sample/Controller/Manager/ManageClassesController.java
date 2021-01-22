@@ -200,6 +200,7 @@ public class ManageClassesController implements Initializable {
         Class.classList.add(classs);
         classTable.getItems().add(classs);
         Class.lastId++;
+        classs.setPhoto(new Image("sample/view/drawable/iconfinder_board-math-class-school_2824448.png"));
         clearFields();
 
 

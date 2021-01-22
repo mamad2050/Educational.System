@@ -7,6 +7,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -17,8 +18,10 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import sample.Controller.Login.LoginPageController;
+import sample.Main;
 import sample.Model.Class;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -76,10 +79,11 @@ public class MyClassController implements Initializable {
     private JFXTextField lessonField;
 
     @FXML
-    private Label errorLBL;
+    private JFXButton openBTN;
 
     @FXML
     private TextField searchField;
+    AnchorPane pane;
 
     public static Class selectedClass;
 
@@ -116,11 +120,21 @@ public class MyClassController implements Initializable {
                 selectedClass = myClassTable.getSelectionModel().getSelectedItem();
                 imageField.setImage(selectedClass.getPhoto());
                 classNumField.setText(Integer.toString(selectedClass.getClassNumber()));
-                masterNameField.setText(selectedClass.getMasterObj().getFirstName()+" " + selectedClass
-                .getMasterObj().getLastName());
+                masterNameField.setText(selectedClass.getMasterObj().getFirstName() + " " + selectedClass
+                        .getMasterObj().getLastName());
                 lessonField.setText(selectedClass.getLessonName());
                 masterIdField.setText(selectedClass.getMasterObj().getEmail());
             }
+        });
+
+        openBTN.setOnAction(event -> {
+            FXMLLoader loader = new FXMLLoader(Main.class.getResource("View/Student/PostPage.fxml"));
+            try {
+                pane = loader.load();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            showPane.getChildren().setAll(pane);
         });
 
     }

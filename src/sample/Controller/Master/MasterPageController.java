@@ -54,8 +54,6 @@ public class MasterPageController implements Initializable {
         Label dashboardLBL = new Label("Dashboard");
         Label profileLBL = new Label("Profile");
         Label classesLBL = new Label("My Classes");
-//        Label lessonsLBL = new Label("My Lessons");
-//        Label messagesLBL = new Label("My Messages");
         listview.getItems().addAll(dashboardLBL, profileLBL, classesLBL);
 
 
@@ -73,19 +71,7 @@ public class MasterPageController implements Initializable {
             @Override
             public void handle(ActionEvent event) {
                 ManagerPageController.logout(logoutBTN);
-//                ((Stage) logoutBTN.getScene().getWindow()).close();
-////
-////                Stage stage = new Stage();
-////                FXMLLoader loader = new FXMLLoader(this.getClass().getResource("../../View/Login/LoginPage.fxml"));
-////                try {
-////                    loader.load();
-////                } catch (IOException e) {
-////                    e.printStackTrace();
-////                }
-////                LoginPageController controller = loader.getController();
-////                controller.setStage(stage);
-////                stage.setScene(new Scene(loader.getRoot()));
-////                stage.show();
+
             }
         });
     }
@@ -100,8 +86,6 @@ public class MasterPageController implements Initializable {
             CreatePage("ProfilePage");
         } else if (selectedLabel.equals(listview.getItems().get(2).getText().trim())) {
             CreatePage("CreateClassPage");
-        } else if (selectedLabel.equals(listview.getItems().get(3).getText().trim())) {
-            CreatePage("ManageClassesPage");
         }
 
     }
