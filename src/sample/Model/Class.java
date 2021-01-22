@@ -1,6 +1,7 @@
 package sample.Model;
 
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 
 import java.awt.*;
@@ -16,6 +17,16 @@ public class Class {
     private String lessonName;
     private Master masterObj;
     private String phone;
+    private Image photo;
+
+
+    public Image getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(Image photo) {
+        this.photo = photo;
+    }
 
     public void setPhone(String phone) {
         this.phone = phone;
@@ -104,8 +115,7 @@ public class Class {
         this.masterObj = masterObj;
         setClassId();
     }
-//
-//
+
     public Class(int capacity, int classNumber, String lessonName, Master masterObj, int occupy) {
 
         this.capacity = capacity;
@@ -113,7 +123,7 @@ public class Class {
         this.lessonName = lessonName;
         this.classNumber = classNumber;
         this.masterObj = masterObj;
-//        this.studentsList = students;
+        this.photo = new Image("sample/view/drawable/iconfinder_board-math-class-school_2824448.png");
         this.occupy =occupy;
         setClassId();
     }

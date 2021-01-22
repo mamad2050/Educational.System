@@ -18,7 +18,15 @@ public class Student extends Person {
     public static int lastId = 1;
     public static ArrayList<Student> studentList = new ArrayList<>();
     private ArrayList<Class> myClasses = new ArrayList<>();
+    private String url;
 
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
 
     public ArrayList<Class> getMyClasses() {
         return myClasses;

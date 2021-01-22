@@ -65,12 +65,12 @@
                                       <JFXTextField fx:id="lessonField" labelFloat="true" layoutX="10.0" layoutY="61.0" promptText="Lesson Name" />
                                   </children>
                               </VBox>
-                              <ImageView fitHeight="108.0" fitWidth="109.0" layoutX="47.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="imageField" fitHeight="108.0" fitWidth="109.0" layoutX="47.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
                                   <image>
                                       <Image url="@../Drawable/iconfinder_board-math-class-school_2824448.png" />
                                   </image>
                               </ImageView>
-                              <ImageView fitHeight="72.0" fitWidth="71.0" layoutX="117.0" layoutY="59.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="addimg" fitHeight="72.0" fitWidth="71.0" layoutX="117.0" layoutY="59.0" pickOnBounds="true" preserveRatio="true">
                                   <image>
                                       <Image url="@../Drawable/1610717315596.png" />
                                   </image>
@@ -82,6 +82,11 @@
                         </JFXButton>
                           </children>
                       </AnchorPane>
+                  <JFXButton fx:id="clearBTN" layoutX="715.0" layoutY="18.0" text="CLEAR">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </JFXButton>
                   </children>
               </AnchorPane>
          </children>

@@ -37,7 +37,7 @@
                           <children>
                         <Group layoutX="23.0" layoutY="19.0">
                            <children>
-                                    <VBox layoutY="145.0" prefHeight="260.0" prefWidth="134.0" spacing="33.0">
+                                    <VBox layoutY="154.0" prefHeight="260.0" prefWidth="134.0" spacing="33.0">
                                         <children>
                                             <JFXTextField fx:id="classIdField" editable="false" labelFloat="true" layoutX="10.0" layoutY="10.0" promptText="Class ID" />
                                             <JFXTextField fx:id="lessonField" editable="false" labelFloat="true" layoutX="10.0" layoutY="61.0" promptText="Lesson" />
@@ -48,11 +48,16 @@
                                             <JFXTextField fx:id="numberOfStudentField" editable="false" labelFloat="true" layoutX="10.0" layoutY="186.0" promptText="Number Of Students" />
                                         </children>
                                     </VBox>
-                                    <ImageView fitHeight="127.0" fitWidth="128.0" layoutX="5.0" layoutY="-4.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fx:id="imageField" fitHeight="127.0" fitWidth="128.0" layoutX="5.0" layoutY="-4.0" pickOnBounds="true" preserveRatio="true">
                                         <image>
                                             <Image url="@../Drawable/iconfinder_board-math-class-school_2824448.png" />
                                         </image>
                                     </ImageView>
+                              <JFXButton fx:id="chooseBTN" layoutX="34.0" layoutY="123.0" text="Choose image">
+                                 <font>
+                                    <Font size="9.0" />
+                                 </font>
+                              </JFXButton>
                            </children>
                         </Group>
                         <JFXButton fx:id="backBTN" layoutX="20.0" layoutY="583.0" prefHeight="32.0" prefWidth="120.0" style="-fx-background-color: #1f1685; -fx-background-radius: 20px; -fx-cursor: hand;" text="Back" textFill="WHITE" />

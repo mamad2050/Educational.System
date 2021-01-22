@@ -12,6 +12,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import sample.Main;
+import sample.Model.Manager;
 import sample.Model.Master;
 import sample.Model.Student;
 import sample.SendMail;
@@ -56,8 +57,9 @@ public class ForgotPasswordController implements Initializable {
         sendBTN.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+
                 for (Student student : Student.studentList) {
-                    if (mailField.getText().equals(student.getEmail())) {
+                    if (mailField.getText().equalsIgnoreCase(student.getEmail())) {
 
                         SendMail sendMail = new SendMail();
                         try {
@@ -71,7 +73,7 @@ public class ForgotPasswordController implements Initializable {
                 }
                 // master
                 for (Master master : Master.masterList) {
-                    if (mailField.getText().equals(master.getEmail())) {
+                    if (mailField.getText().equalsIgnoreCase(master.getEmail())) {
 
                         SendMail sendMail = new SendMail();
                         try {
@@ -83,6 +85,21 @@ public class ForgotPasswordController implements Initializable {
                         LoginPageController.loadDialog(stackpane, "Reset Password Request ", " New Password send to your mail.");
                     }
                 }
+
+                if (mailField.getText().equalsIgnoreCase(LoginPageController.manager.getEmail())) {
+
+                    SendMail sendMail = new SendMail();
+                    try {
+                        sendMail.sendEmailTo(LoginPageController.manager.getEmail());
+                    } catch (MessagingException e) {
+                        e.printStackTrace();
+                    }
+                    LoginPageController.manager.setPassword(SendMail.sb.toString());
+                    LoginPageController.loadDialog(stackpane, "Reset Password Request ", " New Password send to your mail.");
+                } else {
+                    LoginPageController.loadDialog(stackpane,"Reset Password Request","User Not Found.");
+                }
+
 
             }
         });

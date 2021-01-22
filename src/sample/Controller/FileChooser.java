@@ -8,6 +8,7 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import sample.Controller.Login.LoginPageController;
 import sample.File.WriteAndReadFile;
+import sample.Model.Class;
 import sample.Model.Manager;
 import sample.Model.Master;
 import sample.Model.Student;
@@ -26,16 +27,22 @@ public class FileChooser {
     private Manager manager;
     private Student student;
     private Master master;
+    private Class aClass;
 
     public FileChooser(Manager manager) {
         this.manager = manager;
     }
 
-    public FileChooser(Student student){
-        this.student=student;
+    public FileChooser(Student student) {
+        this.student = student;
     }
 
-    public FileChooser(Master master){this.master = master ;}
+    public FileChooser(Master master) {
+        this.master = master;
+    }
+    public FileChooser (Class aClass){
+        this.aClass = aClass;
+    }
 
     public void chooseImageButtonPush(ActionEvent event, ImageView imageField) {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -43,11 +50,9 @@ public class FileChooser {
         fileChooser.setTitle("open");
         this.filePath = fileChooser.showOpenDialog(stage);
 
-        String userDirectoryString = System.getProperty("user.home");
+//        String userDirectoryString = System.getProperty("user.home");
 
         File userDirectory;
-
-//        if (!userDirectory.canRead()) {
 
         userDirectory = new File("c:/");
         fileChooser.setInitialDirectory(userDirectory);
@@ -55,31 +60,25 @@ public class FileChooser {
             BufferedImage bufferedImage = ImageIO.read(filePath);
             Image image = SwingFXUtils.toFXImage(bufferedImage, null);
 
-            if (manager  != null) {
+            if (manager != null) {
                 manager.setPhoto(image);
                 imageField.setImage(manager.getPhoto());
-            }else if (student != null) {
+            } else if (student != null) {
                 student.setPhoto(image);
                 imageField.setImage(student.getPhoto());
-                for (Student std: Student.studentList
-                     ) {
-                    if (std == student) {
-                        std.setPhoto(image);
-                        WriteAndReadFile.write();
-                    }
-                }
+//                System.out.println(image.getUrl());
 
-
-
-            }else if (master != null) {
+            } else if (master != null) {
                 master.setPhoto(image);
                 imageField.setImage(master.getPhoto());
+            }else if (aClass != null) {
+                aClass.setPhoto(image);
+                imageField.setImage(aClass.getPhoto());
             }
 
         } catch (IOException e) {
             System.err.println(e.getMessage());
         }
     }
-
 
 }

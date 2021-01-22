@@ -15,9 +15,11 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
+import sample.Controller.FileChooser;
 import sample.Controller.Login.LoginPageController;
 import sample.Main;
 import sample.Model.Class;
@@ -98,6 +100,12 @@ public class ViewClassController implements Initializable {
     private JFXButton addBTN;
 
     @FXML
+    private ImageView imageField;
+
+    @FXML
+    private JFXButton chooseBTN;
+
+    @FXML
     private JFXButton deleteBTN;
 
     @FXML
@@ -114,6 +122,9 @@ public class ViewClassController implements Initializable {
     @Override
 
     public void initialize(URL location, ResourceBundle resources) {
+
+           imageField.setImage(ManageClassesController.selectedClass.getPhoto());
+
 
         // this class fields
         classIdField.setText(Integer.toString(ManageClassesController.selectedClass.getClassId()));
@@ -238,6 +249,16 @@ public class ViewClassController implements Initializable {
 
         });
 //
+
+
+        chooseBTN.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                FileChooser chooser = new FileChooser(ManageClassesController.selectedClass);
+                chooser.chooseImageButtonPush(event,imageField);
+
+            }
+        });
 
         studentsTable.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override

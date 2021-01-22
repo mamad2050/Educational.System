@@ -17,6 +17,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
@@ -89,7 +91,14 @@ public class ManageClassesController implements Initializable {
     private StackPane stackPane;
 
     @FXML
-    private TextField searchField;
+    private ImageView imageField;
+
+    @FXML
+    private ImageView addimg;
+
+    @FXML
+    private JFXButton clearBTN;
+
     AnchorPane pane;
 
     Class classs;
@@ -138,16 +147,22 @@ public class ManageClassesController implements Initializable {
         classTable.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
+                addimg.setVisible(false);
                 selectedClass = classTable.getSelectionModel().getSelectedItem();
                 capacityField.setText(Integer.toString(selectedClass.getCapacity()));
                 lessonField.setText(selectedClass.getLessonName());
                 masterNameField.setText(selectedClass.getMasterObj().getFirstName() + " " + selectedClass.getMasterObj().getLastName());
                 classNumField.setText(Integer.toString(selectedClass.getClassNumber()));
                 masterIdField.setText(Integer.toString(selectedClass.getMasterObj().getMasterId()));
+                imageField.setImage(selectedClass.getPhoto());
             }
         });
 
-
+        clearBTN.setOnAction(e -> {
+            addimg.setVisible(true);
+            imageField.setImage(new Image("sample/view/drawable/iconfinder_board-math-class-school_2824448.png"));
+            clearFields();
+        });
 
 
         openBTN.setOnAction(new EventHandler<ActionEvent>() {
