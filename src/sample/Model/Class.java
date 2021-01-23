@@ -29,7 +29,7 @@ public class Class {
         this.photo = photo;
     }
 
-    private Post post ;
+    private Post post;
 
     public Post getPost() {
         return post;

@@ -240,7 +240,7 @@ public class ManageClassesController implements Initializable {
         if (!classNumField.getText().matches("\\d{1,3}") || !capacityField.getText().matches("\\d{2}")) {
 
             LoginPageController.loadDialog(stackPane, "Add Class", "Class number must between 1-999 \n"
-            + "Class number must between 10-99");
+            + "Capacity must between 10-99");
             return false;
         }
 

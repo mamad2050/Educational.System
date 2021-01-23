@@ -5,66 +5,64 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <AnchorPane fx:id="showPane" prefHeight="615.0" prefWidth="942.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller.Master.EditProfileController">
     <children>
-        <ImageView accessibleRole="LIST_VIEW" fitHeight="628.0" fitWidth="964.0" opacity="0.8" pickOnBounds="true" preserveRatio="true">
-            <image>
-                <Image url="@../Drawable/university-library-4825366_1920.jpg" />
-            </image>
-        </ImageView>
-        <AnchorPane layoutY="-2.0" prefHeight="632.0" prefWidth="942.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="-2.0" AnchorPane.topAnchor="-2.0">
-            <children>
-                <Hyperlink fx:id="resetPassLink" layoutX="446.0" layoutY="501.0" style="-fx-border-color: transparent;" text="Reset Password" textFill="#1f1685" />
-                <Text fill="#1f1685" layoutX="397.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="EDIT PROFILE">
-                    <font>
-                        <Font name="System Bold" size="28.0" />
-                    </font>
-                </Text>
-                <Text layoutX="255.0" layoutY="593.0" strokeType="OUTSIDE" strokeWidth="0.0" text="if don't remember your current password , you can Reset Your Password on bottom Link ." wrappingWidth="474.4274845123291" />
-                <JFXButton fx:id="changePassBTN" layoutX="421.0" layoutY="503.0" prefHeight="33.0" prefWidth="132.0" style="-fx-background-color: green; -fx-cursor: hand;" stylesheets="@../Drawable/Style.css" text="Change Password" textFill="WHITE" />
-                <Hyperlink fx:id="resetPassLink" layoutX="462.0" layoutY="600.0" style="-fx-background-color: transparent;" text="Reset" />
-                <Label fx:id="changeLBL" alignment="CENTER" layoutX="341.0" layoutY="551.0" prefHeight="17.0" prefWidth="294.0" textAlignment="CENTER" wrapText="true" />
-                <Label fx:id="saveLBL" alignment="CENTER" layoutX="341.0" layoutY="394.0" prefHeight="17.0" prefWidth="294.0" textAlignment="CENTER" wrapText="true" />
-            </children>
-        </AnchorPane>
-        <HBox layoutX="196.0" layoutY="147.0" spacing="160.0">
-            <children>
-                <JFXTextField fx:id="firstnameField" labelFloat="true" prefHeight="25.0" prefWidth="210.0" promptText="First Name" />
-                <JFXTextField fx:id="lastnameField" labelFloat="true" prefHeight="25.0" prefWidth="210.0" promptText="Last Name" />
-            </children>
-        </HBox>
-        <HBox layoutX="196.0" layoutY="212.33334350585938" spacing="160.0">
-            <children>
-                <JFXTextField fx:id="personnelField" labelFloat="true" prefWidth="210.0" promptText="Personnel Code" />
-                <JFXTextField fx:id="phoneField" labelFloat="true" prefWidth="210.0" promptText="Phone Number" />
-            </children>
-        </HBox>
-        <HBox layoutX="196.0" layoutY="277.66668701171875" spacing="53.0">
-            <children>
-                <JFXTextField fx:id="mailField" labelFloat="true" prefWidth="210.0" promptText="E Mail" />
-                <VBox spacing="2.0">
-                    <HBox.margin>
-                        <Insets right="53.0" />
-                    </HBox.margin>
-                </VBox>
-                <JFXTextField fx:id="IdField" editable="false" labelFloat="true" layoutX="10.0" layoutY="10.0" prefWidth="210.0" promptText="Master ID" />
-            </children>
-        </HBox>
-        <JFXButton fx:id="saveBTN" layoutX="421.0" layoutY="345.33331298828125" prefHeight="32.0" prefWidth="132.0" style="-fx-background-color: green; -fx-cursor: hand;" stylesheets="@../Drawable/Style.css" text="SAVE" textFill="WHITE" />
-        <HBox layoutX="196.0" layoutY="440.3333435058594" prefHeight="25.0" prefWidth="565.0" spacing="160.0">
-            <children>
-                <JFXTextField fx:id="currentPassField" labelFloat="true" prefWidth="210.0" promptText="Current Password" />
-                <JFXTextField fx:id="newPassField" labelFloat="true" prefWidth="210.0" promptText="New Password" />
-            </children>
-        </HBox>
+      <StackPane fx:id="stackPane" layoutY="-2.0" AnchorPane.bottomAnchor="-2.0" AnchorPane.topAnchor="-2.0">
+         <children>
+              <AnchorPane prefHeight="632.0" prefWidth="942.0" style="-fx-background-color: white;">
+                  <children>
+                      <Hyperlink fx:id="resetPassLink" layoutX="446.0" layoutY="501.0" style="-fx-border-color: transparent;" text="Reset Password" textFill="#1f1685" />
+                      <Text fill="#1f1685" layoutX="397.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="EDIT PROFILE">
+                          <font>
+                              <Font name="System Bold" size="28.0" />
+                          </font>
+                      </Text>
+                      <Text layoutX="255.0" layoutY="593.0" strokeType="OUTSIDE" strokeWidth="0.0" text="if don't remember your current password , you can Reset Your Password on bottom Link ." wrappingWidth="474.4274845123291" />
+                      <JFXButton fx:id="changePassBTN" layoutX="411.0" layoutY="503.0" prefHeight="33.0" prefWidth="132.0" style="-fx-background-color: green; -fx-cursor: hand;" stylesheets="@../Drawable/Style.css" text="Change Password" textFill="WHITE" />
+                      <Hyperlink fx:id="resetPassLink" layoutX="462.0" layoutY="600.0" style="-fx-background-color: transparent;" text="Reset" />
+                      <Label fx:id="changeLBL" alignment="CENTER" layoutX="341.0" layoutY="551.0" prefHeight="17.0" prefWidth="294.0" textAlignment="CENTER" wrapText="true" />
+                      <Label fx:id="saveLBL" alignment="CENTER" layoutX="340.0" layoutY="373.0" prefHeight="17.0" prefWidth="294.0" textAlignment="CENTER" wrapText="true" />
+                    <HBox layoutX="191.0" layoutY="122.0" spacing="160.0">
+                        <children>
+                            <JFXTextField fx:id="firstnameField" labelFloat="true" prefHeight="25.0" prefWidth="210.0" promptText="First Name" />
+                            <JFXTextField fx:id="lastnameField" labelFloat="true" prefHeight="25.0" prefWidth="210.0" promptText="Last Name" />
+                        </children>
+                    </HBox>
+                    <HBox layoutX="190.0" layoutY="210.0" spacing="160.0">
+                        <children>
+                            <JFXTextField fx:id="personnelField" labelFloat="true" prefWidth="210.0" promptText="Personnel Code" />
+                            <JFXTextField fx:id="phoneField" labelFloat="true" prefWidth="210.0" promptText="Phone Number" />
+                        </children>
+                    </HBox>
+                    <HBox layoutX="187.0" layoutY="288.0" spacing="53.0">
+                        <children>
+                            <JFXTextField fx:id="mailField" labelFloat="true" prefWidth="210.0" promptText="E Mail" />
+                            <VBox spacing="2.0">
+                                <HBox.margin>
+                                    <Insets right="53.0" />
+                                </HBox.margin>
+                            </VBox>
+                            <JFXTextField fx:id="IdField" editable="false" labelFloat="true" layoutX="10.0" layoutY="10.0" prefWidth="210.0" promptText="Master ID" />
+                        </children>
+                    </HBox>
+                    <JFXButton fx:id="saveBTN" layoutX="411.0" layoutY="355.0" prefHeight="32.0" prefWidth="132.0" style="-fx-background-color: green; -fx-cursor: hand;" stylesheets="@../Drawable/Style.css" text="SAVE" textFill="WHITE" />
+                    <HBox layoutX="195.0" layoutY="433.0" prefHeight="25.0" prefWidth="565.0" spacing="160.0">
+                     <children>
+                            <JFXTextField fx:id="currentPassField" labelFloat="true" prefWidth="210.0" promptText="Current Password" />
+                            <JFXTextField fx:id="newPassField" labelFloat="true" prefWidth="210.0" promptText="New Password" />
+                     </children>
+                    </HBox>
+                  </children>
+              </AnchorPane>
+         </children>
+      </StackPane>
         <JFXButton fx:id="backBTN" layoutX="11.0" layoutY="581.0" prefHeight="30.0" prefWidth="85.0" style="-fx-background-radius: 20; -fx-background-color: purple; -fx-cursor: hand;" text="Back" textFill="WHITE" />
     </children>
 </AnchorPane>

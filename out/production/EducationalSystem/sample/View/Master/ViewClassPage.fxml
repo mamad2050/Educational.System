@@ -22,7 +22,7 @@
             <children>
                 <AnchorPane prefHeight="631.0" prefWidth="969.0" style="-fx-background-color: white;">
                     <children>
-                        <TableView fx:id="thisClassStudentTable" editable="true" fixedCellSize="0.0" layoutX="421.0" layoutY="42.0" prefHeight="603.0" prefWidth="338.0" style="-fx-background-color: transparent; -fx-selection-bar: aqua;" stylesheets="@../Drawable/tableView2.css" AnchorPane.leftAnchor="421.0" AnchorPane.rightAnchor="210.0">
+                        <TableView fx:id="thisClassStudentTable" editable="true" fixedCellSize="0.0" layoutX="421.0" layoutY="42.0" prefHeight="602.0" prefWidth="338.0" style="-fx-background-color: transparent; -fx-selection-bar: aqua;" stylesheets="@../Drawable/tableView2.css" AnchorPane.leftAnchor="421.0" AnchorPane.rightAnchor="210.0">
                             <columns>
                                 <TableColumn fx:id="studentIdThisClassColumn" maxWidth="2000.0" minWidth="0.0" prefWidth="65.33333683013916" text="ID" />
                                 <TableColumn fx:id="fNameThisClassColumn" maxWidth="4000.0" prefWidth="141.33341217041016" text="First Name" />
@@ -37,13 +37,12 @@
                             <children>
                                 <Group layoutX="23.0" layoutY="19.0">
                                     <children>
-                                        <VBox layoutY="136.0" prefHeight="260.0" prefWidth="134.0" spacing="33.0">
+                                        <VBox layoutY="148.0" prefHeight="260.0" prefWidth="134.0" spacing="33.0">
                                             <children>
                                                 <JFXTextField fx:id="classIdField" editable="false" labelFloat="true" layoutX="10.0" layoutY="10.0" promptText="Class ID" />
                                                 <JFXTextField fx:id="lessonField" editable="false" labelFloat="true" layoutX="10.0" layoutY="61.0" promptText="Lesson" />
                                                 <JFXTextField fx:id="masterField" editable="false" labelFloat="true" layoutX="10.0" layoutY="35.0" promptText="Master Name" />
                                                 <JFXTextField fx:id="masterPhoneField" editable="false" labelFloat="true" layoutX="10.0" layoutY="126.0" promptText="Master Phone" />
-                                                <JFXTextField fx:id="masterMailField" editable="false" labelFloat="true" layoutX="10.0" layoutY="303.0" promptText="Master Email" />
                                                 <JFXTextField fx:id="capacityField" editable="false" labelFloat="true" layoutX="10.0" layoutY="127.0" promptText="Capacity" />
                                                 <JFXTextField fx:id="numberOfStudentField" editable="false" labelFloat="true" layoutX="10.0" layoutY="186.0" promptText="Number Of Students" />
                                             </children>
@@ -55,8 +54,8 @@
                                         </ImageView>
                                     </children>
                                 </Group>
-                                <JFXButton fx:id="backBTN" layoutX="20.0" layoutY="588.0" prefHeight="32.0" prefWidth="120.0" style="-fx-background-color: #1f1685; -fx-background-radius: 20px; -fx-cursor: hand;" text="Back" textFill="WHITE" />
-                        <JFXButton fx:id="postBTN" layoutX="21.0" layoutY="547.0" prefHeight="32.0" prefWidth="120.0" style="-fx-background-color: #4f4c4e; -fx-background-radius: 20px; -fx-cursor: hand;" text="Post" textFill="WHITE" />
+                                <JFXButton fx:id="backBTN" layoutX="22.0" layoutY="576.0" prefHeight="32.0" prefWidth="120.0" style="-fx-background-color: #1f1685; -fx-background-radius: 20px; -fx-cursor: hand;" text="Back" textFill="WHITE" />
+                        <JFXButton fx:id="postBTN" layoutX="23.0" layoutY="535.0" prefHeight="32.0" prefWidth="120.0" style="-fx-background-color: #4f4c4e; -fx-background-radius: 20px; -fx-cursor: hand;" text="Post" textFill="WHITE" />
                             </children>
                         </AnchorPane>
                         <AnchorPane layoutX="758.0" layoutY="21.0" prefHeight="623.0" prefWidth="195.0">

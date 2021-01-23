@@ -121,6 +121,10 @@ public class MyClassController implements Initializable {
         });
 // ---------------------------------- open class ------------------------
         openBTN.setOnAction(event -> {
+
+            if (selectedClass == null) {
+                LoginPageController.loadDialog(stackPane,"error","not found Class.");
+            }
             if (selectedClass.getPost() == null) {
                 LoginPageController.loadDialog(stackPane,"error","not found post.");
             }

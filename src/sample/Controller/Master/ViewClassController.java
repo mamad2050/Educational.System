@@ -60,8 +60,8 @@ public class ViewClassController implements Initializable {
     @FXML
     private JFXTextField masterPhoneField;
 
-    @FXML
-    private JFXTextField masterMailField;
+//    @FXML
+//    private JFXTextField masterMailField;
 
 
     // this class columns
@@ -135,7 +135,7 @@ public class ViewClassController implements Initializable {
         lessonField.setText(CreateClassController.selectedClass.getLessonName());
         capacityField.setText(Integer.toString(CreateClassController.selectedClass.getCapacity()));
         masterPhoneField.setText(CreateClassController.selectedClass.getMasterObj().getPhone());
-        masterMailField.setText(CreateClassController.selectedClass.getMasterObj().getEmail());
+//        masterMailField.setText(CreateClassController.selectedClass.getMasterObj().getEmail());
 
         // all students list
         ObservableList<Student> observableList = FXCollections.observableArrayList(Student.studentList);
@@ -203,6 +203,7 @@ public class ViewClassController implements Initializable {
                                     + "Student id : " + selectStudent.getStringId() + "\n" +
                                     "Name : " + selectStudent.getFirstName() + " " + selectStudent.getLastName() + "\n"
                                     + "Phone : " + selectStudent.getPhone());
+                    // notification for stds
                     for (Student student : Student.studentList) {
                         if (student == selectStudent) {
                             student.getMyClasses().add(CreateClassController.selectedClass);
@@ -214,7 +215,7 @@ public class ViewClassController implements Initializable {
                 }
             }
         });
-
+//s end a post for stds
         postBTN.setOnAction(event -> {
             FXMLLoader loader = new FXMLLoader(Main.class.getResource("View/Class/PostPage.fxml"));
             try {
@@ -295,6 +296,8 @@ public class ViewClassController implements Initializable {
 
         for (Student std : thisClassList) {
             if (std == student) {
+                LoginPageController.loadDialog(stackPane, "Add Student", "This user has already been added to the class");
+
                 return false;
 
             }

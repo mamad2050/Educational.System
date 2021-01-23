@@ -18,6 +18,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import sample.Controller.Login.LoginPageController;
 import sample.Main;
@@ -85,16 +86,15 @@ public class CreateClassController implements Initializable {
     @FXML
     private JFXTextField lessonField;
 
-//    @FXML
-//    private Label errorLBL;
-
     @FXML
     private TextField searchField;
+    @FXML
+    private StackPane stackPane;
 
     Master master;
     public static Class selectedClass;
 
-    AnchorPane pane ;
+    AnchorPane pane;
 
 
     @Override
@@ -152,6 +152,22 @@ public class CreateClassController implements Initializable {
             }
 
         });
+        editBTN.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                // ---------------- check conditions --------------
+                if (checkAllField() && checkAllField()) {
+                    Class.classList.get(selectedClass.getClassId() - 1).setClassNumber(Integer.parseInt(classNumField.getText()));
+                    Class.classList.get(selectedClass.getClassId() - 1).setCapacity(Integer.parseInt(capacityField.getText()));
+                    Class.classList.get(selectedClass.getClassId() - 1).setLessonName(lessonField.getText());
+                    Class.classList.get(selectedClass.getClassId() - 1).setMasterObj(findMaster());
+//
+                    myClassTable.refresh();
+                    LoginPageController.loadDialog(stackPane, "Edit Class", "Successful.");
+
+                }
+            }
+        });
 
 //
         myClassTable.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -160,7 +176,6 @@ public class CreateClassController implements Initializable {
                 selectedClass = myClassTable.getSelectionModel().getSelectedItem();
                 capacityField.setText(Integer.toString(selectedClass.getCapacity()));
                 lessonField.setText(selectedClass.getLessonName());
-//                masterNameField.setText(selectedClass.getMaster());
                 classNumField.setText(Integer.toString(selectedClass.getClassNumber()));
 
             }
@@ -168,14 +183,17 @@ public class CreateClassController implements Initializable {
         openBTN.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-
-                FXMLLoader loader = new FXMLLoader(Main.class.getResource("View/Master/ViewCLassPage.fxml"));
-                try {
-                    pane = loader.load();
-                } catch (IOException e) {
-                    e.printStackTrace();
+                if (selectedClass == null) {
+                    LoginPageController.loadDialog(stackPane, "Open Error", "Not Found.");
+                }else {
+                    FXMLLoader loader = new FXMLLoader(Main.class.getResource("View/Master/ViewCLassPage.fxml"));
+                    try {
+                        pane = loader.load();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    showPane.getChildren().setAll(pane);
                 }
-                showPane.getChildren().setAll(pane);
             }
         });
         deleteBTN.setOnAction(new EventHandler<ActionEvent>() {
@@ -203,6 +221,7 @@ public class CreateClassController implements Initializable {
         if (capacityField.getText().isEmpty() || classNumField.getText().isEmpty()
                 || lessonField.getText().isEmpty() || masterNameField.getText().isEmpty() || masterIdField.getText().isEmpty()) {
 //            errorLBL.setText("Please fill all fields.");
+            LoginPageController.loadDialog(stackPane, "Add Class", "Please fill all fields.");
             return false;
         }
         return true;
@@ -218,6 +237,8 @@ public class CreateClassController implements Initializable {
     private boolean checkIntegerFields() {
         if (!classNumField.getText().matches("\\d{1,3}") || !capacityField.getText().matches("\\d{2}")) {
 //            errorLBL.setText("Please check your inputs.");
+            LoginPageController.loadDialog(stackPane, "Add Class", "Class number must between 1-999 \n"
+                    + "Capacity must between 10-99");
             return false;
         }
         return true;
@@ -228,17 +249,12 @@ public class CreateClassController implements Initializable {
         if (masterIdField.getText().equals("")) {
             return false;
         }
-
         for (Master master : Master.masterList) {
             if (Integer.parseInt(masterIdField.getText()) == master.getMasterId()) {
                 masterNameField.setText(master.getFirstName() + " " + master.getLastName());
-
-//                errorLBL.setText("");
                 return true;
             }
         }
-//        errorLBL.setTextFill(Color.RED);
-//        errorLBL.setText("Master Not Found");
         return false;
     }
 

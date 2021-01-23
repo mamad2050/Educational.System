@@ -12,6 +12,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import sample.Controller.Login.LoginPageController;
@@ -26,7 +27,8 @@ import java.util.ResourceBundle;
 public class EditProfileController implements Initializable {
     @FXML
     private AnchorPane showPane;
-
+    @FXML
+    private StackPane stackPane;
     @FXML
     private JFXButton backBTN;
     @FXML
@@ -100,14 +102,15 @@ public class EditProfileController implements Initializable {
             public void handle(ActionEvent event) {
 
 
-                if (checkAllField() && checkPhoneField() && checkMailField() && checkUserField()) {
+                if (checkAllField() && checkPhoneField() && checkMailField() && checkUserField() && checkNameField()) {
                     Student.studentList.get(studentId).setFirstName(firstnameField.getText());
                     Student.studentList.get(studentId).setLastName(lastnameField.getText());
                     Student.studentList.get(studentId).setUserName(userField.getText());
                     Student.studentList.get(studentId).setPhone(phoneField.getText());
                     Student.studentList.get(studentId).setEmail(mailField.getText());
-                    saveLBL.setTextFill(Color.GREEN);
-                    saveLBL.setText("Successful.");
+//                    saveLBL.setTextFill(Color.GREEN);
+//                    saveLBL.setText("Successful.");
+                    LoginPageController.loadDialog(stackPane,"change Profile","Successful");
                 }
             }
         });
@@ -116,20 +119,25 @@ public class EditProfileController implements Initializable {
             @Override
             public void handle(ActionEvent event) {
                 if (currentPassField.getText().equals(Student.studentList.get(studentId).getPassword())) {
-                    if (!newPassField.getText().isEmpty()) {
+                    if (!newPassField.getText().isEmpty() && !currentPassField.getText().isEmpty()
+                    && checkPassword() ) {
                         Student.studentList.get(studentId).setPassword(newPassField.getText());
-                        changeLBL.setTextFill(Color.GREEN);
-                        changeLBL.setText("Successful.");
+//                        changeLBL.setTextFill(Color.GREEN);
+//                        changeLBL.setText("Successful.");
+                        LoginPageController.loadDialog(stackPane,"Change Password","Successful");
                     }
                 }
+                else
+                    LoginPageController.loadDialog(stackPane,"Change Password","your current password is wrong");
             }
         });
     }
     private boolean checkAllField() {
         if (firstnameField.getText().isEmpty() || lastnameField.getText().isEmpty() || userField.getText().isEmpty()
                 || phoneField.getText().isEmpty() || mailField.getText().isEmpty()) {
-            saveLBL.setTextFill(Color.RED);
-            saveLBL.setText("Please fill all fields.");
+//            saveLBL.setTextFill(Color.RED);
+//            saveLBL.setText("Please fill all fields.");
+            LoginPageController.loadDialog(stackPane,"Edit Profile","Please fill all fields");
             return false;
         }
         return true;
@@ -140,8 +148,9 @@ public class EditProfileController implements Initializable {
         if (phoneField.getText().matches("\\d{11}") && phoneField.getText().startsWith("09")) {
             return true;
         }
-        saveLBL.setTextFill(Color.RED);
-        saveLBL.setText("Phone must start with (09) and contains 11 digits. ");
+        LoginPageController.loadDialog(stackPane,"Edit Profile","Phone must start with (09) and contains 11 digits.");
+//        saveLBL.setTextFill(Color.RED);
+//        saveLBL.setText("Phone must start with (09) and contains 11 digits. ");
         return false;
     }
 
@@ -149,8 +158,9 @@ public class EditProfileController implements Initializable {
         if (mailField.getText().matches("^(.+)@(.+)$")) {
             return true;
         }
-        saveLBL.setTextFill(Color.RED);
-        saveLBL.setText("Mail must contain (@) and (.com)");
+        LoginPageController.loadDialog(stackPane,"Edit Profile","Mail must contain (@) and (.com)");
+//        saveLBL.setTextFill(Color.RED);
+//        saveLBL.setText("Mail must contain (@) and (.com)");
         return false;
     }
 
@@ -158,8 +168,31 @@ public class EditProfileController implements Initializable {
         if (userField.getText().matches("[a-zA-Z0-9]{3,12}")) {
             return true;
         }
-        saveLBL.setTextFill(Color.RED);
-        saveLBL.setText("Username must 3 - 12 character");
+        LoginPageController.loadDialog(stackPane,"Edit Profile","Username must 3 - 12 character");
+//        saveLBL.setTextFill(Color.RED);
+//        saveLBL.setText("Username must 3 - 12 character");
         return false;
     }
+
+    // --------------------------- check firstname and lastname -------------
+    private boolean checkNameField(){
+        if (firstnameField.getText().matches("^[a-zA-Z\\s]+") && lastnameField.getText().matches("^[a-zA-Z\\s]+") ) {
+            return true;
+        }
+        LoginPageController.loadDialog(stackPane,"Edit Profile","Your Firstname and Lastname must contains a-zA-Z");
+
+        return  false;
+    }
+
+    private  boolean checkPassword(){
+        if (newPassField.getText().length() >= 5) {
+            return true;
+        }
+        LoginPageController.loadDialog(stackPane,"Change Password","Your Password must contain more than 5" +
+                " character or digits");
+
+        return false;
+    }
+
+    //--------------------------- end --------------------
 }

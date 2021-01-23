@@ -61,7 +61,7 @@ public class PostPageController implements Initializable {
 
 
         content.getChildren().clear();
-        for (Comment comment : Main.comments) {
+        for (Comment comment : MyClassController.selectedClass.getPost().getComments()) {
             content.getChildren().add(comment.getRoot());
         }
 
@@ -94,7 +94,8 @@ public class PostPageController implements Initializable {
         sendBTN.setOnAction(event -> {
 
             if (checkFields()) {
-                Main.comments.add(new Comment(LoginPageController.studentLoggedIn.getUserName(), LoginPageController
+                MyClassController.selectedClass.getPost().getComments().
+                        add(new Comment(LoginPageController.studentLoggedIn.getUserName(), LoginPageController
                         .studentLoggedIn.getPhoto(), messageField.getText()));
                 messageField.clear();
                 refreshPage();

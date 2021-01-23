@@ -56,9 +56,9 @@ public class StudentPageController implements Initializable {
         Label dashboardLBL = new Label("Dashboard");
         Label profileLBL = new Label("Profile");
         Label classesLBL = new Label("My Classes");
-        Label lessonsLBL = new Label("My Lessons");
-        Label messagesLBL = new Label("My Messages");
-        listview.getItems().addAll(dashboardLBL, profileLBL, classesLBL, lessonsLBL, messagesLBL);
+//        Label lessonsLBL = new Label("My Lessons");
+//        Label messagesLBL = new Label("My Messages");
+        listview.getItems().addAll(dashboardLBL, profileLBL, classesLBL);
         listview.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {

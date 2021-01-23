@@ -6,23 +6,17 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import sample.Controller.Login.LoginPageController;
 import sample.File.WriteAndReadFile;
-import sample.Model.Comment;
-import sample.Model.Lesson;
 
-import java.util.ArrayList;
-import java.util.Collection;
 
 public class Main extends Application {
 
-   public static ArrayList<Comment> comments = new ArrayList<>();
+//   public static ArrayList<Comment> comments = new ArrayList<>();
 
     @Override
     public void start(Stage primaryStage) throws Exception {
 
         WriteAndReadFile.read();
 
-
-        fillInfo();
 
 
         FXMLLoader loader = new FXMLLoader();
@@ -41,8 +35,5 @@ public class Main extends Application {
     }
 
 
-    private void fillInfo() {
-
-    }
 
 }
