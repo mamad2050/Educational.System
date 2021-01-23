@@ -73,6 +73,7 @@ public class ManageStudentsController implements Initializable {
     private StackPane stackPane;
 
     Student selectStudent;
+
     String currentUser;
 // -------------------------------------- end ----------------------------
 

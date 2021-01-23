@@ -10,19 +10,20 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import sample.Controller.Login.LoginPageController;
 import sample.Main;
 import sample.Model.Comment;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 
-
 public class PostPageController implements Initializable {
 
-// --------------------------------  components -----------------------
+    // --------------------------------  components -----------------------
     @FXML
     private AnchorPane showPane;
     @FXML
@@ -47,10 +48,14 @@ public class PostPageController implements Initializable {
     private Label lessonLBL;
     @FXML
     private ImageView masterIMG;
+    @FXML
+    private StackPane stack;
+
 
     AnchorPane pane;
     public VBox content;
-// -------------------------------------- end ------------------------
+
+    // -------------------------------------- end ------------------------
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
@@ -60,7 +65,7 @@ public class PostPageController implements Initializable {
             content.getChildren().add(comment.getRoot());
         }
 
-       //--------------------- set components -------------------------------------
+        //--------------------- set components -------------------------------------
         masterIMG.setImage(MyClassController.selectedClass.getMasterObj().getPhoto());
         imageField.setImage(MyClassController.selectedClass.getPhoto());
         masterField.setText(MyClassController.selectedClass.getMasterObj().getFirstName() +
@@ -87,14 +92,29 @@ public class PostPageController implements Initializable {
         //  ----------------------   send comment --------------------------
 
         sendBTN.setOnAction(event -> {
-            Main.comments.add(new Comment(LoginPageController.studentLoggedIn.getUserName(), LoginPageController
-                    .studentLoggedIn.getPhoto(), messageField.getText()));
-            messageField.clear();
-            refreshPage();
+
+            if (checkFields()) {
+                Main.comments.add(new Comment(LoginPageController.studentLoggedIn.getUserName(), LoginPageController
+                        .studentLoggedIn.getPhoto(), messageField.getText()));
+                messageField.clear();
+                refreshPage();
+            }
+
+
         });
 
     }
-// ------------------------ refresh after comment ----------------------
+// ------------------------------ check empty fields ---------------------
+    private boolean checkFields() {
+        if (messageField.getText().isEmpty()) {
+            LoginPageController.loadDialog(stack,"Error When send comment","please" +
+                    "type a message");
+            return false;
+        }
+        return true;
+    }
+
+    // ------------------------ refresh after comment ----------------------
     private void refreshPage() {
         FXMLLoader loader = new FXMLLoader(Main.class.getResource("View/Student/PostPage.fxml"));
 

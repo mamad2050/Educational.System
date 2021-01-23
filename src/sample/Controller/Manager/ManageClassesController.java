@@ -49,6 +49,8 @@ public class ManageClassesController implements Initializable {
     @FXML
     private TableColumn<Class, Integer> occupyColumn;
     @FXML
+    private  JFXButton editBTN;
+    @FXML
     private JFXButton addBTN;
     @FXML
     private JFXButton openBTN;
@@ -165,6 +167,25 @@ public class ManageClassesController implements Initializable {
                 }
             }
         });
+
+
+        // --------------- edit master by manager ----------
+        editBTN.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                // ---------------- check conditions --------------
+                if (checkAllField() && checkAllField() ) {
+                    Class.classList.get(selectedClass.getClassId() - 1).setClassNumber(Integer.parseInt(classNumField.getText()));
+                    Class.classList.get(selectedClass.getClassId() - 1).setCapacity(Integer.parseInt(capacityField.getText()));
+                    Class.classList.get(selectedClass.getClassId() - 1).setLessonName(lessonField.getText());
+                    Class.classList.get(selectedClass.getClassId() - 1).setMasterObj(findMaster());
+//
+                    classTable.refresh();
+                    LoginPageController.loadDialog(stackPane,"Edit Class","Successful.");
+
+                }
+            }
+        });
 // --------------------------------  delete class    ---------------------------------
 
         deleteBTN.setOnAction(new EventHandler<ActionEvent>() {
@@ -178,6 +199,8 @@ public class ManageClassesController implements Initializable {
         });
 
     }
+
+
 // --------------------------------  add class to system    ---------------------------------
 
     private void addClassToTable(Class classs) {
@@ -216,7 +239,8 @@ public class ManageClassesController implements Initializable {
     private boolean checkIntegerFields() {
         if (!classNumField.getText().matches("\\d{1,3}") || !capacityField.getText().matches("\\d{2}")) {
 
-            LoginPageController.loadDialog(stackPane, "Add Class", "Please check your inputs.");
+            LoginPageController.loadDialog(stackPane, "Add Class", "Class number must between 1-999 \n"
+            + "Class number must between 10-99");
             return false;
         }
 

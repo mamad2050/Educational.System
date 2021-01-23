@@ -23,7 +23,7 @@
 
 <AnchorPane prefHeight="627.0" prefWidth="1003.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller.Student.PostPageController">
     <children>
-        <StackPane fx:id="stackpane" prefHeight="615.0" prefWidth="993.0">
+        <StackPane fx:id="stack" prefHeight="615.0" prefWidth="993.0">
             <children>
                 <AnchorPane fx:id="showPane" prefHeight="615.0" prefWidth="1021.0" style="-fx-background-color: ffff;">
                     <children>
@@ -73,7 +73,7 @@
                      </effect>
                      <children>
                         <Text layoutX="31.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Comments" />
-                        <ScrollPane layoutX="14.0" layoutY="41.0" minHeight="180.0" prefHeight="180.0" prefWidth="894.0">
+                        <ScrollPane layoutX="14.0" layoutY="41.0" minHeight="180.0" prefHeight="180.0" prefWidth="894.0" stylesheets="@../Drawable/scroll.css">
                            <content>
                               <VBox fx:id="content" minHeight="180.0" prefWidth="882.0">
                                  <children>
@@ -84,8 +84,11 @@
                                                 <Image url="@../Drawable/teacher.png" />
                                              </image>
                                           </ImageView>
-                                          <Label fx:id="nameLBL" layoutX="94.0" layoutY="9.0" prefHeight="18.0" prefWidth="98.0" text="Matin2050" />
-                                          <TextFlow layoutX="94.0" layoutY="34.0" prefHeight="32.0" prefWidth="757.0">
+                                          <Label fx:id="nameLBL" layoutX="94.0" layoutY="9.0" prefHeight="18.0" prefWidth="98.0" text="Matin2050">
+                                             <font>
+                                                <Font name="System Bold Italic" size="12.0" />
+                                             </font></Label>
+                                          <TextFlow layoutX="90.0" layoutY="37.0" prefHeight="32.0" prefWidth="757.0">
                                              <children>
                                                 <Text strokeType="OUTSIDE" strokeWidth="0.0" text="HEloo guys" wrappingWidth="46.427499771118164" />
                                              </children>
